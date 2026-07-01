@@ -1,19 +1,23 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Triage Hub - Capstone Presentation (TF1)</title>
-  
+
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
-  
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap"
+    rel="stylesheet">
+
   <style>
     /* THEME SYSTEM */
     :root {
-      --primary: #F36F21;       /* FPT Orange */
+      --primary: #F36F21;
+      /* FPT Orange */
       --primary-hover: #D75A10;
       --bg: #0C0C0E;
       --bg-gradient: radial-gradient(circle at 50% 50%, #15151A 0%, #0C0C0E 100%);
@@ -64,7 +68,12 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    h1, h2, h3, h4, h5, .font-outfit {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    .font-outfit {
       font-family: 'Outfit', sans-serif;
     }
 
@@ -212,8 +221,15 @@
       z-index: 10;
     }
 
-    .slide.prev { transform: scale(0.97) translateY(-15px); opacity: 0; }
-    .slide.next { transform: scale(1.01) translateY(15px); opacity: 0; }
+    .slide.prev {
+      transform: scale(0.97) translateY(-15px);
+      opacity: 0;
+    }
+
+    .slide.next {
+      transform: scale(1.01) translateY(15px);
+      opacity: 0;
+    }
 
     /* TITLE */
     .slide-title-area {
@@ -280,9 +296,19 @@
       transition: all 0.3s ease;
     }
 
-    .btn:hover { background: var(--border); }
-    .btn-primary { background: var(--primary); border-color: var(--primary); color: white; }
-    .btn-primary:hover { background: var(--primary-hover); }
+    .btn:hover {
+      background: var(--border);
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-hover);
+    }
 
     .floating-control {
       cursor: pointer;
@@ -332,16 +358,45 @@
       border-color: var(--primary);
       box-shadow: 0 4px 15px rgba(243, 111, 33, 0.3);
     }
-    .nav-arrow-left { left: 15px; }
-    .nav-arrow-right { right: 15px; }
+
+    .nav-arrow-left {
+      left: 15px;
+    }
+
+    .nav-arrow-right {
+      right: 15px;
+    }
 
     /* LAYOUT & CARDS */
-    .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
-    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; }
-    .flex-center { display: flex; align-items: center; justify-content: center; }
-    .flex-col { display: flex; flex-direction: column; }
-    
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+    }
+
+    .flex-center {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .flex-col {
+      display: flex;
+      flex-direction: column;
+    }
+
     .card {
       background: var(--card-bg);
       border: 1px solid var(--card-border);
@@ -358,10 +413,18 @@
       box-shadow: 0 12px 28px rgba(243, 111, 33, 0.12);
     }
 
-    .card-accent-orange { border-top: 3px solid var(--primary); }
-    .card-accent-blue { border-top: 3px solid var(--accent-blue); }
-    .card-accent-green { border-top: 3px solid var(--accent-green); }
-    
+    .card-accent-orange {
+      border-top: 3px solid var(--primary);
+    }
+
+    .card-accent-blue {
+      border-top: 3px solid var(--accent-blue);
+    }
+
+    .card-accent-green {
+      border-top: 3px solid var(--accent-green);
+    }
+
     .card-title {
       font-size: 1.15rem;
       font-weight: 600;
@@ -390,11 +453,35 @@
       letter-spacing: 0.5px;
     }
 
-    .badge-orange { background: rgba(243, 111, 33, 0.12); color: var(--primary); border: 1px solid rgba(243, 111, 33, 0.25); }
-    .badge-blue { background: rgba(59, 130, 246, 0.12); color: var(--accent-blue); border: 1px solid rgba(59, 130, 246, 0.25); }
-    .badge-green { background: rgba(16, 185, 129, 0.12); color: var(--accent-green); border: 1px solid rgba(16, 185, 129, 0.25); }
-    .badge-red { background: rgba(239, 68, 68, 0.12); color: var(--accent-red); border: 1px solid rgba(239, 68, 68, 0.25); }
-    .badge-yellow { background: rgba(245, 158, 11, 0.12); color: var(--accent-yellow); border: 1px solid rgba(245, 158, 11, 0.25); }
+    .badge-orange {
+      background: rgba(243, 111, 33, 0.12);
+      color: var(--primary);
+      border: 1px solid rgba(243, 111, 33, 0.25);
+    }
+
+    .badge-blue {
+      background: rgba(59, 130, 246, 0.12);
+      color: var(--accent-blue);
+      border: 1px solid rgba(59, 130, 246, 0.25);
+    }
+
+    .badge-green {
+      background: rgba(16, 185, 129, 0.12);
+      color: var(--accent-green);
+      border: 1px solid rgba(16, 185, 129, 0.25);
+    }
+
+    .badge-red {
+      background: rgba(239, 68, 68, 0.12);
+      color: var(--accent-red);
+      border: 1px solid rgba(239, 68, 68, 0.25);
+    }
+
+    .badge-yellow {
+      background: rgba(245, 158, 11, 0.12);
+      color: var(--accent-yellow);
+      border: 1px solid rgba(245, 158, 11, 0.25);
+    }
 
     /* PROCESS FLOW & TIMELINE */
     .timeline {
@@ -492,9 +579,17 @@
       border-bottom: 1px solid var(--border);
     }
 
-    .comp-table tr:last-child td { border-bottom: none; }
-    .comp-table tr:hover { background: rgba(255, 255, 255, 0.02); }
-    body.light-theme .comp-table tr:hover { background: rgba(0, 0, 0, 0.02); }
+    .comp-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .comp-table tr:hover {
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    body.light-theme .comp-table tr:hover {
+      background: rgba(0, 0, 0, 0.02);
+    }
 
     /* CODE BLOCKS */
     .code-block {
@@ -509,11 +604,22 @@
       color: #E4E4E7;
       position: relative;
     }
-    
-    .code-comment { color: #6B7280; }
-    .code-keyword { color: #F472B6; }
-    .code-string { color: #34D399; }
-    .code-number { color: #FB923C; }
+
+    .code-comment {
+      color: #6B7280;
+    }
+
+    .code-keyword {
+      color: #F472B6;
+    }
+
+    .code-string {
+      color: #34D399;
+    }
+
+    .code-number {
+      color: #FB923C;
+    }
 
     /* CALLOUT BOX */
     .callout-box {
@@ -524,8 +630,17 @@
       margin: 12px 0;
     }
 
-    .callout-title { font-weight: 700; color: var(--primary); margin-bottom: 3px; font-size: 0.9rem; }
-    .callout-text { font-size: 0.82rem; line-height: 1.45; }
+    .callout-title {
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 3px;
+      font-size: 0.9rem;
+    }
+
+    .callout-text {
+      font-size: 0.82rem;
+      line-height: 1.45;
+    }
 
     /* SECTION DIVIDERS */
     .slide-section-divider {
@@ -535,10 +650,35 @@
       text-align: center;
     }
 
-    .divider-number { font-size: 1.3rem; font-weight: 800; color: var(--primary); letter-spacing: 3px; margin-bottom: 8px; }
-    .divider-title { font-size: 3rem; font-weight: 800; line-height: 1.1; margin-bottom: 15px; max-width: 800px; }
-    .divider-line { width: 60px; height: 3px; background: var(--primary); margin: 0 auto 20px auto; border-radius: 2px; }
-    .divider-subtitle { font-size: 1.1rem; color: var(--text-muted); max-width: 600px; }
+    .divider-number {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--primary);
+      letter-spacing: 3px;
+      margin-bottom: 8px;
+    }
+
+    .divider-title {
+      font-size: 3rem;
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 15px;
+      max-width: 800px;
+    }
+
+    .divider-line {
+      width: 60px;
+      height: 3px;
+      background: var(--primary);
+      margin: 0 auto 20px auto;
+      border-radius: 2px;
+    }
+
+    .divider-subtitle {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      max-width: 600px;
+    }
 
     /* COVER */
     .slide-cover {
@@ -561,10 +701,26 @@
       text-transform: uppercase;
     }
 
-    .cover-title { font-size: 4rem; font-weight: 800; line-height: 1.05; margin-bottom: 15px; letter-spacing: -1px; }
-    .cover-title span { color: var(--primary); }
-    .cover-subtitle { font-size: 1.2rem; color: var(--text-muted); margin-bottom: 40px; max-width: 750px; line-height: 1.5; }
-    
+    .cover-title {
+      font-size: 4rem;
+      font-weight: 800;
+      line-height: 1.05;
+      margin-bottom: 15px;
+      letter-spacing: -1px;
+    }
+
+    .cover-title span {
+      color: var(--primary);
+    }
+
+    .cover-subtitle {
+      font-size: 1.2rem;
+      color: var(--text-muted);
+      margin-bottom: 40px;
+      max-width: 750px;
+      line-height: 1.5;
+    }
+
     .cover-meta {
       display: flex;
       flex-wrap: wrap;
@@ -575,9 +731,23 @@
       max-width: 850px;
     }
 
-    .meta-item { display: flex; flex-direction: column; }
-    .meta-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); margin-bottom: 3px; }
-    .meta-val { font-size: 0.9rem; font-weight: 600; }
+    .meta-item {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .meta-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-muted);
+      margin-bottom: 3px;
+    }
+
+    .meta-val {
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
 
     /* AGENDA */
     .agenda-grid {
@@ -613,7 +783,11 @@
       width: 30px;
     }
 
-    .agenda-text { font-weight: 600; font-size: 0.95rem; }
+    .agenda-text {
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
     .agenda-presenter {
       margin-left: auto;
       font-size: 0.75rem;
@@ -642,8 +816,11 @@
       justify-content: center;
     }
 
-    .toc-modal.open { opacity: 1; visibility: visible; }
-    
+    .toc-modal.open {
+      opacity: 1;
+      visibility: visible;
+    }
+
     .toc-content {
       background: var(--bg);
       border: 1px solid var(--border);
@@ -688,22 +865,65 @@
       transition: all 0.2s ease;
     }
 
-    .toc-link:hover { border-color: var(--primary); background: var(--primary); color: white; }
-    .toc-link:hover span { color: white !important; }
+    .toc-link:hover {
+      border-color: var(--primary);
+      background: var(--primary);
+      color: white;
+    }
+
+    .toc-link:hover span {
+      color: white !important;
+    }
 
     /* SVG ARCHITECTURE STYLES */
-    .arch-svg text { font-family: 'Inter', sans-serif; fill: var(--text); }
-    body.light-theme .arch-svg text { fill: #1B1D21; }
-    .arch-svg rect, .arch-svg circle, .arch-svg path { transition: all 0.3s ease; }
-    .clickable-node:hover rect { stroke: var(--primary) !important; fill: rgba(243, 111, 33, 0.1) !important; cursor: pointer; }
+    .arch-svg text {
+      font-family: 'Inter', sans-serif;
+      fill: var(--text);
+    }
+
+    body.light-theme .arch-svg text {
+      fill: #1B1D21;
+    }
+
+    .arch-svg rect,
+    .arch-svg circle,
+    .arch-svg path {
+      transition: all 0.3s ease;
+    }
+
+    .clickable-node:hover rect {
+      stroke: var(--primary) !important;
+      fill: rgba(243, 111, 33, 0.1) !important;
+      cursor: pointer;
+    }
 
     /* ANIMATIONS */
-    .animate-appear { opacity: 0; transform: translateY(12px); transition: opacity 0.4s ease, transform 0.4s ease; }
-    .active .animate-appear { opacity: 1; transform: translateY(0); }
-    .active .delay-1 { transition-delay: 0.08s; }
-    .active .delay-2 { transition-delay: 0.16s; }
-    .active .delay-3 { transition-delay: 0.24s; }
-    .active .delay-4 { transition-delay: 0.32s; }
+    .animate-appear {
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+
+    .active .animate-appear {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .active .delay-1 {
+      transition-delay: 0.08s;
+    }
+
+    .active .delay-2 {
+      transition-delay: 0.16s;
+    }
+
+    .active .delay-3 {
+      transition-delay: 0.24s;
+    }
+
+    .active .delay-4 {
+      transition-delay: 0.32s;
+    }
 
     /* IMAGE LIGHTBOX MODAL */
     .lightbox-modal {
@@ -734,8 +954,15 @@
     }
 
     @keyframes zoom {
-      from { transform: scale(0.95); opacity: 0; }
-      to { transform: scale(1); opacity: 1; }
+      from {
+        transform: scale(0.95);
+        opacity: 0;
+      }
+
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
     }
 
     .lightbox-close {
@@ -754,10 +981,11 @@
     }
   </style>
 </head>
+
 <body class="dark-theme">
 
   <div class="presentation-container">
-    
+
     <!-- PROGRESS BAR -->
     <div class="progress-container">
       <div id="progressBar" class="progress-bar"></div>
@@ -772,7 +1000,13 @@
       <div id="currentSection" class="header-center">Phần trình bày</div>
       <div>
         <button class="btn btn-primary" onclick="openTOC()">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline; vertical-align:middle; margin-right:4px;"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round"
+            style="display:inline; vertical-align:middle; margin-right:4px;">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
           Slide Menu
         </button>
       </div>
@@ -780,10 +1014,16 @@
 
     <!-- NAVIGATION ARROWS -->
     <div class="nav-arrow nav-arrow-left" onclick="prevSlide()" title="Slide trước (← / PageUp)">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="15 18 9 12 15 6"></polyline>
+      </svg>
     </div>
     <div class="nav-arrow nav-arrow-right" onclick="nextSlide()" title="Slide tiếp theo (→ / Space / PageDown)">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="9 18 15 12 9 6"></polyline>
+      </svg>
     </div>
 
     <!-- SLIDES WORKSPACE -->
@@ -794,8 +1034,9 @@
         <div class="slide-body slide-cover">
           <div class="cover-tag">Technical Presentation — Task Force 1</div>
           <h1 class="cover-title">Triage <span>Hub</span></h1>
-          <div class="cover-subtitle">Kiến trúc & Báo cáo kỹ thuật Hệ thống Phân tích lỗi tự động (AIOps Incident Triage Engine) trên AWS EKS Private Cloud</div>
-          
+          <div class="cover-subtitle">Kiến trúc & Báo cáo kỹ thuật Hệ thống Phân tích lỗi tự động (AIOps Incident Triage
+            Engine) trên AWS EKS Private Cloud</div>
+
           <div class="cover-meta">
             <div class="meta-item">
               <div class="meta-label">Người trình bày chính</div>
@@ -907,33 +1148,60 @@
       <!-- SLIDE 3: PROJECT MANAGEMENT (JIRA & GITHUB) -->
       <div class="slide" data-section="Quản lý dự án" data-presenter="Team TF1">
         <div class="slide-title-area">
-          <h2 class="slide-title">Cách Quản Lý Dự Án Thông Qua Jira & Github</h2>
-          <p class="slide-subtitle">Phương pháp phối hợp Agile, phân công công việc và quản trị mã nguồn trong nhóm.</p>
+          <h2 class="slide-title">Quản Lý Dự Án & Phối Hợp Nhóm (Jira, Github, Discord)</h2>
+          <p class="slide-subtitle">Phương pháp phối hợp Agile, phân công công việc, giao tiếp và quản trị mã nguồn
+            trong nhóm.</p>
         </div>
         <div class="slide-body grid-2">
           <div class="flex-col">
             <h3 style="color:var(--primary); margin-bottom:12px;">Theo dõi tiến độ bằng Jira Software</h3>
             <p style="font-size:0.85rem; line-height:1.5; color:var(--text-muted); margin-bottom:12px;">
-              Nhóm thiết lập Sprint ngắn hạn 1 tuần trên Jira để quản lý backlog và phân tách nhiệm vụ rõ ràng:
+              Nhóm thiết lập Sprint ngắn hạn 2 tuần trên Jira để quản lý backlog và phân tách nhiệm vụ rõ ràng:
             </p>
-            <ul style="font-size:0.8rem; line-height:1.6; margin-left:20px; color:var(--text-muted);">
-              <li><strong>AI Workstream:</strong> Xây dựng API <code>/v1/triage</code>, tích hợp Bedrock SDK, viết hợp đồng Telemetry và chẩn đoán RCA toán học.</li>
-              <li><strong>DevOps Workstream:</strong> Bootstrap EKS Cluster sandbox, xây dựng module mạng VPC Link, cài đặt addons (External Secrets, OPA Gatekeeper, ArgoCD).</li>
-              <li><strong>Integration Tests:</strong> Phối hợp kiểm thử E2E 3 kịch bản sự cố trên môi trường sandbox.</li>
+            <ul
+              style="font-size:0.8rem; line-height:1.6; margin-left:20px; color:var(--text-muted); margin-bottom:12px;">
+              <li><strong>DevOps Workstream:</strong> Bootstrap EKS Cluster sandbox, xây dựng module mạng VPC Link, cài
+                đặt addons (External Secrets, OPA Gatekeeper, ArgoCD).</li>
+              <li><strong>Integration Tests:</strong> Phối hợp kiểm thử E2E 3 kịch bản sự cố trên môi trường sandbox.
+              </li>
             </ul>
+            <div
+              style="margin-top:10px; border:1.5px solid var(--border); border-radius:8px; overflow:hidden; box-shadow:0 4px 12px var(--shadow);">
+              <img src="assets/jira-dashboard.png" alt="Jira Dashboard" onclick="openLightbox(this.src)"
+                style="cursor: zoom-in; width: 100%; display: block; transition: transform 0.2s;"
+                onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'" />
+            </div>
           </div>
-          
-          <div class="flex-col justify-center">
-            <div class="card card-accent-blue" style="padding:16px;">
+
+          <div class="flex-col justify-between">
+            <div class="card card-accent-blue" style="padding:16px; margin-bottom: 12px;">
               <div class="card-title" style="font-size: 1rem;">Quy trình Git Workflow & Peer Review</div>
               <p style="font-size:0.8rem; color:var(--text-muted); line-height:1.5; margin-bottom:10px;">
                 Áp dụng quy tắc bảo mật code nghiêm ngặt trước khi đưa vào cluster:
               </p>
               <ul style="font-size:0.75rem; line-height:1.6; margin-left:15px; color:var(--text-muted);">
                 <li>Nhánh <code>main</code> được bảo vệ (Protected Branch), cấm push trực tiếp.</li>
-                <li>Mọi tính năng được phát triển trên nhánh <code>feature/*</code>, yêu cầu tối thiểu **1 code review** từ thành viên khác trước khi Approve PR.</li>
-                <li>Gắn tag tự động theo Git Commit SHA động giúp tránh xung đột ECR image.</li>
+                <li>Mọi tính năng trên nhánh <code>feature/*</code> yêu cầu tối thiểu **1 code review** trước khi merge.
+                </li>
               </ul>
+            </div>
+
+            <div class="card card-accent-green" style="padding:16px;">
+              <div class="card-title" style="font-size: 1rem;">Giao Tiếp & Thảo Luận (Discord)</div>
+              <p style="font-size:0.8rem; color:var(--text-muted); line-height:1.5; margin-bottom:10px;">
+                Duy trì kết nối liên tục để gỡ lỗi và giải quyết vấn đề tức thời:
+              </p>
+              <ul
+                style="font-size:0.75rem; line-height:1.6; margin-left:15px; color:var(--text-muted); margin-bottom:10px;">
+                <li><strong>Voice call / Meetings:</strong> Họp Daily trực tuyến, hỗ trợ pair-programming.</li>
+                <li><strong>Alert Integration:</strong> Cập nhật trạng thái pipeline, CI/CD tự động.</li>
+              </ul>
+              <div
+                style="margin-top:10px; border:1.5px solid var(--border); border-radius:8px; overflow:hidden; box-shadow:0 4px 12px var(--shadow);">
+                <img src="assets/discord-chat.png" alt="Discord Collaboration" onclick="openLightbox(this.src)"
+                  style="cursor: zoom-in; width: 100%; display: block; transition: transform 0.2s;"
+                  onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'" />
+              </div>
             </div>
           </div>
         </div>
@@ -949,7 +1217,8 @@
           <div class="flex-col">
             <h3 style="color:var(--primary); margin-bottom:12px;">Đặc trưng tải xử lý của AI Engine</h3>
             <p style="font-size:0.88rem; line-height:1.6; color:var(--text-muted); margin-bottom:15px;">
-              AIOps Engine không phải là dịch vụ chạy LLM liên tục (high-throughput), mà hoạt động theo dạng **sự kiện đột xuất** (event-driven). Khi sự cố (Alert) xảy ra, hệ thống cần tài nguyên tức thời để:
+              AIOps Engine không phải là dịch vụ chạy LLM liên tục (high-throughput), mà hoạt động theo dạng **sự kiện
+              đột xuất** (event-driven). Khi sự cố (Alert) xảy ra, hệ thống cần tài nguyên tức thời để:
             </p>
             <ul style="font-size:0.85rem; line-height:1.7; margin-left:20px; color:var(--text-muted);">
               <li>Truy vấn hàng ngàn dòng logs/metrics nội bộ (Compute-intensive).</li>
@@ -957,15 +1226,17 @@
               <li>Đòi hỏi bảo mật tuyệt đối, ngăn rò rỉ dữ liệu log khách hàng ra internet.</li>
             </ul>
           </div>
-          
+
           <div class="flex-col justify-around">
             <div class="card card-accent-blue animate-appear">
               <div class="card-title">Kết nối riêng tư (VPC Private Link)</div>
-              <div class="card-desc">Gọi Bedrock API không qua internet bằng SigV4 VPC Interface Endpoints. Đảm bảo dữ liệu nhạy cảm không rời mạng nội bộ.</div>
+              <div class="card-desc">Gọi Bedrock API không qua internet bằng SigV4 VPC Interface Endpoints. Đảm bảo dữ
+                liệu nhạy cảm không rời mạng nội bộ.</div>
             </div>
             <div class="card card-accent-orange animate-appear delay-1">
               <div class="card-title">Định tuyến Hybrid Mode thông minh</div>
-              <div class="card-desc">Tự động chuyển đổi giữa chẩn đoán toán học cục bộ (Deterministic RCA) và AI Agent dựa trên độ phức tạp, giúp tối ưu hóa chi phí token và thời gian phản hồi.</div>
+              <div class="card-desc">Tự động chuyển đổi giữa chẩn đoán toán học cục bộ (Deterministic RCA) và AI Agent
+                dựa trên độ phức tạp, giúp tối ưu hóa chi phí token và thời gian phản hồi.</div>
             </div>
           </div>
         </div>
@@ -975,69 +1246,87 @@
       <div class="slide" data-section="Kiến trúc tổng quan" data-presenter="Tiến">
         <div class="slide-title-area">
           <h2 class="slide-title">Kiến Trúc Hạ Tầng - Khả Năng Đáp Ứng</h2>
-          <p class="slide-subtitle">Bảo đảm độ sẵn sàng (Availability) và khả năng sống sót cao của dịch vụ trong vùng mạng riêng tư.</p>
+          <p class="slide-subtitle">Bảo đảm độ sẵn sàng (Availability) và khả năng sống sót cao của dịch vụ trong vùng
+            mạng riêng tư.</p>
         </div>
         <div class="slide-body grid-2">
           <!-- Interactive System Architecture SVG -->
           <div class="flex-center">
-            <svg class="arch-svg" width="100%" height="320" viewBox="0 0 450 320" fill="none" xmlns="http://www.w3.org/2000/svg" style="background: rgba(255,255,255,0.01); border-radius: 8px; border: 1px solid var(--border);">
+            <svg class="arch-svg" width="100%" height="320" viewBox="0 0 450 320" fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              style="background: rgba(255,255,255,0.01); border-radius: 8px; border: 1px solid var(--border);">
               <!-- VPC -->
-              <rect x="10" y="10" width="430" height="300" rx="8" stroke="var(--border)" stroke-dasharray="4,4" stroke-width="1.5"/>
+              <rect x="10" y="10" width="430" height="300" rx="8" stroke="var(--border)" stroke-dasharray="4,4"
+                stroke-width="1.5" />
               <text x="20" y="24" font-size="9" fill="var(--text-muted)">VPC (us-east-1)</text>
 
               <!-- Private Subnets -->
-              <rect x="25" y="40" width="400" height="255" rx="6" stroke="var(--accent-blue)" stroke-width="1.5" fill="rgba(59, 130, 246, 0.02)"/>
-              <text x="35" y="54" font-size="8" fill="var(--accent-blue)" font-weight="700">Subnet riêng tư (Không có Internet Ingress/Egress)</text>
+              <rect x="25" y="40" width="400" height="255" rx="6" stroke="var(--accent-blue)" stroke-width="1.5"
+                fill="rgba(59, 130, 246, 0.02)" />
+              <text x="35" y="54" font-size="8" fill="var(--accent-blue)" font-weight="700">Subnet riêng tư (Không có
+                Internet Ingress/Egress)</text>
 
               <!-- AWS Endpoints -->
-              <rect x="280" y="70" width="135" height="210" rx="6" fill="rgba(255,255,255,0.02)" stroke="var(--border)"/>
+              <rect x="280" y="70" width="135" height="210" rx="6" fill="rgba(255,255,255,0.02)"
+                stroke="var(--border)" />
               <text x="347" y="83" text-anchor="middle" font-size="8" font-weight="700">AWS PrivateLink</text>
-              <rect x="288" y="95" width="118" height="20" rx="3" fill="var(--card-bg)" stroke="var(--card-border)"/>
+              <rect x="288" y="95" width="118" height="20" rx="3" fill="var(--card-bg)" stroke="var(--card-border)" />
               <text x="347" y="108" text-anchor="middle" font-size="7">DynamoDB VPCE</text>
-              <rect x="288" y="125" width="118" height="20" rx="3" fill="var(--card-bg)" stroke="var(--card-border)"/>
+              <rect x="288" y="125" width="118" height="20" rx="3" fill="var(--card-bg)" stroke="var(--card-border)" />
               <text x="347" y="138" text-anchor="middle" font-size="7">S3 VPCE</text>
-              <rect x="288" y="155" width="118" height="20" rx="3" fill="var(--card-bg)" stroke="var(--card-border)"/>
+              <rect x="288" y="155" width="118" height="20" rx="3" fill="var(--card-bg)" stroke="var(--card-border)" />
               <text x="347" y="168" text-anchor="middle" font-size="7">Bedrock VPCE (SigV4)</text>
-              <rect x="288" y="185" width="118" height="20" rx="3" fill="var(--card-bg)" stroke="var(--card-border)"/>
+              <rect x="288" y="185" width="118" height="20" rx="3" fill="var(--card-bg)" stroke="var(--card-border)" />
               <text x="347" y="198" text-anchor="middle" font-size="7">ECR VPCE (DKR/API)</text>
-              <rect x="288" y="215" width="118" height="20" rx="3" fill="var(--card-bg)" stroke="var(--card-border)"/>
+              <rect x="288" y="215" width="118" height="20" rx="3" fill="var(--card-bg)" stroke="var(--card-border)" />
               <text x="347" y="228" text-anchor="middle" font-size="7">Secrets Manager VPCE</text>
 
               <!-- EKS -->
-              <rect x="40" y="70" width="220" height="210" rx="6" fill="rgba(243, 111, 33, 0.02)" stroke="var(--primary)"/>
-              <text x="150" y="83" text-anchor="middle" font-size="8" fill="var(--primary)" font-weight="700">EKS Cluster (Nodes t3.small)</text>
+              <rect x="40" y="70" width="220" height="210" rx="6" fill="rgba(243, 111, 33, 0.02)"
+                stroke="var(--primary)" />
+              <text x="150" y="83" text-anchor="middle" font-size="8" fill="var(--primary)" font-weight="700">EKS
+                Cluster (Nodes t3.small)</text>
 
               <!-- tf1-api Pods -->
-              <rect x="50" y="105" width="95" height="35" rx="4" fill="var(--card-bg)" stroke="var(--card-border)"/>
+              <rect x="50" y="105" width="95" height="35" rx="4" fill="var(--card-bg)" stroke="var(--card-border)" />
               <text x="97" y="120" text-anchor="middle" font-size="7" font-weight="700">tf1-api pod-1</text>
               <text x="97" y="132" text-anchor="middle" font-size="6" fill="var(--accent-green)">Healthy</text>
 
-              <rect x="155" y="105" width="95" height="35" rx="4" fill="var(--card-bg)" stroke="var(--card-border)"/>
+              <rect x="155" y="105" width="95" height="35" rx="4" fill="var(--card-bg)" stroke="var(--card-border)" />
               <text x="202" y="120" text-anchor="middle" font-size="7" font-weight="700">tf1-api pod-2</text>
               <text x="202" y="132" text-anchor="middle" font-size="6" fill="var(--accent-green)">Healthy</text>
 
               <!-- worker pod -->
-              <rect x="50" y="160" width="200" height="35" rx="4" fill="var(--card-bg)" stroke="var(--card-border)"/>
+              <rect x="50" y="160" width="200" height="35" rx="4" fill="var(--card-bg)" stroke="var(--card-border)" />
               <text x="150" y="176" text-anchor="middle" font-size="7" font-weight="700">tf1-worker pod (Poller)</text>
-              <text x="150" y="187" text-anchor="middle" font-size="6" fill="var(--text-muted)">Chạy polling loop liên tục</text>
+              <text x="150" y="187" text-anchor="middle" font-size="6" fill="var(--text-muted)">Chạy polling loop liên
+                tục</text>
 
               <!-- internal alb -->
-              <rect x="50" y="215" width="200" height="40" rx="4" fill="var(--card-bg)" stroke="var(--accent-blue)" stroke-width="1.5"/>
-              <text x="150" y="232" text-anchor="middle" font-size="8" font-weight="700" fill="var(--accent-blue)">Internal ALB (Port 8080)</text>
-              <text x="150" y="244" text-anchor="middle" font-size="6" fill="var(--text-muted)">Chỉ tiếp nhận kết nối trong VPC / Target Group health check</text>
+              <rect x="50" y="215" width="200" height="40" rx="4" fill="var(--card-bg)" stroke="var(--accent-blue)"
+                stroke-width="1.5" />
+              <text x="150" y="232" text-anchor="middle" font-size="8" font-weight="700"
+                fill="var(--accent-blue)">Internal ALB (Port 8080)</text>
+              <text x="150" y="244" text-anchor="middle" font-size="6" fill="var(--text-muted)">Chỉ tiếp nhận kết nối
+                trong VPC / Target Group health check</text>
 
               <!-- Connect pod to VPCE -->
-              <path d="M 250,122 L 280,122" stroke="var(--primary)" stroke-width="1" stroke-dasharray="2,2"/>
+              <path d="M 250,122 L 280,122" stroke="var(--primary)" stroke-width="1" stroke-dasharray="2,2" />
             </svg>
           </div>
 
           <div class="flex-col justify-center">
             <h3 style="color:var(--primary); margin-bottom:12px;">Đặc Tính Đáp Ứng Dịch Vụ (Availability)</h3>
-            <ul style="font-size:0.85rem; line-height:1.7; margin-left:20px; color:var(--text-muted); margin-bottom:15px;">
-              <li><strong>Thiết kế dự phòng 2 Replicas:</strong> Deploy tối thiểu 2 pods cho <code>tf1-api</code> phân tán trên các Node khác nhau.</li>
-              <li><strong>Pod Disruption Budget (PDB):</strong> Enforce cấu hình <code>minAvailable: 1</code> để Kubernetes luôn giữ ít nhất 1 Pod API hoạt động trong quá trình nâng cấp cluster hoặc bảo trì node.</li>
-              <li><strong>DynamoDB Session Caching:</strong> Lưu vết trạng thái chẩn đoán sự cố, giúp khôi phục tức thời trạng thái xử lý nếu pod bị sập giữa chừng (Stateless API design).</li>
-              <li><strong>Internal Load Balancer:</strong> Nhận request cục bộ qua Internal ALB, cấu hình health check chặt chẽ cổng 8080.</li>
+            <ul
+              style="font-size:0.85rem; line-height:1.7; margin-left:20px; color:var(--text-muted); margin-bottom:15px;">
+              <li><strong>Thiết kế dự phòng 2 Replicas:</strong> Deploy tối thiểu 2 pods cho <code>tf1-api</code> phân
+                tán trên các Node khác nhau.</li>
+              <li><strong>Pod Disruption Budget (PDB):</strong> Enforce cấu hình <code>minAvailable: 1</code> để
+                Kubernetes luôn giữ ít nhất 1 Pod API hoạt động trong quá trình nâng cấp cluster hoặc bảo trì node.</li>
+              <li><strong>DynamoDB Session Caching:</strong> Lưu vết trạng thái chẩn đoán sự cố, giúp khôi phục tức thời
+                trạng thái xử lý nếu pod bị sập giữa chừng (Stateless API design).</li>
+              <li><strong>Internal Load Balancer:</strong> Nhận request cục bộ qua Internal ALB, cấu hình health check
+                chặt chẽ cổng 8080.</li>
             </ul>
           </div>
         </div>
@@ -1052,25 +1341,28 @@
         <div class="slide-body grid-2">
           <div class="flex-col justify-center">
             <h3 style="color:var(--primary); margin-bottom:12px;">Cơ Chế Scale Đa Lớp (Multi-tier Autoscaling)</h3>
-            
+
             <div style="margin-bottom:15px;">
               <span class="badge badge-blue">1. HPA (Horizontal Pod Autoscaler)</span>
               <p style="font-size:0.82rem; color:var(--text-muted); margin-top:4px;">
-                Tự động nhân bản Pod <code>tf1-api</code> từ 2 lên tối đa 10 Pod dựa trên tải CPU sử dụng (Ngưỡng kích hoạt: <strong>70% CPU</strong>).
+                Tự động nhân bản Pod <code>tf1-api</code> từ 2 lên tối đa 10 Pod dựa trên tải CPU sử dụng (Ngưỡng kích
+                hoạt: <strong>70% CPU</strong>).
               </p>
             </div>
-            
+
             <div style="margin-bottom:15px;">
               <span class="badge badge-orange">2. SQS Queue-depth Scaling</span>
               <p style="font-size:0.82rem; color:var(--text-muted); margin-top:4px;">
-                Pod <code>tf1-worker</code> (SQS consumer) tự động scale số lượng bản sao dựa trên độ dài hàng đợi tin nhắn của AWS SQS, giải phóng nhanh nghẽn cảnh báo khi có biến cố lớn.
+                Pod <code>tf1-worker</code> (SQS consumer) tự động scale số lượng bản sao dựa trên độ dài hàng đợi tin
+                nhắn của AWS SQS, giải phóng nhanh nghẽn cảnh báo khi có biến cố lớn.
               </p>
             </div>
 
             <div>
               <span class="badge badge-green">3. Kubernetes Cluster Autoscaler</span>
               <p style="font-size:0.82rem; color:var(--text-muted); margin-top:4px;">
-                Khi pods rơi vào trạng thái <code>Pending</code> do thiếu hụt tài nguyên CPU/Mem của máy chủ, Cluster Autoscaler tự động scale số lượng EC2 Node (Min: 2, Max: 10).
+                Khi pods rơi vào trạng thái <code>Pending</code> do thiếu hụt tài nguyên CPU/Mem của máy chủ, Cluster
+                Autoscaler tự động scale số lượng EC2 Node (Min: 2, Max: 10).
               </p>
             </div>
           </div>
@@ -1079,20 +1371,23 @@
             <div class="card card-accent-green" style="padding: 20px;">
               <div class="card-title">Cấu hình HPA thực tế (Sandbox vs Prod Overlay)</div>
               <p style="font-size:0.8rem; color:var(--text-muted); line-height:1.5; margin-bottom:12px;">
-                Sử dụng Kustomize Overlays để phân tách cấu hình Autoscaling theo môi trường nhằm kiểm soát ngân sách AWS:
+                Sử dụng Kustomize Overlays để phân tách cấu hình Autoscaling theo môi trường nhằm kiểm soát ngân sách
+                AWS:
               </p>
               <div class="code-block" style="font-size:0.75rem;">
-<span class="code-comment"># patches/hpa-patch.yaml</span>
-<span class="code-keyword">spec</span>:
-  <span class="code-keyword">minReplicas</span>: <span class="code-number">2</span>
-  <span class="code-keyword">maxReplicas</span>: <span class="code-number">5</span> <span class="code-comment"># Sandbox (Prod: 10)</span>
-  <span class="code-keyword">metrics</span>:
-  - <span class="code-keyword">type</span>: Resource
-    <span class="code-keyword">resource</span>:
-      <span class="code-keyword">name</span>: cpu
-      <span class="code-keyword">target</span>:
-        <span class="code-keyword">type</span>: Utilization
-        <span class="code-keyword">averageUtilization</span>: <span class="code-number">70</span></div>
+                <span class="code-comment"># patches/hpa-patch.yaml</span>
+                <span class="code-keyword">spec</span>:
+                <span class="code-keyword">minReplicas</span>: <span class="code-number">2</span>
+                <span class="code-keyword">maxReplicas</span>: <span class="code-number">5</span> <span
+                  class="code-comment"># Sandbox (Prod: 10)</span>
+                <span class="code-keyword">metrics</span>:
+                - <span class="code-keyword">type</span>: Resource
+                <span class="code-keyword">resource</span>:
+                <span class="code-keyword">name</span>: cpu
+                <span class="code-keyword">target</span>:
+                <span class="code-keyword">type</span>: Utilization
+                <span class="code-keyword">averageUtilization</span>: <span class="code-number">70</span>
+              </div>
             </div>
           </div>
         </div>
@@ -1108,21 +1403,26 @@
           <div class="card card-accent-blue">
             <div class="card-title">1. Bảo mật mạng (Network Isolation)</div>
             <div class="card-desc" style="font-size:0.78rem; line-height:1.5;">
-              EKS Nodes chạy trong Private Subnets, hoàn toàn không gán IP Public. Bật các Interface VPC Endpoints cho S3, DynamoDB, Bedrock, Secrets Manager để các pod kết nối nội bộ thông qua AWS PrivateLink bảo mật.
+              EKS Nodes chạy trong Private Subnets, hoàn toàn không gán IP Public. Bật các Interface VPC Endpoints cho
+              S3, DynamoDB, Bedrock, Secrets Manager để các pod kết nối nội bộ thông qua AWS PrivateLink bảo mật.
             </div>
           </div>
 
           <div class="card card-accent-orange">
             <div class="card-title">2. Xác thực định danh (Auth & IAM)</div>
             <div class="card-desc" style="font-size:0.78rem; line-height:1.5;">
-              Áp dụng phân quyền nguyên tắc đặc quyền tối thiểu (Least Privilege) bằng EKS IRSA (IAM Roles for Service Accounts). Toàn bộ API calls sang Bedrock được ký mã hóa SigV4. API endpoint xác thực qua <code>SERVICE_AUTH_TOKEN</code> (Bearer token).
+              Áp dụng phân quyền nguyên tắc đặc quyền tối thiểu (Least Privilege) bằng EKS IRSA (IAM Roles for Service
+              Accounts). Toàn bộ API calls sang Bedrock được ký mã hóa SigV4. API endpoint xác thực qua
+              <code>SERVICE_AUTH_TOKEN</code> (Bearer token).
             </div>
           </div>
 
           <div class="card card-accent-green">
             <div class="card-title">3. Tính toàn vẹn (Integrity)</div>
             <div class="card-desc" style="font-size:0.78rem; line-height:1.5;">
-              Sử dụng <strong>Cosign</strong> ký số keyless cho container image qua GitHub OIDC. Enforce chính sách <strong>Sigstore Policy Controller</strong> trong cluster và <strong>OPA Gatekeeper</strong> cấm quyền root của Pod (PSS Restricted).
+              Sử dụng <strong>Cosign</strong> ký số keyless cho container image qua GitHub OIDC. Enforce chính sách
+              <strong>Sigstore Policy Controller</strong> trong cluster và <strong>OPA Gatekeeper</strong> cấm quyền
+              root của Pod (PSS Restricted).
             </div>
           </div>
         </div>
@@ -1132,33 +1432,42 @@
       <div class="slide" data-section="Khả năng quan sát" data-presenter="Nhật">
         <div class="slide-title-area">
           <h2 class="slide-title">Observability & Khả Năng Quan Sát</h2>
-          <p class="slide-subtitle">Đo lường sức khỏe dịch vụ và giám sát hoạt động của AI Engine.</p>
+          <p class="slide-subtitle">Triển khai CloudWatch, Prometheus và OpenTelemetry để giám sát toàn diện hạ tầng và
+            AI Engine.</p>
         </div>
-        <div class="slide-body grid-2">
-          <div class="flex-col">
-            <h3 style="color:var(--primary); margin-bottom:12px;">Hệ Thống Prometheus Metrics Tự Sinh</h3>
-            <p style="font-size:0.8rem; color:var(--text-muted); line-height:1.5; margin-bottom:12px;">
-              FastAPI expose cổng <code>/metrics</code> tiêu chuẩn cho Prometheus scrape định kỳ, đo lường toàn bộ hành trình gọi AI:
-            </p>
-            <ul style="font-size:0.78rem; line-height:1.6; margin-left:20px; color:var(--text-muted);">
-              <li><code>aiops_llm_tokens_total</code>: Tổng lượng token đã tiêu thụ (input/output).</li>
-              <li><code>aiops_llm_estimated_cost_usd_total</code>: Chi phí USD thời gian thực.</li>
-              <li><code>aiops_degraded_mode_total</code>: Số lần AI engine lỗi phải fallback sang deterministic.</li>
-              <li><code>aiops_triage_request_duration_seconds</code>: Đo lường độ trễ API.</li>
-            </ul>
+        <div class="slide-body flex-col" style="justify-content: space-between;">
+          <div class="grid-3" style="margin-bottom: 12px;">
+            <div class="card card-accent-blue" style="padding:12px;">
+              <div class="card-title" style="font-size:0.9rem;">1. AWS CloudWatch (Metrics)</div>
+              <ul style="font-size:0.7rem; line-height:1.5; margin-left:15px; color:var(--text-muted); margin-top:6px; margin-bottom:0;">
+                <li><strong>Metrics:</strong> Standard & Container Insights (API GW, Lambda, SQS, DynamoDB, EKS).</li>
+                <li><strong>Dashboards:</strong> <code>triage-hub-dashboard</code> (Health, Pipeline...).</li>
+                <li><strong>Alerts:</strong> ~22 CW Alarms báo động qua SNS (Slack/SMS).</li>
+              </ul>
+            </div>
+
+            <div class="card card-accent-orange" style="padding:12px;">
+              <div class="card-title" style="font-size:0.9rem;">2. App Metrics & Logs</div>
+              <ul style="font-size:0.7rem; line-height:1.5; margin-left:15px; color:var(--text-muted); margin-top:6px; margin-bottom:0;">
+                <li><strong>Prometheus:</strong> 19 custom metrics (LLM cost, circuit breaker, agent iterations...).</li>
+                <li><strong>Logs:</strong> CloudWatch Logs từ EKS và Lambda.</li>
+                <li><strong>Structured Log:</strong> Định dạng JSON chuẩn qua <code>aiops.engine</code> logger.</li>
+              </ul>
+            </div>
+
+            <div class="card card-accent-green" style="padding:12px;">
+              <div class="card-title" style="font-size:0.9rem;">3. Distributed Tracing</div>
+              <ul style="font-size:0.7rem; line-height:1.5; margin-left:15px; color:var(--text-muted); margin-top:6px; margin-bottom:0;">
+                <li><strong>Traces (AWS):</strong> AWS X-Ray giám sát luồng API Gateway &rarr; Lambda &rarr; SQS.</li>
+                <li><strong>Traces (App):</strong> OpenTelemetry OTLP tự động xuất spans cho AI Engine (triage_request, llm...).</li>
+              </ul>
+            </div>
           </div>
 
-          <div class="flex-col">
-            <h3 style="color:var(--primary); margin-bottom:12px;">Jaeger Distributed Tracing</h3>
-            <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:10px;">OpenTelemetry SDK chèn Trace ID vào mọi request để quan sát độ trễ các công đoạn:</p>
-            <div style="font-family:'Fira Code', monospace; font-size:0.72rem; background: var(--code-bg); padding: 12px; border-radius: 6px; border:1px solid var(--border);">
-              triage_request [Span]<br>
-              &nbsp;&nbsp;&boxur;&nbsp;context_enrichment [Span] (Query Loki/Prom)<br>
-              &nbsp;&nbsp;&boxur;&nbsp;deterministic_rca [Span]<br>
-              &nbsp;&nbsp;&boxur;&nbsp;mode_selection [Span] (Score computation)<br>
-              &nbsp;&nbsp;&boxur;&nbsp;llm_investigation [Span] (Bedrock converse call)<br>
-              &nbsp;&nbsp;&boxur;&nbsp;qa [Span] (Security & validation checker)
-            </div>
+          <div style="flex-grow: 1; border: 1.5px solid var(--border); border-radius: 8px; overflow: hidden; box-shadow: 0 4px 12px var(--shadow); display: flex; justify-content: center; align-items: center; background: #ffffff; padding: 10px;">
+            <img src="assets/observability-arch.png" alt="Observability Architecture" onclick="openLightbox(this.src)"
+              style="cursor: zoom-in; max-height: 450px; width: 100%; object-fit: contain; transition: transform 0.2s;"
+              onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'" />
           </div>
         </div>
       </div>
@@ -1167,66 +1476,66 @@
       <div class="slide" data-section="Dự toán chi phí" data-presenter="Nhật">
         <div class="slide-title-area">
           <h2 class="slide-title">Báo Cáo Dự Toán Chi Phí Hàng Tháng (AWS & AI)</h2>
-          <p class="slide-subtitle">Dự toán ngân sách chi tiết dựa trên tải thực tế 1000 incident/tháng trên môi trường AWS.</p>
+          <p class="slide-subtitle">Dự toán ngân sách chi tiết dựa trên tải thực tế 1000 incident/tháng trên môi
+            trường
+            AWS.</p>
         </div>
         <div class="slide-body flex-col justify-between">
           <table class="comp-table" style="font-size:0.8rem; margin-bottom:15px;">
             <thead>
               <tr>
-                <th>AWS Service</th>
+                <th>Hạng mục (Component)</th>
                 <th>Cấu hình tài nguyên chi tiết</th>
-                <th>Chi phí đơn vị</th>
-                <th style="color:var(--primary); font-weight:700;">Chi phí / Tháng (USD)</th>
+                <th>Phân loại phí</th>
+                <th style="color:var(--primary); font-weight:700;">Chi phí (USD)</th>
                 <th>Biện pháp tối ưu hóa</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td><strong>AWS EKS Cluster</strong></td>
-                <td>1 Cluster Control Plane managed</td>
-                <td>$0.10 / giờ</td>
-                <td>$73.00</td>
-                <td>Môi trường Sandbox dùng chung cluster cũ</td>
+                <td><strong>AWS EKS & EC2 Nodes</strong></td>
+                <td>1 Control Plane + 2x <code>t3.large</code> (us-east-1) + EBS gp3</td>
+                <td>Cố định (Fixed)</td>
+                <td>$197.20 / tháng</td>
+                <td>Đề xuất sử dụng Spot instances cho các workload không critical (~70% saving).</td>
               </tr>
               <tr>
-                <td><strong>EC2 Node Group</strong></td>
-                <td>2x instance <code>t3.small</code> (2 vCPU, 2GB RAM)</td>
-                <td>$0.0208 / giờ / node</td>
-                <td>$30.24</td>
-                <td>Bật Auto-shutdown Node Group ngoài giờ hành chính</td>
+                <td><strong>Networking & Connectivity</strong></td>
+                <td>1 ALB, 1 NAT Gateway, 2 VPC Interface Endpoints</td>
+                <td>Cố định (Fixed)</td>
+                <td>$63.45 / tháng</td>
+                <td>Sử dụng VPC Endpoints (Bedrock/SQS) định tuyến nội bộ, tránh phí data NAT Gateway.</td>
               </tr>
               <tr>
-                <td><strong>AWS Secrets Manager & ECR</strong></td>
-                <td>Lưu trữ Secrets & ECR Image storage (~1GB)</td>
-                <td>Cố định</td>
-                <td>$2.00</td>
-                <td>Dọn dẹp các container image cũ bằng Lifecycle Policy</td>
+                <td><strong>Amazon Bedrock (Claude 3 Haiku)</strong></td>
+                <td>Tải: 10,000 incident/tháng/tenant</td>
+                <td>Biến đổi (Variable)</td>
+                <td>~$5.00 / tenant</td>
+                <td>Dùng model Haiku tối ưu chi phí (rẻ hơn Sonnet/Opus nhiều lần).</td>
               </tr>
               <tr>
-                <td><strong>Amazon Bedrock (Nova Micro)</strong></td>
-                <td>Tải: 1000 incident/tháng, 3K tokens/incident</td>
-                <td>Input: $0.0001, Output: $0.0004</td>
-                <td>$4.80</td>
-                <td>Sử dụng model siêu nhẹ Nova Micro, bóp input logs limit = 50</td>
+                <td><strong>Serverless, Queue & Database</strong></td>
+                <td>Lambda, API Gateway, SQS, DynamoDB On-demand</td>
+                <td>Biến đổi (Variable)</td>
+                <td>~$0.08 / tenant</td>
+                <td>Bật SQS Batching và dùng DynamoDB On-demand xử lý tải đột biến.</td>
               </tr>
               <tr>
-                <td><strong>AWS DynamoDB & SQS</strong></td>
-                <td>Bảng audit, ghi log chẩn đoán và hàng đợi tin nhắn</td>
-                <td>Pay-per-request</td>
-                <td>$0.50</td>
-                <td>Đặt TTL tự xóa bản ghi cũ sau 90 ngày (Dọn rác tự động)</td>
-              </tr>
-              <tr style="background: rgba(239, 68, 68, 0.05);">
-                <td><strong>AWS NAT Gateway</strong></td>
-                <td>Thiết kế NAT-less kết nối hoàn toàn nội bộ</td>
-                <td>$0.045 / giờ + data fee</td>
-                <td style="color:var(--accent-red); font-weight:700;">$0.00 (Tiết kiệm $32.4/tháng)</td>
-                <td>Thay thế bằng Gateway Endpoint (S3/DynamoDB) miễn phí</td>
+                <td><strong>Observability & Security</strong></td>
+                <td>CloudWatch Logs/Dashboards/Alarms, Secrets Manager</td>
+                <td>Biến đổi (Variable)</td>
+                <td>~$1.30 / tenant</td>
+                <td>Thiết lập vòng đời tự động xoá log (retention policy 30 ngày) giảm phí lưu trữ rác.</td>
               </tr>
               <tr style="background: rgba(16, 185, 129, 0.05); font-weight:700;">
-                <td colspan="3">TỔNG CỘNG CHI PHÍ VẬN HÀNH DỰ KIẾN / THÁNG</td>
-                <td style="color:var(--accent-green); font-size:1rem;">$110.54 / Tháng</td>
-                <td>Ước lượng khoảng ~2.700.000 VNĐ / Tháng</td>
+                <td colspan="3">TỔNG CHI PHÍ DỰ KIẾN (Quy mô 10 Tenants / 100,000 Alerts)</td>
+                <td style="color:var(--accent-green); font-size:1rem;">$330.45 / Tháng</td>
+                <td>Trung bình: $33.05 / Tenant / Tháng</td>
+              </tr>
+              <tr style="background: rgba(243, 111, 33, 0.05); font-weight:700;">
+                <td colspan="3">TỔNG CHI PHÍ DỰ KIẾN (Quy mô 50 Tenants / 500,000 Alerts)</td>
+                <td style="color:var(--accent-orange); font-size:1rem;">$590.45 / Tháng</td>
+                <td>Trung bình: $11.81 / Tenant / Tháng (Amortized)</td>
               </tr>
             </tbody>
           </table>
@@ -1237,30 +1546,49 @@
       <div class="slide" data-section="Khả năng đáp ứng" data-presenter="Nhật">
         <div class="slide-title-area">
           <h2 class="slide-title">Khả Năng Đáp Ứng Yêu Cầu Của Dự Án</h2>
-          <p class="slide-subtitle">Tổng hợp các điểm sáng nổi bật nhất về con người, hạ tầng kiến trúc và tài chính ngân sách.</p>
+          <p class="slide-subtitle">Tổng hợp các điểm sáng nổi bật nhất về con người, hạ tầng kiến trúc và tài
+            chính
+            ngân sách.</p>
         </div>
         <div class="slide-body grid-2">
-          <div class="card card-accent-blue" style="padding:16px;">
-            <div class="card-title" style="font-size:1.05rem;">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-blue)" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
-              Con Người & Vận Hành (People & Operations)
+          <div class="card card-accent-green" style="padding:15px;">
+            <div class="card-title" style="font-size:0.95rem;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-green)" stroke-width="2">
+                <rect x="2" y="2" width="20" height="20" rx="2" ry="2"></rect>
+                <rect x="9" y="9" width="6" height="6"></rect>
+                <line x1="9" y1="1" x2="9" y2="23"></line>
+                <line x1="1" y1="9" x2="23" y2="9"></line>
+              </svg>
+              Hạ Tầng & Chi Phí
             </div>
-            <ul style="font-size:0.78rem; line-height:1.7; margin-left:15px; color:var(--text-muted); margin-top:8px;">
-              <li>Giải phóng áp lực on-call cho 8 kỹ sư vận hành nhờ cơ chế tự gom logs/metrics và đề xuất hành động chẩn đoán có cấu trúc.</li>
-              <li>Giảm thiểu sai số con người nhờ gán Jira Ticket tự động cho đúng Subject Matter Expert bằng lịch sử tương tác trên DynamoDB.</li>
-              <li>Giữ vững cơ chế <strong>Human-in-the-loop</strong> để con người kiểm duyệt, cấm LLM tự ý thao tác can thiệp hệ thống gây rủi ro an ninh.</li>
+            <ul style="font-size:0.75rem; line-height:1.7; margin-left:15px; color:var(--text-muted); margin-top:8px;">
+              <li>Kiến trúc khép kín hoàn toàn trong <strong>Private Subnet</strong> loại bỏ nguy cơ xâm nhập mạng
+                ngoài.</li>
+              <li>Autoscaling linh hoạt đa lớp (HPA, Queue-depth, Node) đứng vững trước biến cố bão alert.</li>
+              <li>Tối ưu hóa tài chính ở mốc dự kiến $330.45/tháng (Scale 10 tenants) nhờ chính sách chia sẻ hạ tầng.
+              </li>
             </ul>
           </div>
 
-          <div class="card card-accent-green" style="padding:16px;">
-            <div class="card-title" style="font-size:1.05rem;">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-green)" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="2" ry="2"></rect><rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="1" x2="9" y2="23"></line><line x1="1" y1="9" x2="23" y2="9"></line></svg>
-              Hạ Tầng Kiến Trúc & Chi Phí (Infra & Budget)
+          <div class="card card-accent-orange" style="padding:15px;">
+            <div class="card-title" style="font-size:0.95rem;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-orange)"
+                stroke-width="2">
+                <path
+                  d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z">
+                </path>
+                <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                <line x1="12" y1="22.08" x2="12" y2="12"></line>
+              </svg>
+              Quy Trình & Năng Lực Nhóm
             </div>
-            <ul style="font-size:0.78rem; line-height:1.7; margin-left:15px; color:var(--text-muted); margin-top:8px;">
-              <li>Kiến trúc hoàn toàn khép kín trong **Private Subnet** loại bỏ hoàn toàn nguy cơ xâm nhập từ môi trường mạng ngoài.</li>
-              <li>Autoscaling linh hoạt đa lớp (HPA, Queue-depth, Node Autoscaling) giúp hệ thống đứng vững trước những biến cố hàng loạt alert.</li>
-              <li>Tối ưu hóa tài chính vượt trội: chỉ mất **$110.54 mỗi tháng** nhờ chính sách NAT-less hạ tầng mạng và bóp chặt giới hạn token LLM.</li>
+            <ul style="font-size:0.75rem; line-height:1.7; margin-left:15px; color:var(--text-muted); margin-top:8px;">
+              <li><strong>Tăng tốc với AI:</strong> Ứng dụng Bedrock xử lý Root Cause Analysis thay thế lao động thủ
+                công cường độ cao.</li>
+              <li><strong>Quản lý dự án nghiêm ngặt:</strong> Sprint planning bằng Jira, kiểm soát source code bằng
+                Github Actions CI/CD để luôn on-track với kế hoạch.</li>
+              <li><strong>Cross-training & Teamwork:</strong> Liên tục giao tiếp, trao đổi kiến thức chéo (AI ↔
+                Cloud/DevOps) giúp xóa bỏ điểm mù kỹ thuật, gia tăng năng lực đồng đều.</li>
             </ul>
           </div>
         </div>
@@ -1270,21 +1598,43 @@
       <div class="slide" data-section="Kiến trúc &amp; Vận hành" data-presenter="Thi">
         <div class="slide-title-area">
           <h2 class="slide-title">Kiến Trúc Vận Hành &amp; An Ninh AI Engine</h2>
-          <p class="slide-subtitle">Bảo mật chuỗi cung ứng hình ảnh, tự động hóa Canary Rollouts và cơ chế Autoscaling đa lớp.</p>
+          <p class="slide-subtitle">Bảo mật chuỗi cung ứng hình ảnh, tự động hóa Canary Rollouts và cơ chế
+            Autoscaling
+            đa lớp.</p>
         </div>
         <div class="slide-body grid-2">
           <div class="flex-col">
             <h3 style="color:var(--primary); margin-bottom:10px;">Quy trình Triển khai &amp; An ninh</h3>
-            <ul style="font-size:0.78rem; line-height:1.6; margin-left:15px; color:var(--text-muted); margin-bottom:12px;">
-              <li><strong>Bảo mật chuỗi cung ứng (Sigstore):</strong> Đóng gói Dockerfile Multi-stage non-root. Trivy quét chặn cứng lỗi HIGH/CRITICAL. Ký Cosign keyless. EKS Admission Controller (Sigstore policy) chặn đứng việc chạy pod nếu image chưa được ký hợp lệ.</li>
-              <li><strong>Canary Rollouts tự động (Argo Rollouts):</strong> Đóng gói qua ArgoCD GitOps. Dịch vụ <code>tf1-api</code> được deploy Canary (10% &rarr; 50% &rarr; 100%). Quy trình <code>AnalysisRun</code> giám sát liên tục p99 latency (&lt;800ms) và error-rate 5xx (&lt;1%) qua Prometheus để tự động Rollback nếu xảy ra sự cố.</li>
-              <li><strong>Bảo mật Tầng Admission (7 Gatekeeper Policies):</strong> Triển khai vượt mức baseline thông thường:
+            <ul
+              style="font-size:0.78rem; line-height:1.6; margin-left:15px; color:var(--text-muted); margin-bottom:12px;">
+              <li><strong>Bảo mật chuỗi cung ứng (Sigstore):</strong> Đóng gói Dockerfile Multi-stage non-root.
+                Trivy
+                quét chặn cứng lỗi HIGH/CRITICAL. Ký Cosign keyless. EKS Admission Controller (Sigstore policy)
+                chặn
+                đứng việc chạy pod nếu image chưa được ký hợp lệ.</li>
+              <li><strong>Canary Rollouts tự động (Argo Rollouts):</strong> Đóng gói qua ArgoCD GitOps. Dịch vụ
+                <code>tf1-api</code> được deploy Canary (10% &rarr; 50% &rarr; 100%). Quy trình
+                <code>AnalysisRun</code>
+                giám sát liên tục p99 latency (&lt;800ms) và error-rate 5xx (&lt;1%) qua Prometheus để tự động
+                Rollback
+                nếu xảy ra sự cố.
+              </li>
+              <li><strong>Bảo mật Tầng Admission (7 Gatekeeper Policies):</strong> Triển khai vượt mức baseline
+                thông
+                thường:
                 <ul style="margin-left:15px; list-style-type:circle; font-size:0.75rem; margin-top:4px;">
-                  <li>Siết security context toàn diện, chặn cứng <code>hostNetwork</code>/<code>hostPID</code>.</li>
+                  <li>Siết security context toàn diện, chặn cứng <code>hostNetwork</code>/<code>hostPID</code>.
+                  </li>
                   <li>Chỉ cho phép kéo image từ Registry của dự án.</li>
-                  <li>Bắt buộc khai báo cả <code>requests</code> và <code>limits</code> tài nguyên để chống chiếm dụng khi dùng chung node (Noisy Neighbor).</li>
-                  <li><strong>Referential constraint:</strong> Bắt buộc mọi Namespace mới phải có sẵn NetworkPolicy.</li>
-                  <li><strong>Kỷ luật triển khai:</strong> Chạy chế độ <code>audit-only</code> trước để kiểm tra thực tế, sau đó mới bật chặn cứng (<code>enforce</code>) để tránh gây outage bất ngờ.</li>
+                  <li>Bắt buộc khai báo cả <code>requests</code> và <code>limits</code> tài nguyên để chống chiếm
+                    dụng
+                    khi dùng chung node (Noisy Neighbor).</li>
+                  <li><strong>Referential constraint:</strong> Bắt buộc mọi Namespace mới phải có sẵn
+                    NetworkPolicy.
+                  </li>
+                  <li><strong>Kỷ luật triển khai:</strong> Chạy chế độ <code>audit-only</code> trước để kiểm tra
+                    thực
+                    tế, sau đó mới bật chặn cứng (<code>enforce</code>) để tránh gây outage bất ngờ.</li>
                 </ul>
               </li>
             </ul>
@@ -1292,16 +1642,26 @@
 
           <div class="flex-col">
             <h3 style="color:var(--primary); margin-bottom:10px;">Mở rộng Hạ tầng &amp; Dữ liệu</h3>
-            <ul style="font-size:0.78rem; line-height:1.6; margin-left:15px; color:var(--text-muted); margin-bottom:12px;">
+            <ul
+              style="font-size:0.78rem; line-height:1.6; margin-left:15px; color:var(--text-muted); margin-bottom:12px;">
               <li><strong>Autoscaling 3 lớp độc lập:</strong>
                 <ul style="margin-left:15px; list-style-type:circle;">
-                  <li><code>tf1-api</code>: Scale theo CPU (70% HPA) và custom metric số lượng request/pod từ 2 đến 10 pods.</li>
-                  <li><code>tf1-worker</code>: Scale bằng KEDA dựa trên độ sâu hàng đợi SQS (backlog depth: 5 messages/pod), vượt qua giới hạn của HPA thông thường khi có bão alert.</li>
+                  <li><code>tf1-api</code>: Scale theo CPU (70% HPA) và custom metric số lượng request/pod từ 2
+                    đến 10
+                    pods.</li>
+                  <li><code>tf1-worker</code>: Scale bằng KEDA dựa trên độ sâu hàng đợi SQS (backlog depth: 5
+                    messages/pod), vượt qua giới hạn của HPA thông thường khi có bão alert.</li>
                   <li>Node EC2: Cluster Autoscaler tự thêm node khi pod rơi vào trạng thái Pending.</li>
                 </ul>
               </li>
-              <li><strong>Kết nối VPC PrivateLink &amp; NAT-less:</strong> Pod chạy hoàn toàn trong Private Subnets, giao tiếp với Bedrock, DynamoDB, ECR qua VPC Endpoints (AWS PrivateLink). Loại bỏ hoàn toàn NAT Gateway giúp bảo mật tuyệt đối dữ liệu và tối ưu chi phí hạ tầng mạng.</li>
-              <li><strong>Cô lập dữ liệu tenant:</strong> DynamoDB single-table lưu audit, state và cache phân công SME. Cách ly tenant triệt để bằng cách nhúng <code>tenant_id</code> ngay trong Partition Key.</li>
+              <li><strong>Kết nối VPC PrivateLink &amp; NAT-less:</strong> Pod chạy hoàn toàn trong Private
+                Subnets,
+                giao tiếp với Bedrock, DynamoDB, ECR qua VPC Endpoints (AWS PrivateLink). Loại bỏ hoàn toàn NAT
+                Gateway
+                giúp bảo mật tuyệt đối dữ liệu và tối ưu chi phí hạ tầng mạng.</li>
+              <li><strong>Cô lập dữ liệu tenant:</strong> DynamoDB single-table lưu audit, state và cache phân
+                công SME.
+                Cách ly tenant triệt để bằng cách nhúng <code>tenant_id</code> ngay trong Partition Key.</li>
             </ul>
           </div>
         </div>
@@ -1311,58 +1671,97 @@
       <div class="slide" data-section="Sơ đồ Kiến trúc Vận hành" data-presenter="Thi">
         <div class="slide-title-area">
           <h2 class="slide-title">Sơ Đồ Vận Hành &amp; Định Tuyến AI Engine</h2>
-          <p class="slide-subtitle">Chi tiết sơ đồ kiến trúc triển khai và giải thích luồng xử lý tự động hóa của AI Engine.</p>
+          <p class="slide-subtitle">Chi tiết sơ đồ kiến trúc triển khai và giải thích luồng xử lý tự động hóa của
+            AI
+            Engine.</p>
         </div>
         <div class="slide-body grid-2" style="align-items: center; gap: 30px;">
           <!-- Left: Image -->
           <div class="flex-center" style="padding: 10px; flex-direction: column;">
-            <img src="assets/AI_Engine_image.png" alt="Sơ đồ hoạt động AI Engine" onclick="openLightbox(this.src)" style="cursor: zoom-in; max-width: 100%; max-height: 310px; border-radius: 8px; border: 1.5px solid var(--border); box-shadow: var(--shadow); object-fit: contain; transition: transform 0.2s, border-color 0.2s;" onmouseover="this.style.transform='scale(1.02)'; this.style.borderColor='var(--primary)'" onmouseout="this.style.transform='scale(1)'; this.style.borderColor='var(--border)'" />
-            <span style="font-size: 0.75rem; color: var(--text-muted); margin-top: 10px; display: flex; align-items: center; gap: 5px;">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+            <img src="assets/AI_Engine_image.png" alt="Sơ đồ hoạt động AI Engine" onclick="openLightbox(this.src)"
+              style="cursor: zoom-in; max-width: 100%; max-height: 310px; border-radius: 8px; border: 1.5px solid var(--border); box-shadow: var(--shadow); object-fit: contain; transition: transform 0.2s, border-color 0.2s;"
+              onmouseover="this.style.transform='scale(1.02)'; this.style.borderColor='var(--primary)'"
+              onmouseout="this.style.transform='scale(1)'; this.style.borderColor='var(--border)'" />
+            <span
+              style="font-size: 0.75rem; color: var(--text-muted); margin-top: 10px; display: flex; align-items: center; gap: 5px;">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                <line x1="11" y1="8" x2="11" y2="14"></line>
+                <line x1="8" y1="11" x2="14" y2="11"></line>
+              </svg>
               Click vào ảnh để phóng to toàn màn hình
             </span>
           </div>
           <!-- Right: Explanation -->
           <div class="flex-col justify-center" style="padding-left: 10px;">
-            <h3 style="color:var(--primary); margin-bottom:18px; font-size:1.15rem; font-weight:700; border-left: 4px solid var(--primary); padding-left: 12px; letter-spacing: 0.5px;">Luồng Xử Lý Sự Cố Tự Động Hóa (Workflow)</h3>
+            <h3
+              style="color:var(--primary); margin-bottom:18px; font-size:1.15rem; font-weight:700; border-left: 4px solid var(--primary); padding-left: 12px; letter-spacing: 0.5px;">
+              Luồng Xử Lý Sự Cố Tự Động Hóa (Workflow)</h3>
             <div class="workflow-steps" style="display: flex; flex-direction: column; gap: 14px;">
               <div class="workflow-step" style="display: flex; gap: 14px; align-items: flex-start;">
-                <span style="background: var(--primary); color: #fff; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 700; flex-shrink: 0; margin-top: 2px; box-shadow: 0 2px 5px rgba(243,111,33,0.3);">1</span>
+                <span
+                  style="background: var(--primary); color: #fff; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 700; flex-shrink: 0; margin-top: 2px; box-shadow: 0 2px 5px rgba(243,111,33,0.3);">1</span>
                 <div>
-                  <h4 style="font-size: 0.95rem; font-weight: 700; color: var(--text); margin-bottom: 3px;">Ingestion (Thu nhận Cảnh báo)</h4>
-                  <p style="font-size: 0.82rem; color: var(--text-muted); line-height: 1.5;">Prometheus Alertmanager phát hiện sự cố, gửi cảnh báo đến hàng đợi AWS SQS để bảo vệ hệ thống trước bão alert.</p>
-                </div>
-              </div>
-              
-              <div class="workflow-step" style="display: flex; gap: 14px; align-items: flex-start;">
-                <span style="background: var(--accent-blue); color: #fff; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 700; flex-shrink: 0; margin-top: 2px; box-shadow: 0 2px 5px rgba(0,180,216,0.3);">2</span>
-                <div>
-                  <h4 style="font-size: 0.95rem; font-weight: 700; color: var(--text); margin-bottom: 3px;">Enrichment (Làm giàu Ngữ cảnh)</h4>
-                  <p style="font-size: 0.82rem; color: var(--text-muted); line-height: 1.5;">Worker API tự động thu thập Logs từ Elasticsearch và Metrics từ Prometheus làm bằng chứng chẩn đoán (Evidence).</p>
+                  <h4 style="font-size: 0.95rem; font-weight: 700; color: var(--text); margin-bottom: 3px;">
+                    Ingestion
+                    (Thu nhận Cảnh báo)</h4>
+                  <p style="font-size: 0.82rem; color: var(--text-muted); line-height: 1.5;">Prometheus
+                    Alertmanager
+                    phát hiện sự cố, gửi cảnh báo đến hàng đợi AWS SQS để bảo vệ hệ thống trước bão alert.</p>
                 </div>
               </div>
 
               <div class="workflow-step" style="display: flex; gap: 14px; align-items: flex-start;">
-                <span style="background: var(--accent-green); color: #fff; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 700; flex-shrink: 0; margin-top: 2px; box-shadow: 0 2px 5px rgba(46,196,182,0.3);">3</span>
+                <span
+                  style="background: var(--accent-blue); color: #fff; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 700; flex-shrink: 0; margin-top: 2px; box-shadow: 0 2px 5px rgba(0,180,216,0.3);">2</span>
                 <div>
-                  <h4 style="font-size: 0.95rem; font-weight: 700; color: var(--text); margin-bottom: 3px;">Idempotency Cache (Tối ưu hóa Chi phí)</h4>
-                  <p style="font-size: 0.82rem; color: var(--text-muted); line-height: 1.5;">DynamoDB kiểm tra chữ ký sự cố. Nếu trùng lặp, trả ngay kết quả cũ (Fast Path) để tiết kiệm 100% chi phí gọi LLM.</p>
+                  <h4 style="font-size: 0.95rem; font-weight: 700; color: var(--text); margin-bottom: 3px;">
+                    Enrichment
+                    (Làm giàu Ngữ cảnh)</h4>
+                  <p style="font-size: 0.82rem; color: var(--text-muted); line-height: 1.5;">Worker API tự động
+                    thu thập
+                    Logs từ Elasticsearch và Metrics từ Prometheus làm bằng chứng chẩn đoán (Evidence).</p>
                 </div>
               </div>
 
               <div class="workflow-step" style="display: flex; gap: 14px; align-items: flex-start;">
-                <span style="background: var(--accent-orange); color: #fff; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 700; flex-shrink: 0; margin-top: 2px; box-shadow: 0 2px 5px rgba(243,111,33,0.3);">4</span>
+                <span
+                  style="background: var(--accent-green); color: #fff; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 700; flex-shrink: 0; margin-top: 2px; box-shadow: 0 2px 5px rgba(46,196,182,0.3);">3</span>
                 <div>
-                  <h4 style="font-size: 0.95rem; font-weight: 700; color: var(--text); margin-bottom: 3px;">AI Inference (Suy luận Bedrock LLM)</h4>
-                  <p style="font-size: 0.82rem; color: var(--text-muted); line-height: 1.5;">Prompt Engine kết hợp dữ liệu gửi qua VPC PrivateLink lên Bedrock Claude 3.5 Sonnet để phân tích nguyên nhân gốc (RCA).</p>
+                  <h4 style="font-size: 0.95rem; font-weight: 700; color: var(--text); margin-bottom: 3px;">
+                    Idempotency
+                    Cache (Tối ưu hóa Chi phí)</h4>
+                  <p style="font-size: 0.82rem; color: var(--text-muted); line-height: 1.5;">DynamoDB kiểm tra chữ
+                    ký sự
+                    cố. Nếu trùng lặp, trả ngay kết quả cũ (Fast Path) để tiết kiệm 100% chi phí gọi LLM.</p>
                 </div>
               </div>
 
               <div class="workflow-step" style="display: flex; gap: 14px; align-items: flex-start;">
-                <span style="background: var(--primary); color: #fff; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 700; flex-shrink: 0; margin-top: 2px; box-shadow: 0 2px 5px rgba(243,111,33,0.3);">5</span>
+                <span
+                  style="background: var(--accent-orange); color: #fff; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 700; flex-shrink: 0; margin-top: 2px; box-shadow: 0 2px 5px rgba(243,111,33,0.3);">4</span>
                 <div>
-                  <h4 style="font-size: 0.95rem; font-weight: 700; color: var(--text); margin-bottom: 3px;">Dispatch &amp; Assign (Tự động Phân công)</h4>
-                  <p style="font-size: 0.82rem; color: var(--text-muted); line-height: 1.5;">Ghi log audit vào DynamoDB, đẩy báo cáo tương tác lên Slack Block Kit và tự động tạo ticket Jira gán cho đúng SME.</p>
+                  <h4 style="font-size: 0.95rem; font-weight: 700; color: var(--text); margin-bottom: 3px;">AI
+                    Inference
+                    (Suy luận Bedrock LLM)</h4>
+                  <p style="font-size: 0.82rem; color: var(--text-muted); line-height: 1.5;">Prompt Engine kết hợp
+                    dữ
+                    liệu gửi qua VPC PrivateLink lên Bedrock Claude 3.5 Sonnet để phân tích nguyên nhân gốc (RCA).
+                  </p>
+                </div>
+              </div>
+
+              <div class="workflow-step" style="display: flex; gap: 14px; align-items: flex-start;">
+                <span
+                  style="background: var(--primary); color: #fff; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 700; flex-shrink: 0; margin-top: 2px; box-shadow: 0 2px 5px rgba(243,111,33,0.3);">5</span>
+                <div>
+                  <h4 style="font-size: 0.95rem; font-weight: 700; color: var(--text); margin-bottom: 3px;">
+                    Dispatch
+                    &amp; Assign (Tự động Phân công)</h4>
+                  <p style="font-size: 0.82rem; color: var(--text-muted); line-height: 1.5;">Ghi log audit vào
+                    DynamoDB,
+                    đẩy báo cáo tương tác lên Slack Block Kit và tự động tạo ticket Jira gán cho đúng SME.</p>
                 </div>
               </div>
             </div>
@@ -1379,25 +1778,31 @@
         <div class="slide-body grid-2">
           <div class="flex-col justify-center">
             <h3 style="color:var(--primary); margin-bottom:12px;">Quy Trình Pipeline GitHub Actions</h3>
-            
+
             <div style="margin-bottom:12px;">
               <span class="badge badge-orange">1. Build & Scan</span>
               <p style="font-size:0.78rem; color:var(--text-muted); margin-top:2px;">
-                Mỗi lượt push code lên Git, workflow tự động chạy test unit, build docker image và quét lỗ hổng thư viện bằng <strong>Trivy</strong>.
+                Mỗi lượt push code lên Git, workflow tự động chạy test unit, build docker image và quét lỗ hổng
+                thư viện
+                bằng <strong>Trivy</strong>.
               </p>
             </div>
-            
+
             <div style="margin-bottom:12px;">
               <span class="badge badge-blue">2. Ký Ảnh Đĩa Cosign</span>
               <p style="font-size:0.78rem; color:var(--text-muted); margin-top:2px;">
-                Pipeline sử dụng OIDC token để xác thực với Cosign và ký số cho ảnh đĩa (ECR image) một cách an toàn không cần lưu giữ key.
+                Pipeline sử dụng OIDC token để xác thực với Cosign và ký số cho ảnh đĩa (ECR image) một cách an
+                toàn
+                không cần lưu giữ key.
               </p>
             </div>
 
             <div>
               <span class="badge badge-green">3. Đẩy Commit SHA Tag</span>
               <p style="font-size:0.78rem; color:var(--text-muted); margin-top:2px;">
-                Sử dụng Git Commit SHA ngắn làm tag cho image (e.g. <code>:git-ac21f60</code>). Khắc phục triệt để lỗi ghi đè tag cũ do chính sách <strong>ECR Immutable Tags</strong>.
+                Sử dụng Git Commit SHA ngắn làm tag cho image (e.g. <code>:git-ac21f60</code>). Khắc phục triệt để
+                lỗi
+                ghi đè tag cũ do chính sách <strong>ECR Immutable Tags</strong>.
               </p>
             </div>
           </div>
@@ -1406,10 +1811,16 @@
             <div class="card card-accent-green" style="padding: 16px;">
               <div class="card-title" style="font-size: 1rem;">ArgoCD GitOps Synchronizer</div>
               <p style="font-size:0.78rem; color:var(--text-muted); line-height:1.5; margin-bottom:10px;">
-                ArgoCD liên tục theo dõi repository Git chứa các file manifest. Khi phát hiện tag image mới cập nhật trên Kustomization.yaml, ArgoCD tự động thực hiện deploy đồng bộ (Sync) kéo container image mới nhất về chạy trên cluster.
+                ArgoCD liên tục theo dõi repository Git chứa các file manifest. Khi phát hiện tag image mới cập
+                nhật
+                trên Kustomization.yaml, ArgoCD tự động thực hiện deploy đồng bộ (Sync) kéo container image mới
+                nhất về
+                chạy trên cluster.
               </p>
-              <div style="font-size:0.75rem; color:var(--accent-green); font-weight:700; display:flex; align-items:center; gap:5px;">
-                <span style="width:8px; height:8px; background:var(--accent-green); border-radius:50%; display:inline-block;"></span>
+              <div
+                style="font-size:0.75rem; color:var(--accent-green); font-weight:700; display:flex; align-items:center; gap:5px;">
+                <span
+                  style="width:8px; height:8px; background:var(--accent-green); border-radius:50%; display:inline-block;"></span>
                 Status: Synced & Healthy (10/10 Apps)
               </div>
             </div>
@@ -1421,7 +1832,9 @@
       <div class="slide" data-section="Alert pipeline" data-presenter="Tiến">
         <div class="slide-title-area">
           <h2 class="slide-title">Alert Processing Pipeline</h2>
-          <p class="slide-subtitle">Chu trình di chuyển và phân tích dữ liệu khép kín từ Prometheus tới khi ra chẩn đoán.</p>
+          <p class="slide-subtitle">Chu trình di chuyển và phân tích dữ liệu khép kín từ Prometheus tới khi ra
+            chẩn
+            đoán.</p>
         </div>
         <div class="slide-body flex-col justify-between">
           <!-- Flow diagram process -->
@@ -1455,15 +1868,25 @@
 
           <div class="grid-2" style="margin-top: 15px;">
             <div class="card card-accent-orange" style="padding: 15px;">
-              <div style="font-weight:700; font-size:0.85rem; margin-bottom:5px; color:var(--primary);">Hợp Đồng Kết Nối AI API (API Contract)</div>
+              <div style="font-weight:700; font-size:0.85rem; margin-bottom:5px; color:var(--primary);">Hợp Đồng
+                Kết Nối
+                AI API (API Contract)</div>
               <p style="font-size:0.75rem; color:var(--text-muted); line-height:1.4;">
-                API tiếp nhận payload chuẩn chứa <code>incident_id</code>, <code>tenant_id</code>, <code>alert_details</code>. Trả về cấu trúc JSON thống nhất gồm: classification, suspected_root_cause, recommended_actions, và ticket_payload.
+                API tiếp nhận payload chuẩn chứa <code>incident_id</code>, <code>tenant_id</code>,
+                <code>alert_details</code>. Trả về cấu trúc JSON thống nhất gồm: classification,
+                suspected_root_cause,
+                recommended_actions, và ticket_payload.
               </p>
             </div>
             <div class="card card-accent-blue" style="padding: 15px;">
-              <div style="font-weight:700; font-size:0.85rem; margin-bottom:5px; color:var(--accent-blue);">Bảo Vệ Tính Idempotency (Chống Trùng Lặp)</div>
+              <div style="font-weight:700; font-size:0.85rem; margin-bottom:5px; color:var(--accent-blue);">Bảo Vệ
+                Tính
+                Idempotency (Chống Trùng Lặp)</div>
               <p style="font-size:0.75rem; color:var(--text-muted); line-height:1.4;">
-                Dùng DynamoDB lưu trữ bảng <code>IDEMPOTENCY#&lt;id&gt;</code>. Khi nhận request bị trùng lặp do retry của hàng đợi SQS, API trả ngay kết quả cũ trong DynamoDB mà không gọi lại LLM Bedrock, tránh vỡ budget.
+                Dùng DynamoDB lưu trữ bảng <code>IDEMPOTENCY#&lt;id&gt;</code>. Khi nhận request bị trùng lặp do
+                retry
+                của hàng đợi SQS, API trả ngay kết quả cũ trong DynamoDB mà không gọi lại LLM Bedrock, tránh vỡ
+                budget.
               </p>
             </div>
           </div>
@@ -1480,33 +1903,52 @@
           <div class="flex-col">
             <h3 style="color:var(--primary); margin-bottom:12px;">Thiết Kế Slack Block Kit</h3>
             <p style="font-size:0.85rem; color:var(--text-muted); line-height:1.5; margin-bottom:12px;">
-              AI Engine đóng gói cấu trúc thông tin sạch và chuyển cho CDO Slack Dispatcher dựng giao diện Block Kit tương tác.
+              AI Engine đóng gói cấu trúc thông tin sạch và chuyển cho CDO Slack Dispatcher dựng giao diện Block
+              Kit
+              tương tác.
             </p>
             <div class="callout-box" style="margin-top:10px;">
               <div class="callout-title">Nút bấm tương tác 1-Click Acknowledge</div>
               <div class="callout-text" style="font-size:0.8rem;">
-                Kỹ sư trực chỉ cần nhấn trực tiếp nút <strong>"Acknowledge"</strong> ngay trên tin nhắn Slack để nhận sự cố. Nút bấm kích hoạt API call cập nhật trạng thái assignee trên Jira tự động, loại bỏ quy trình thủ công.
+                Kỹ sư trực chỉ cần nhấn trực tiếp nút <strong>"Acknowledge"</strong> ngay trên tin nhắn Slack để
+                nhận sự
+                cố. Nút bấm kích hoạt API call cập nhật trạng thái assignee trên Jira tự động, loại bỏ quy trình
+                thủ
+                công.
               </div>
             </div>
           </div>
 
           <div class="flex-col justify-center">
             <!-- Simulated Slack Message Mockup -->
-            <div class="card" style="background: #1A1D21; border-color: #3F0E40; padding: 15px; font-size:0.8rem; color:#D1D2D3; box-shadow: 0 4px 10px rgba(0,0,0,0.3);">
+            <div class="card"
+              style="background: #1A1D21; border-color: #3F0E40; padding: 15px; font-size:0.8rem; color:#D1D2D3; box-shadow: 0 4px 10px rgba(0,0,0,0.3);">
               <div style="display:flex; align-items:center; gap:8px; margin-bottom:10px;">
-                <div style="width:20px; height:20px; background:var(--primary); border-radius:3px; display:flex; align-items:center; justify-content:center; color:white; font-size:9px; font-weight:800;">TH</div>
+                <div
+                  style="width:20px; height:20px; background:var(--primary); border-radius:3px; display:flex; align-items:center; justify-content:center; color:white; font-size:9px; font-weight:800;">
+                  TH</div>
                 <div style="font-weight:700; color:white;">Triage Hub APP</div>
-                <div style="font-size:9px; background:#35373B; padding:1px 4px; border-radius:3px; color:#A3A3A6;">APP</div>
+                <div style="font-size:9px; background:#35373B; padding:1px 4px; border-radius:3px; color:#A3A3A6;">
+                  APP
+                </div>
                 <div style="margin-left:auto; font-size:9px; color:#868688;">10:14 PM</div>
               </div>
               <div style="border-left: 4px solid var(--accent-red); padding-left: 10px; margin-bottom: 10px;">
-                <div style="font-weight: 700; color: white;">🚨 [LATENCY_DEGRADATION] - checkout-api latency spike</div>
-                <div style="margin-top:4px;"><strong>Tenant:</strong> tenant-a | <strong>Confidence:</strong> 82%</div>
-                <div style="margin-top:2px;"><strong>Root cause:</strong> Database connection pool saturation. Timeout logs observed.</div>
+                <div style="font-weight: 700; color: white;">🚨 [LATENCY_DEGRADATION] - checkout-api latency spike
+                </div>
+                <div style="margin-top:4px;"><strong>Tenant:</strong> tenant-a | <strong>Confidence:</strong> 82%
+                </div>
+                <div style="margin-top:2px;"><strong>Root cause:</strong> Database connection pool saturation.
+                  Timeout
+                  logs observed.</div>
               </div>
               <div style="display:flex; gap:8px; margin-top:10px;">
-                <button style="background: #222529; border:1px solid #56585B; color:white; padding:4px 10px; border-radius:4px; font-size:8px; font-weight:700; cursor:pointer;">&check; Acknowledge</button>
-                <button style="background: #1264A3; border:1px solid #1264A3; color:white; padding:4px 10px; border-radius:4px; font-size:8px; font-weight:700; cursor:pointer;">View Jira Ticket</button>
+                <button
+                  style="background: #222529; border:1px solid #56585B; color:white; padding:4px 10px; border-radius:4px; font-size:8px; font-weight:700; cursor:pointer;">&check;
+                  Acknowledge</button>
+                <button
+                  style="background: #1264A3; border:1px solid #1264A3; color:white; padding:4px 10px; border-radius:4px; font-size:8px; font-weight:700; cursor:pointer;">View
+                  Jira Ticket</button>
               </div>
             </div>
           </div>
@@ -1517,31 +1959,49 @@
       <div class="slide" data-section="Jira Integration" data-presenter="Phong">
         <div class="slide-title-area">
           <h2 class="slide-title">Jira Integration & Định Tuyến Phân Công</h2>
-          <p class="slide-subtitle">Cơ chế tự động tạo Ticket chứa dữ liệu phân tích lỗi sâu và gán đúng owner.</p>
+          <p class="slide-subtitle">Cơ chế tự động tạo Ticket chứa dữ liệu phân tích lỗi sâu và gán đúng owner.
+          </p>
         </div>
         <div class="slide-body grid-2">
           <div class="flex-col">
             <h3 style="color:var(--primary); margin-bottom:12px;">Cơ chế Mapping Assignee thông minh</h3>
             <p style="font-size:0.82rem; color:var(--text-muted); line-height:1.5; margin-bottom:12px;">
-              Để tránh việc gán bừa ticket gây trễ nải xử lý, AI Engine triển khai thuật toán gán người chịu trách nhiệm (SME) động:
+              Để tránh việc gán bừa ticket gây trễ nải xử lý, AI Engine triển khai thuật toán gán người chịu trách
+              nhiệm
+              (SME) động:
             </p>
-            <ul style="font-size:0.8rem; line-height:1.6; margin-left:20px; color:var(--text-muted); margin-bottom:12px;">
-              <li><strong>DynamoDB Lookup First:</strong> Tìm kiếm trong bảng DynamoDB các bản ghi <code>JIRA_HISTORY#{tenant_id}#{environment}#{service}</code> xem kỹ sư nào đã từng giải quyết sự cố tương tự thành công trước đó.</li>
-              <li><strong>JSON Config Fallback:</strong> Nếu DynamoDB chưa có dữ liệu (sự cố mới tinh), hệ thống đọc file catalog cấu hình phân quyền của service để gán cho Lead SRE tương ứng.</li>
+            <ul
+              style="font-size:0.8rem; line-height:1.6; margin-left:20px; color:var(--text-muted); margin-bottom:12px;">
+              <li><strong>DynamoDB Lookup First:</strong> Tìm kiếm trong bảng DynamoDB các bản ghi
+                <code>JIRA_HISTORY#{tenant_id}#{environment}#{service}</code> xem kỹ sư nào đã từng giải quyết sự
+                cố
+                tương tự thành công trước đó.
+              </li>
+              <li><strong>JSON Config Fallback:</strong> Nếu DynamoDB chưa có dữ liệu (sự cố mới tinh), hệ thống
+                đọc
+                file catalog cấu hình phân quyền của service để gán cho Lead SRE tương ứng.</li>
             </ul>
           </div>
 
           <div class="flex-col">
             <h3 style="color:var(--primary); margin-bottom:12px;">Cấu trúc payload của Jira Ticket</h3>
-            <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:8px;">Hợp đồng gửi cho CDO Dispatcher tạo Jira Ticket chứa đầy đủ cấu trúc markdown:</p>
+            <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:8px;">Hợp đồng gửi cho CDO
+              Dispatcher tạo
+              Jira Ticket chứa đầy đủ cấu trúc markdown:</p>
             <div class="code-block" style="font-size:0.75rem;">
-{
-  <span class="code-keyword">"jira_project"</span>: <span class="code-string">"TRIAGE"</span>,
-  <span class="code-keyword">"summary"</span>: <span class="code-string">"[AIOps] checkout-api latency is critical"</span>,
-  <span class="code-keyword">"description"</span>: <span class="code-string">"Root Cause: connection pool exhaustion...\nEvidence: metrics p95 950ms"</span>,
-  <span class="code-keyword">"suggested_assignee_account_id"</span>: <span class="code-string">"712020:abc123"</span>,
-  <span class="code-keyword">"audit_id"</span>: <span class="code-string">"audit-edd3e5c02569"</span>
-}</div>
+              {
+              <span class="code-keyword">"jira_project"</span>: <span class="code-string">"TRIAGE"</span>,
+              <span class="code-keyword">"summary"</span>: <span class="code-string">"[AIOps] checkout-api latency
+                is
+                critical"</span>,
+              <span class="code-keyword">"description"</span>: <span class="code-string">"Root Cause: connection
+                pool
+                exhaustion...\nEvidence: metrics p95 950ms"</span>,
+              <span class="code-keyword">"suggested_assignee_account_id"</span>: <span
+                class="code-string">"712020:abc123"</span>,
+              <span class="code-keyword">"audit_id"</span>: <span class="code-string">"audit-edd3e5c02569"</span>
+              }
+            </div>
           </div>
         </div>
       </div>
@@ -1550,7 +2010,8 @@
       <div class="slide" data-section="E2E & Benchmarks" data-presenter="Khang">
         <div class="slide-title-area">
           <h2 class="slide-title">E2E Validation & Báo Cáo Thử Nghiệm RCAEval</h2>
-          <p class="slide-subtitle">Báo cáo kết quả thử nghiệm 3 kịch bản lỗi mẫu E2E và ma trận kiểm thử 735 cases.</p>
+          <p class="slide-subtitle">Báo cáo kết quả thử nghiệm 3 kịch bản lỗi mẫu E2E và ma trận kiểm thử 735
+            cases.</p>
         </div>
         <div class="slide-body flex-col justify-between" style="overflow-y: auto;">
           <!-- Benchmark Table -->
@@ -1603,16 +2064,25 @@
 
           <div class="grid-3" style="gap:10px; margin-top:5px;">
             <div class="card" style="padding:10px; font-size:0.75rem;">
-              <div style="font-weight:700; color:var(--primary); margin-bottom:3px;">Kịch bản 1: Critical Down</div>
-              <p style="font-size:0.68rem; color:var(--text-muted);">checkout sập DB connection &rarr; Deterministic phân loại chính xác <code>critical_service_down</code> (100% test pass).</p>
+              <div style="font-weight:700; color:var(--primary); margin-bottom:3px;">Kịch bản 1: Critical Down
+              </div>
+              <p style="font-size:0.68rem; color:var(--text-muted);">checkout sập DB connection &rarr;
+                Deterministic
+                phân loại chính xác <code>critical_service_down</code> (100% test pass).</p>
             </div>
             <div class="card" style="padding:10px; font-size:0.75rem;">
-              <div style="font-weight:700; color:var(--accent-blue); margin-bottom:3px;">Kịch bản 2: Latency Drift</div>
-              <p style="font-size:0.68rem; color:var(--text-muted);">payment-api phản hồi 3.5s &rarr; Bedrock AgentCore trace ngược phát hiện Stripe API bị chậm.</p>
+              <div style="font-weight:700; color:var(--accent-blue); margin-bottom:3px;">Kịch bản 2: Latency Drift
+              </div>
+              <p style="font-size:0.68rem; color:var(--text-muted);">payment-api phản hồi 3.5s &rarr; Bedrock
+                AgentCore
+                trace ngược phát hiện Stripe API bị chậm.</p>
             </div>
             <div class="card" style="padding:10px; font-size:0.75rem;">
-              <div style="font-weight:700; color:var(--accent-green); margin-bottom:3px;">Kịch bản 3: Noisy Alert</div>
-              <p style="font-size:0.68rem; color:var(--text-muted);">auth-service CPU spike chớp nhoáng &rarr; Thuật toán Z-Score lọc tín hiệu nhiễu, gán status <code>INVESTIGATE</code>.</p>
+              <div style="font-weight:700; color:var(--accent-green); margin-bottom:3px;">Kịch bản 3: Noisy Alert
+              </div>
+              <p style="font-size:0.68rem; color:var(--text-muted);">auth-service CPU spike chớp nhoáng &rarr;
+                Thuật
+                toán Z-Score lọc tín hiệu nhiễu, gán status <code>INVESTIGATE</code>.</p>
             </div>
           </div>
         </div>
@@ -1622,29 +2092,53 @@
       <div class="slide" data-section="Tổng kết" data-presenter="Team TF1">
         <div class="slide-title-area">
           <h2 class="slide-title">Tổng Kết &amp; Thông Điệp Chốt</h2>
-          <p class="slide-subtitle">Sự khác biệt cốt lõi giữa một dự án thử nghiệm (Demo) và một hệ thống vận hành thực tế (Production).</p>
+          <p class="slide-subtitle">Sự khác biệt cốt lõi giữa một dự án thử nghiệm (Demo) và một hệ thống vận hành
+            thực
+            tế (Production).</p>
         </div>
         <div class="slide-body flex-col justify-center">
-          <div class="card card-accent-orange" style="padding: 24px; max-width: 800px; margin: 0 auto; border-radius: 12px; box-shadow: var(--shadow);">
-            <div class="card-title" style="font-size: 1.4rem; font-weight: 800; color: var(--primary); margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+          <div class="card card-accent-orange"
+            style="padding: 24px; max-width: 800px; margin: 0 auto; border-radius: 12px; box-shadow: var(--shadow);">
+            <div class="card-title"
+              style="font-size: 1.4rem; font-weight: 800; color: var(--primary); margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+              </svg>
               Thiết Kế Cho Production Thực Sự
             </div>
             <p style="font-size: 1.05rem; line-height: 1.7; color: var(--text); font-weight: 500; margin-bottom: 20px;">
-              Hạ tầng AI Engine được xây dựng không chỉ để <strong>"chạy được"</strong>, mà hướng tới độ tin cậy và tự động hóa tuyệt đối:
+              Hạ tầng AI Engine được xây dựng không chỉ để <strong>"chạy được"</strong>, mà hướng tới độ tin cậy
+              và tự
+              động hóa tuyệt đối:
             </p>
             <div class="grid-2" style="gap: 20px; text-align: left;">
-              <div style="background: rgba(255,255,255,0.02); padding: 15px; border-radius: 8px; border: 1px solid var(--border);">
-                <h4 style="font-size: 0.95rem; font-weight: 700; color: var(--accent-blue); margin-bottom: 5px;">🔄 Tự Phục Hồi &amp; Tự Co Giãn</h4>
-                <p style="font-size: 0.8rem; color: var(--text-muted); line-height: 1.5;">Tự động cô lập lỗi, tự động co giãn 3 lớp (API, Worker, EC2) bám sát theo tải thực tế mà không cần thao tác thủ công.</p>
+              <div
+                style="background: rgba(255,255,255,0.02); padding: 15px; border-radius: 8px; border: 1px solid var(--border);">
+                <h4 style="font-size: 0.95rem; font-weight: 700; color: var(--accent-blue); margin-bottom: 5px;">
+                  🔄 Tự
+                  Phục Hồi &amp; Tự Co Giãn</h4>
+                <p style="font-size: 0.8rem; color: var(--text-muted); line-height: 1.5;">Tự động cô lập lỗi, tự
+                  động co
+                  giãn 3 lớp (API, Worker, EC2) bám sát theo tải thực tế mà không cần thao tác thủ công.</p>
               </div>
-              <div style="background: rgba(255,255,255,0.02); padding: 15px; border-radius: 8px; border: 1px solid var(--border);">
-                <h4 style="font-size: 0.95rem; font-weight: 700; color: var(--accent-green); margin-bottom: 5px;">🛡️ Chủ Động Phòng Ngừa &amp; Minh Bạch</h4>
-                <p style="font-size: 0.8rem; color: var(--text-muted); line-height: 1.5;">Tự chặn các mối nguy hiểm thông qua Gatekeeper và kiểm duyệt Sigstore trước khi khởi chạy, lưu audit trail rõ ràng cho mọi hoạt động.</p>
+              <div
+                style="background: rgba(255,255,255,0.02); padding: 15px; border-radius: 8px; border: 1px solid var(--border);">
+                <h4 style="font-size: 0.95rem; font-weight: 700; color: var(--accent-green); margin-bottom: 5px;">
+                  🛡️
+                  Chủ Động Phòng Ngừa &amp; Minh Bạch</h4>
+                <p style="font-size: 0.8rem; color: var(--text-muted); line-height: 1.5;">Tự chặn các mối nguy
+                  hiểm
+                  thông qua Gatekeeper và kiểm duyệt Sigstore trước khi khởi chạy, lưu audit trail rõ ràng cho mọi
+                  hoạt
+                  động.</p>
               </div>
             </div>
-            <div style="margin-top: 25px; padding-top: 15px; border-top: 1px solid var(--border); text-align: center; font-size: 1.1rem; font-weight: 700; color: var(--text);">
-              🏆 <span style="color: var(--primary);">Khác biệt lớn nhất:</span> Từ một bản Demo kỹ thuật đến một hệ thống Production bền bỉ.
+            <div
+              style="margin-top: 25px; padding-top: 15px; border-top: 1px solid var(--border); text-align: center; font-size: 1.1rem; font-weight: 700; color: var(--text);">
+              🏆 <span style="color: var(--primary);">Khác biệt lớn nhất:</span> Từ một bản Demo kỹ thuật đến một
+              hệ
+              thống Production bền bỉ.
             </div>
           </div>
         </div>
@@ -1655,7 +2149,9 @@
         <div class="divider-number">HỎI & ĐÁP</div>
         <h1 class="divider-title" style="font-size:4rem;">Q & A</h1>
         <div class="divider-line" style="width:100px; height:4px;"></div>
-        <p class="divider-subtitle" style="font-size:1.2rem; margin-bottom:25px;">Xin chân thành cảm ơn Ban Giám Khảo, Mentor và các Kỹ sư đồng nghiệp đã lắng nghe!</p>
+        <p class="divider-subtitle" style="font-size:1.2rem; margin-bottom:25px;">Xin chân thành cảm ơn Ban Giám
+          Khảo,
+          Mentor và các Kỹ sư đồng nghiệp đã lắng nghe!</p>
         <div style="display:flex; justify-content:center; gap:15px; margin-top:15px;">
           <button class="btn btn-primary" onclick="jumpTo(0)">Về trang đầu</button>
           <button class="btn" onclick="toggleTheme()">Đổi giao diện Sáng/Tối</button>
@@ -1669,21 +2165,40 @@
       <div class="footer-left">
         <div>Dự án: <strong>Triage Hub (TF1)</strong></div>
         <div style="width:1px; height:15px; background:var(--border);"></div>
-        <div>Người trình bày: <strong id="presenterName" style="color: var(--accent-blue);">Team TF1</strong></div>
+        <div>Người trình bày: <strong id="presenterName" style="color: var(--accent-blue);">Team TF1</strong>
+        </div>
       </div>
-      
+
       <div class="footer-right">
         <!-- Floating controls -->
         <button class="floating-control" id="themeBtn" onclick="toggleTheme()" title="Đổi giao diện Dark/Light">
-          <svg id="sunIcon" style="display:none;" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
-          <svg id="moonIcon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-        </button>
-        
-        <button class="floating-control" onclick="toggleFullscreen()" title="Bật/Tắt Toàn màn hình (F)">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path></svg>
+          <svg id="sunIcon" style="display:none;" width="16" height="16" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+          <svg id="moonIcon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
         </button>
 
-        <div id="slideCounter" class="slide-counter">1 / 19</div>
+        <button class="floating-control" onclick="toggleFullscreen()" title="Bật/Tắt Toàn màn hình (F)">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3">
+            </path>
+          </svg>
+        </button>
+
+        <div id="slideCounter" class="slide-counter">1 / 20</div>
       </div>
     </footer>
 
@@ -1693,28 +2208,49 @@
   <div id="tocModal" class="toc-modal">
     <div class="toc-content">
       <button class="toc-close" onclick="closeTOC()">&times;</button>
-      <h2 class="font-outfit" style="font-size:1.5rem; border-bottom:1px solid var(--border); padding-bottom:10px;">Danh sách Slide thuyết trình</h2>
-      
+      <h2 class="font-outfit" style="font-size:1.5rem; border-bottom:1px solid var(--border); padding-bottom:10px;">
+        Danh
+        sách Slide thuyết trình</h2>
+
       <div class="toc-grid">
-        <div class="toc-link" onclick="jumpTo(0)">01. Cover Slide <span style="font-size:0.7rem; color:var(--text-muted);">Team TF1</span></div>
-        <div class="toc-link" onclick="jumpTo(1)">02. Mục lục chương trình <span style="font-size:0.7rem; color:var(--text-muted);">Team TF1</span></div>
-        <div class="toc-link" onclick="jumpTo(2)">03. Quản lý dự án qua Jira & Github <span style="font-size:0.7rem; color:var(--text-muted);">Team TF1</span></div>
-        <div class="toc-link" onclick="jumpTo(3)">04. Sự phù hợp hạ tầng cho AI <span style="font-size:0.7rem; color:var(--text-muted);">Tiến</span></div>
-        <div class="toc-link" onclick="jumpTo(4)">05. Kiến trúc tổng quan (Availability) <span style="font-size:0.7rem; color:var(--text-muted);">Tiến</span></div>
-        <div class="toc-link" onclick="jumpTo(5)">06. Hạ tầng mở rộng (Scalability) <span style="font-size:0.7rem; color:var(--text-muted);">Tiến</span></div>
-        <div class="toc-link" onclick="jumpTo(6)">07. Kiến trúc bảo mật an ninh <span style="font-size:0.7rem; color:var(--text-muted);">Huy</span></div>
-        <div class="toc-link" onclick="jumpTo(7)">08. Khả năng quan sát (Observability) <span style="font-size:0.7rem; color:var(--text-muted);">Nhật</span></div>
-        <div class="toc-link" onclick="jumpTo(8)">09. Dự toán chi phí vận hành <span style="font-size:0.7rem; color:var(--text-muted);">Nhật</span></div>
-        <div class="toc-link" onclick="jumpTo(9)">10. Khả năng đáp ứng yêu cầu <span style="font-size:0.7rem; color:var(--text-muted);">Nhật</span></div>
-        <div class="toc-link" onclick="jumpTo(10)">11. Thiết kế & Giải pháp AI Engine <span style="font-size:0.7rem; color:var(--text-muted);">Thi</span></div>
-        <div class="toc-link" onclick="jumpTo(11)">12. Sơ đồ hoạt động AI Engine <span style="font-size:0.7rem; color:var(--text-muted);">Thi</span></div>
-        <div class="toc-link" onclick="jumpTo(12)">13. CI/CD & GitOps ArgoCD <span style="font-size:0.7rem; color:var(--text-muted);">Kiên</span></div>
-        <div class="toc-link" onclick="jumpTo(13)">14. Alert processing pipeline <span style="font-size:0.7rem; color:var(--text-muted);">Tiến</span></div>
-        <div class="toc-link" onclick="jumpTo(14)">15. Slack Notification integration <span style="font-size:0.7rem; color:var(--text-muted);">Hoàng</span></div>
-        <div class="toc-link" onclick="jumpTo(15)">16. Jira Integration & Assignment <span style="font-size:0.7rem; color:var(--text-muted);">Phong</span></div>
-        <div class="toc-link" onclick="jumpTo(16)">17. E2E Scenarios &amp; RCAEval Benchmarks <span style="font-size:0.7rem; color:var(--text-muted);">Khang</span></div>
-        <div class="toc-link" onclick="jumpTo(17)">18. Tổng kết &amp; Thông điệp chốt <span style="font-size:0.7rem; color:var(--text-muted);">Team TF1</span></div>
-        <div class="toc-link" onclick="jumpTo(18)">19. Hỏi đáp Q&amp;A <span style="font-size:0.7rem; color:var(--text-muted);">Team TF1</span></div>
+        <div class="toc-link" onclick="jumpTo(0)">01. Cover Slide <span
+            style="font-size:0.7rem; color:var(--text-muted);">Team TF1</span></div>
+        <div class="toc-link" onclick="jumpTo(1)">02. Mục lục chương trình <span
+            style="font-size:0.7rem; color:var(--text-muted);">Team TF1</span></div>
+        <div class="toc-link" onclick="jumpTo(2)">03. Quản lý dự án qua Jira & Github <span
+            style="font-size:0.7rem; color:var(--text-muted);">Team TF1</span></div>
+        <div class="toc-link" onclick="jumpTo(3)">04. Sự phù hợp hạ tầng cho AI <span
+            style="font-size:0.7rem; color:var(--text-muted);">Tiến</span></div>
+        <div class="toc-link" onclick="jumpTo(4)">05. Kiến trúc tổng quan (Availability) <span
+            style="font-size:0.7rem; color:var(--text-muted);">Tiến</span></div>
+        <div class="toc-link" onclick="jumpTo(5)">06. Hạ tầng mở rộng (Scalability) <span
+            style="font-size:0.7rem; color:var(--text-muted);">Tiến</span></div>
+        <div class="toc-link" onclick="jumpTo(6)">07. Kiến trúc bảo mật an ninh <span
+            style="font-size:0.7rem; color:var(--text-muted);">Huy</span></div>
+        <div class="toc-link" onclick="jumpTo(7)">08. Khả năng quan sát (Observability) <span
+            style="font-size:0.7rem; color:var(--text-muted);">Nhật</span></div>
+        <div class="toc-link" onclick="jumpTo(8)">10. Dự toán chi phí vận hành <span
+            style="font-size:0.7rem; color:var(--text-muted);">Nhật</span></div>
+        <div class="toc-link" onclick="jumpTo(9)">11. Khả năng đáp ứng yêu cầu <span
+            style="font-size:0.7rem; color:var(--text-muted);">Nhật</span></div>
+        <div class="toc-link" onclick="jumpTo(10)">12. Thiết kế & Giải pháp AI Engine <span
+            style="font-size:0.7rem; color:var(--text-muted);">Thi</span></div>
+        <div class="toc-link" onclick="jumpTo(11)">13. Sơ đồ hoạt động AI Engine <span
+            style="font-size:0.7rem; color:var(--text-muted);">Thi</span></div>
+        <div class="toc-link" onclick="jumpTo(12)">14. CI/CD & GitOps ArgoCD <span
+            style="font-size:0.7rem; color:var(--text-muted);">Kiên</span></div>
+        <div class="toc-link" onclick="jumpTo(13)">15. Alert processing pipeline <span
+            style="font-size:0.7rem; color:var(--text-muted);">Tiến</span></div>
+        <div class="toc-link" onclick="jumpTo(14)">16. Slack Notification integration <span
+            style="font-size:0.7rem; color:var(--text-muted);">Hoàng</span></div>
+        <div class="toc-link" onclick="jumpTo(15)">17. Jira Integration & Assignment <span
+            style="font-size:0.7rem; color:var(--text-muted);">Phong</span></div>
+        <div class="toc-link" onclick="jumpTo(16)">18. E2E Scenarios &amp; RCAEval Benchmarks <span
+            style="font-size:0.7rem; color:var(--text-muted);">Khang</span></div>
+        <div class="toc-link" onclick="jumpTo(17)">19. Tổng kết &amp; Thông điệp chốt <span
+            style="font-size:0.7rem; color:var(--text-muted);">Team TF1</span></div>
+        <div class="toc-link" onclick="jumpTo(18)">20. Hỏi đáp Q&amp;A <span
+            style="font-size:0.7rem; color:var(--text-muted);">Team TF1</span></div>
       </div>
     </div>
   </div>
@@ -1733,7 +2269,7 @@
     const currentSection = document.getElementById('currentSection');
     const presenterName = document.getElementById('presenterName');
     const tocModal = document.getElementById('tocModal');
-    
+
     let activeIndex = 0;
     const totalSlides = slides.length;
 
@@ -1746,7 +2282,7 @@
           activeIndex = slideNum - 1;
         }
       }
-      
+
       // Load saved theme
       const savedTheme = localStorage.getItem('triage-hub-theme');
       if (savedTheme === 'light') {
@@ -1754,7 +2290,7 @@
         document.getElementById('sunIcon').style.display = 'block';
         document.getElementById('moonIcon').style.display = 'none';
       }
-      
+
       updateSlides();
     }
 
@@ -1764,11 +2300,11 @@
         slide.classList.remove('active', 'prev', 'next');
         if (idx === activeIndex) {
           slide.classList.add('active');
-          
+
           // Update header section name
           const sec = slide.getAttribute('data-section') || '';
           currentSection.textContent = sec;
-          
+
           // Update presenter name in footer
           const pres = slide.getAttribute('data-presenter') || 'Team TF1';
           presenterName.textContent = pres;
@@ -1919,4 +2455,5 @@
     window.onload = init;
   </script>
 </body>
+
 </html>
