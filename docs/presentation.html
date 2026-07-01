@@ -582,7 +582,7 @@
     /* AGENDA */
     .agenda-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: 15px;
       margin-top: 10px;
     }
@@ -819,31 +819,36 @@
             </div>
             <div class="agenda-card" onclick="jumpTo(10)">
               <div class="agenda-num">09</div>
-              <div class="agenda-text">AI Engine Hosting & Pod config</div>
+              <div class="agenda-text">Thiết kế & Giải pháp AI Engine</div>
               <div class="agenda-presenter">Thi</div>
             </div>
             <div class="agenda-card" onclick="jumpTo(11)">
               <div class="agenda-num">10</div>
-              <div class="agenda-text">CI/CD & GitOps ArgoCD</div>
-              <div class="agenda-presenter">Kiên</div>
+              <div class="agenda-text">Sơ đồ hoạt động AI Engine</div>
+              <div class="agenda-presenter">Thi</div>
             </div>
             <div class="agenda-card" onclick="jumpTo(12)">
               <div class="agenda-num">11</div>
-              <div class="agenda-text">Alert processing pipeline</div>
-              <div class="agenda-presenter">Tiến</div>
+              <div class="agenda-text">CI/CD & GitOps ArgoCD</div>
+              <div class="agenda-presenter">Kiên</div>
             </div>
             <div class="agenda-card" onclick="jumpTo(13)">
               <div class="agenda-num">12</div>
-              <div class="agenda-text">Slack Dispatcher integration</div>
-              <div class="agenda-presenter">Hoàng</div>
+              <div class="agenda-text">Alert processing pipeline</div>
+              <div class="agenda-presenter">Tiến</div>
             </div>
             <div class="agenda-card" onclick="jumpTo(14)">
               <div class="agenda-num">13</div>
-              <div class="agenda-text">Jira Integration & Assignment</div>
-              <div class="agenda-presenter">Phong</div>
+              <div class="agenda-text">Slack Dispatcher integration</div>
+              <div class="agenda-presenter">Hoàng</div>
             </div>
             <div class="agenda-card" onclick="jumpTo(15)">
               <div class="agenda-num">14</div>
+              <div class="agenda-text">Jira Integration & Assignment</div>
+              <div class="agenda-presenter">Phong</div>
+            </div>
+            <div class="agenda-card" onclick="jumpTo(16)">
+              <div class="agenda-num">15</div>
               <div class="agenda-text">E2E Scenarios & RCAEval Benchmarks</div>
               <div class="agenda-presenter">Khang</div>
             </div>
@@ -1213,59 +1218,105 @@
         </div>
       </div>
 
-      <!-- SLIDE 11: AI ENGINE HOSTING -->
-      <div class="slide" data-section="Hosting & Pod config" data-presenter="Thi">
+      <!-- SLIDE 11: AI ENGINE ARCHITECTURE & LOGIC -->
+      <div class="slide" data-section="Kiến trúc AI Engine" data-presenter="Thi">
         <div class="slide-title-area">
-          <h2 class="slide-title">AI Engine Hosting & Cấu Hình Pod</h2>
-          <p class="slide-subtitle">Thiết kế container hóa an toàn, phân chia giới hạn tài nguyên và cấu hình runtime.</p>
+          <h2 class="slide-title">Thiết Kế & Giải Pháp AI Engine</h2>
+          <p class="slide-subtitle">Chi tiết về kiến trúc chẩn đoán kết hợp (Hybrid), tối ưu hóa token và thiết kế container an toàn.</p>
         </div>
         <div class="slide-body grid-2">
           <div class="flex-col">
-            <h3 style="color:var(--primary); margin-bottom:12px;">Thiết kế Dockerfile Multi-stage</h3>
-            <ul style="font-size:0.85rem; line-height:1.7; margin-left:20px; color:var(--text-muted); margin-bottom:15px;">
-              <li><strong>Stage 1 (Builder):</strong> Cài đặt toàn bộ dependencies, compilers.</li>
-              <li><strong>Stage 2 (Runtime):</strong> Chỉ sao chép bytecode Python đã biên dịch. Loại bỏ compiler và file rác giúp giảm kích thước image từ 850MB xuống còn <strong>180MB</strong>, giảm diện tích tấn công (Attack Surface).</li>
-              <li><strong>Non-root execution:</strong> Container thực thi dưới quyền User <code>1000</code> bảo mật. Không chạy dưới quyền root.</li>
-              <li><strong>Chỉ ghi /tmp:</strong> Hệ thống file container ở trạng thái Read-only để tránh bị inject code độc hại. Chỉ cho phép ghi file báo cáo sự cố vào thư mục <code>/tmp</code>.</li>
+            <h3 style="color:var(--primary); margin-bottom:10px;">Cơ Chế Chẩn Đoán & Tối Ưu Hóa</h3>
+            <ul style="font-size:0.8rem; line-height:1.6; margin-left:15px; color:var(--text-muted); margin-bottom:12px;">
+              <li><strong>Mô hình chẩn đoán kết hợp (Hybrid):</strong> Tách biệt luồng xử lý: **Fast Path** (Deterministic RCA toán học dựa trên Z-Score) chạy tức thời, và **Deep Path** (Bedrock LLM Claude 3.5 Sonnet) giải quyết sự cố phức tạp.</li>
+              <li><strong>Enrichment ngữ cảnh:</strong> Tự động gom logs từ Elasticsearch, metrics từ Prometheus và metadata của tenant để LLM có đầy đủ dữ liệu thực tế tại thời điểm nổ cảnh báo.</li>
+              <li><strong>Bảo vệ tính Idempotency:</strong> Dùng DynamoDB cache lại kết quả chẩn đoán dựa trên signature của alert. Nếu SQS gửi lại request trùng, hệ thống trả ngay kết quả cũ mà không gọi LLM, tiết kiệm 100% token.</li>
             </ul>
           </div>
 
-          <div class="flex-col justify-center">
-            <div class="card card-accent-blue" style="padding: 20px;">
-              <div class="card-title">Cấu hình tài nguyên Pod (Resource Limits)</div>
-              <p style="font-size:0.8rem; color:var(--text-muted); line-height:1.5; margin-bottom:12px;">
-                Phân bổ tài nguyên khắt khe cho Pod <code>tf1-api</code> để tránh tranh chấp bộ nhớ gây sập Node (OOMKilled):
-              </p>
-              <table class="comp-table" style="font-size:0.75rem;">
-                <thead>
-                  <tr>
-                    <th>Loại cấu hình</th>
-                    <th>Yêu cầu (Requests)</th>
-                    <th>Giới hạn tối đa (Limits)</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><strong>CPU Cores</strong></td>
-                    <td>256m (0.25 vCPU)</td>
-                    <td style="color:var(--accent-yellow); font-weight:600;">512m (0.5 vCPU)</td>
-                  </tr>
-                  <tr>
-                    <td><strong>Memory (RAM)</strong></td>
-                    <td>512Mi</td>
-                    <td style="color:var(--accent-yellow); font-weight:600;">1Gi</td>
-                  </tr>
-                  <tr>
-                    <td><strong>Liveness Probe</strong></td>
-                    <td colspan="2">HTTP GET `/healthz` (delay: 10s, period: 10s)</td>
-                  </tr>
-                  <tr>
-                    <td><strong>Readiness Probe</strong></td>
-                    <td colspan="2">HTTP GET `/readyz` (delay: 5s, period: 5s)</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+          <div class="flex-col">
+            <h3 style="color:var(--primary); margin-bottom:10px;">Container hóa & Tài nguyên Pod</h3>
+            <ul style="font-size:0.8rem; line-height:1.6; margin-left:15px; color:var(--text-muted); margin-bottom:12px;">
+              <li><strong>Dockerfile Multi-stage & Non-root:</strong> Tách biệt môi trường build và runtime, loại bỏ compiler giúp giảm dung lượng image từ 850MB xuống còn <strong>180MB</strong>. Thực thi dưới user non-root <code>1000</code>.</li>
+              <li><strong>Read-only File System:</strong> Hệ thống file của container được thiết lập Read-only hoàn toàn để chống inject mã độc. Chỉ thư mục <code>/tmp</code> được phép ghi để xuất báo cáo.</li>
+              <li><strong>Resource Limits & Probes:</strong>
+                <ul style="margin-left:15px; list-style-type:circle;">
+                  <li>CPU: Request 256m, Limit 512m. RAM: Request 512Mi, Limit 1Gi.</li>
+                  <li>Liveness Probe (GET `/healthz` delay 10s), Readiness Probe (GET `/readyz` delay 5s).</li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 12: AI ENGINE WORKFLOW DIAGRAM -->
+      <div class="slide" data-section="Luồng xử lý AI Engine" data-presenter="Thi">
+        <div class="slide-title-area">
+          <h2 class="slide-title">Sơ Đồ Hoạt Động Của AI Engine</h2>
+          <p class="slide-subtitle">Luồng di chuyển dữ liệu từ sự kiện cảnh báo đầu vào cho đến chẩn đoán cuối cùng.</p>
+        </div>
+        <div class="slide-body flex-col justify-center">
+          <div class="flex-center" style="margin-top: 5px;">
+            <svg class="arch-svg" width="100%" height="320" viewBox="0 0 620 320" fill="none" xmlns="http://www.w3.org/2000/svg" style="background: rgba(255,255,255,0.01); border-radius: 8px; border: 1px solid var(--border);">
+              <defs>
+                <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                  <path d="M 0 1.5 L 6 5 L 0 8.5 z" fill="var(--text-muted)"/>
+                </marker>
+                <marker id="arrow-blue" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                  <path d="M 0 1.5 L 6 5 L 0 8.5 z" fill="var(--accent-blue)"/>
+                </marker>
+                <marker id="arrow-green" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                  <path d="M 0 1.5 L 6 5 L 0 8.5 z" fill="var(--accent-green)"/>
+                </marker>
+                <marker id="arrow-orange" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                  <path d="M 0 1.5 L 6 5 L 0 8.5 z" fill="var(--primary)"/>
+                </marker>
+              </defs>
+
+              <!-- Flow Lines -->
+              <path d="M 120,165 L 140,165 L 140,85 L 170,85" stroke="var(--border)" stroke-width="1.5" marker-end="url(#arrow)"/>
+              <path d="M 120,165 L 140,165 L 140,245 L 170,245" stroke="var(--border)" stroke-width="1.5" marker-end="url(#arrow)"/>
+              <path d="M 280,85 L 305,85 L 305,150 L 320,150" stroke="var(--border)" stroke-width="1.5" marker-end="url(#arrow)"/>
+              <path d="M 280,245 L 305,245 L 305,180 L 320,180" stroke="var(--accent-blue)" stroke-width="1.5" stroke-dasharray="3,3" marker-end="url(#arrow-blue)"/>
+              <text x="312" y="215" font-size="7" fill="var(--accent-blue)" text-anchor="middle">Cache Miss</text>
+
+              <path d="M 225,270 L 225,305 L 515,305 L 515,260" stroke="var(--accent-green)" stroke-width="1.5" marker-end="url(#arrow-green)"/>
+              <text x="370" y="298" font-size="8" fill="var(--accent-green)" font-weight="700" text-anchor="middle">⚡ Fast Path: Cache Hit (Bypass Bedrock LLM)</text>
+
+              <path d="M 420,165 L 440,165 L 440,85 L 460,85" stroke="var(--primary)" stroke-width="1.5" marker-end="url(#arrow-orange)"/>
+              <path d="M 515,110 L 515,210" stroke="var(--border)" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+              <!-- Node 1: SQS Ingest -->
+              <rect x="20" y="140" width="100" height="50" rx="6" fill="var(--card-bg)" stroke="var(--card-border)" stroke-width="1.5"/>
+              <text x="70" y="160" font-size="8" fill="var(--text)" font-weight="700" text-anchor="middle">Incident Ingest</text>
+              <text x="70" y="172" font-size="7" fill="var(--text-muted)" text-anchor="middle">AWS SQS Event</text>
+
+              <!-- Node 2: Context Enricher -->
+              <rect x="170" y="60" width="110" height="50" rx="6" fill="var(--card-bg)" stroke="var(--card-border)" stroke-width="1.5"/>
+              <text x="225" y="80" font-size="8" fill="var(--text)" font-weight="700" text-anchor="middle">Context Enricher</text>
+              <text x="225" y="92" font-size="7" fill="var(--text-muted)" text-anchor="middle">Elastic Logs & Prom Metrics</text>
+
+              <!-- Node 3: Idempotency (DynamoDB) -->
+              <rect x="170" y="220" width="110" height="50" rx="6" fill="var(--card-bg)" stroke="var(--accent-blue)" stroke-width="1.5"/>
+              <text x="225" y="240" font-size="8" fill="var(--accent-blue)" font-weight="700" text-anchor="middle">Idempotency Check</text>
+              <text x="225" y="252" font-size="7" fill="var(--text-muted)" text-anchor="middle">DynamoDB Caching</text>
+
+              <!-- Node 4: Prompt Engine -->
+              <rect x="320" y="140" width="100" height="50" rx="6" fill="var(--card-bg)" stroke="var(--card-border)" stroke-width="1.5"/>
+              <text x="370" y="160" font-size="8" fill="var(--text)" font-weight="700" text-anchor="middle">Prompt Engine</text>
+              <text x="370" y="172" font-size="7" fill="var(--text-muted)" text-anchor="middle">System Rules + Data</text>
+
+              <!-- Node 5: Bedrock Claude -->
+              <rect x="460" y="60" width="110" height="50" rx="6" fill="rgba(243, 111, 33, 0.05)" stroke="var(--primary)" stroke-width="1.5"/>
+              <text x="515" y="80" font-size="8" fill="var(--primary)" font-weight="700" text-anchor="middle">AWS Bedrock</text>
+              <text x="515" y="92" font-size="7" fill="var(--text-muted)" text-anchor="middle">Claude 3.5 Sonnet</text>
+
+              <!-- Node 6: Dispatcher SQS -->
+              <rect x="460" y="210" width="110" height="50" rx="6" fill="var(--card-bg)" stroke="var(--accent-green)" stroke-width="1.5"/>
+              <text x="515" y="230" font-size="8" fill="var(--accent-green)" font-weight="700" text-anchor="middle">RCA Dispatcher</text>
+              <text x="515" y="242" font-size="7" fill="var(--text-muted)" text-anchor="middle">SQS to Slack & Jira</text>
+            </svg>
           </div>
         </div>
       </div>
@@ -1551,7 +1602,7 @@
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path></svg>
         </button>
 
-        <div id="slideCounter" class="slide-counter">1 / 17</div>
+        <div id="slideCounter" class="slide-counter">1 / 18</div>
       </div>
     </footer>
 
@@ -1574,13 +1625,14 @@
         <div class="toc-link" onclick="jumpTo(7)">08. Khả năng quan sát (Observability) <span style="font-size:0.7rem; color:var(--text-muted);">Nhật</span></div>
         <div class="toc-link" onclick="jumpTo(8)">09. Dự toán chi phí vận hành <span style="font-size:0.7rem; color:var(--text-muted);">Nhật</span></div>
         <div class="toc-link" onclick="jumpTo(9)">10. Khả năng đáp ứng yêu cầu <span style="font-size:0.7rem; color:var(--text-muted);">Nhật</span></div>
-        <div class="toc-link" onclick="jumpTo(10)">11. AI Engine Hosting & Pod config <span style="font-size:0.7rem; color:var(--text-muted);">Thi</span></div>
-        <div class="toc-link" onclick="jumpTo(11)">12. CI/CD & GitOps ArgoCD <span style="font-size:0.7rem; color:var(--text-muted);">Kiên</span></div>
-        <div class="toc-link" onclick="jumpTo(12)">13. Alert processing pipeline <span style="font-size:0.7rem; color:var(--text-muted);">Tiến</span></div>
-        <div class="toc-link" onclick="jumpTo(13)">14. Slack Notification integration <span style="font-size:0.7rem; color:var(--text-muted);">Hoàng</span></div>
-        <div class="toc-link" onclick="jumpTo(14)">15. Jira Integration & Assignment <span style="font-size:0.7rem; color:var(--text-muted);">Phong</span></div>
-        <div class="toc-link" onclick="jumpTo(15)">16. E2E Scenarios & RCAEval Benchmarks <span style="font-size:0.7rem; color:var(--text-muted);">Khang</span></div>
-        <div class="toc-link" onclick="jumpTo(16)">17. Hỏi đáp Q&A <span style="font-size:0.7rem; color:var(--text-muted);">Team TF1</span></div>
+        <div class="toc-link" onclick="jumpTo(10)">11. Thiết kế & Giải pháp AI Engine <span style="font-size:0.7rem; color:var(--text-muted);">Thi</span></div>
+        <div class="toc-link" onclick="jumpTo(11)">12. Sơ đồ hoạt động AI Engine <span style="font-size:0.7rem; color:var(--text-muted);">Thi</span></div>
+        <div class="toc-link" onclick="jumpTo(12)">13. CI/CD & GitOps ArgoCD <span style="font-size:0.7rem; color:var(--text-muted);">Kiên</span></div>
+        <div class="toc-link" onclick="jumpTo(13)">14. Alert processing pipeline <span style="font-size:0.7rem; color:var(--text-muted);">Tiến</span></div>
+        <div class="toc-link" onclick="jumpTo(14)">15. Slack Notification integration <span style="font-size:0.7rem; color:var(--text-muted);">Hoàng</span></div>
+        <div class="toc-link" onclick="jumpTo(15)">16. Jira Integration & Assignment <span style="font-size:0.7rem; color:var(--text-muted);">Phong</span></div>
+        <div class="toc-link" onclick="jumpTo(16)">17. E2E Scenarios & RCAEval Benchmarks <span style="font-size:0.7rem; color:var(--text-muted);">Khang</span></div>
+        <div class="toc-link" onclick="jumpTo(17)">18. Hỏi đáp Q&A <span style="font-size:0.7rem; color:var(--text-muted);">Team TF1</span></div>
       </div>
     </div>
   </div>
