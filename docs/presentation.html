@@ -1244,7 +1244,7 @@
                   <li>Node EC2: Cluster Autoscaler tự thêm node khi pod rơi vào trạng thái Pending.</li>
                 </ul>
               </li>
-              <li><strong>Evidence Routing qua Headless Service:</strong> Khắc phục lỗi timeout ngẫu nhiên do kube-proxy stale IP khi `tf1-api` truy vấn Prometheus ngoài (chạy trên EC2 riêng) bằng cách sử dụng Headless Service để DNS phân giải trực tiếp IP thật.</li>
+              <li><strong>Kết nối VPC PrivateLink &amp; NAT-less:</strong> Pod chạy hoàn toàn trong Private Subnets, giao tiếp với Bedrock, DynamoDB, ECR qua VPC Endpoints (AWS PrivateLink). Loại bỏ hoàn toàn NAT Gateway giúp bảo mật tuyệt đối dữ liệu và tối ưu chi phí hạ tầng mạng.</li>
               <li><strong>Cô lập dữ liệu tenant:</strong> DynamoDB single-table lưu audit, state và cache phân công SME. Cách ly tenant triệt để bằng cách nhúng <code>tenant_id</code> ngay trong Partition Key.</li>
             </ul>
           </div>
