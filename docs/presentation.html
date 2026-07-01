@@ -1278,7 +1278,15 @@
             <ul style="font-size:0.78rem; line-height:1.6; margin-left:15px; color:var(--text-muted); margin-bottom:12px;">
               <li><strong>Bảo mật chuỗi cung ứng (Sigstore):</strong> Đóng gói Dockerfile Multi-stage non-root. Trivy quét chặn cứng lỗi HIGH/CRITICAL. Ký Cosign keyless. EKS Admission Controller (Sigstore policy) chặn đứng việc chạy pod nếu image chưa được ký hợp lệ.</li>
               <li><strong>Canary Rollouts tự động (Argo Rollouts):</strong> Đóng gói qua ArgoCD GitOps. Dịch vụ <code>tf1-api</code> được deploy Canary (10% &rarr; 50% &rarr; 100%). Quy trình <code>AnalysisRun</code> giám sát liên tục p99 latency (&lt;800ms) và error-rate 5xx (&lt;1%) qua Prometheus để tự động Rollback nếu xảy ra sự cố.</li>
-              <li><strong>Bảo mật Tầng Admission:</strong> Ép buộc 7 chính sách Gatekeeper siết security context, cấm hostNetwork/hostPID, yêu cầu khai báo đầy đủ resource requests/limits và bắt buộc cấu hình NetworkPolicy trên namespace mới.</li>
+              <li><strong>Bảo mật Tầng Admission (7 Gatekeeper Policies):</strong> Triển khai vượt mức baseline thông thường:
+                <ul style="margin-left:15px; list-style-type:circle; font-size:0.75rem; margin-top:4px;">
+                  <li>Siết security context toàn diện, chặn cứng <code>hostNetwork</code>/<code>hostPID</code>.</li>
+                  <li>Chỉ cho phép kéo image từ Registry của dự án.</li>
+                  <li>Bắt buộc khai báo cả <code>requests</code> và <code>limits</code> tài nguyên để chống chiếm dụng khi dùng chung node (Noisy Neighbor).</li>
+                  <li><strong>Referential constraint:</strong> Bắt buộc mọi Namespace mới phải có sẵn NetworkPolicy.</li>
+                  <li><strong>Kỷ luật triển khai:</strong> Chạy chế độ <code>audit-only</code> trước để kiểm tra thực tế, sau đó mới bật chặn cứng (<code>enforce</code>) để tránh gây outage bất ngờ.</li>
+                </ul>
+              </li>
             </ul>
           </div>
 
@@ -1610,7 +1618,39 @@
         </div>
       </div>
 
-      <!-- SLIDE 17: Q&A -->
+      <!-- SLIDE 17: TỔNG KẾT & THÔNG ĐIỆP CHỐT -->
+      <div class="slide" data-section="Tổng kết" data-presenter="Team TF1">
+        <div class="slide-title-area">
+          <h2 class="slide-title">Tổng Kết &amp; Thông Điệp Chốt</h2>
+          <p class="slide-subtitle">Sự khác biệt cốt lõi giữa một dự án thử nghiệm (Demo) và một hệ thống vận hành thực tế (Production).</p>
+        </div>
+        <div class="slide-body flex-col justify-center">
+          <div class="card card-accent-orange" style="padding: 24px; max-width: 800px; margin: 0 auto; border-radius: 12px; box-shadow: var(--shadow);">
+            <div class="card-title" style="font-size: 1.4rem; font-weight: 800; color: var(--primary); margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+              Thiết Kế Cho Production Thực Sự
+            </div>
+            <p style="font-size: 1.05rem; line-height: 1.7; color: var(--text); font-weight: 500; margin-bottom: 20px;">
+              Hạ tầng AI Engine được xây dựng không chỉ để <strong>"chạy được"</strong>, mà hướng tới độ tin cậy và tự động hóa tuyệt đối:
+            </p>
+            <div class="grid-2" style="gap: 20px; text-align: left;">
+              <div style="background: rgba(255,255,255,0.02); padding: 15px; border-radius: 8px; border: 1px solid var(--border);">
+                <h4 style="font-size: 0.95rem; font-weight: 700; color: var(--accent-blue); margin-bottom: 5px;">🔄 Tự Phục Hồi &amp; Tự Co Giãn</h4>
+                <p style="font-size: 0.8rem; color: var(--text-muted); line-height: 1.5;">Tự động cô lập lỗi, tự động co giãn 3 lớp (API, Worker, EC2) bám sát theo tải thực tế mà không cần thao tác thủ công.</p>
+              </div>
+              <div style="background: rgba(255,255,255,0.02); padding: 15px; border-radius: 8px; border: 1px solid var(--border);">
+                <h4 style="font-size: 0.95rem; font-weight: 700; color: var(--accent-green); margin-bottom: 5px;">🛡️ Chủ Động Phòng Ngừa &amp; Minh Bạch</h4>
+                <p style="font-size: 0.8rem; color: var(--text-muted); line-height: 1.5;">Tự chặn các mối nguy hiểm thông qua Gatekeeper và kiểm duyệt Sigstore trước khi khởi chạy, lưu audit trail rõ ràng cho mọi hoạt động.</p>
+              </div>
+            </div>
+            <div style="margin-top: 25px; padding-top: 15px; border-top: 1px solid var(--border); text-align: center; font-size: 1.1rem; font-weight: 700; color: var(--text);">
+              🏆 <span style="color: var(--primary);">Khác biệt lớn nhất:</span> Từ một bản Demo kỹ thuật đến một hệ thống Production bền bỉ.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 18: Q&A -->
       <div class="slide slide-section-divider" data-section="Q&A" data-presenter="Team TF1">
         <div class="divider-number">HỎI & ĐÁP</div>
         <h1 class="divider-title" style="font-size:4rem;">Q & A</h1>
@@ -1643,7 +1683,7 @@
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path></svg>
         </button>
 
-        <div id="slideCounter" class="slide-counter">1 / 18</div>
+        <div id="slideCounter" class="slide-counter">1 / 19</div>
       </div>
     </footer>
 
@@ -1672,8 +1712,9 @@
         <div class="toc-link" onclick="jumpTo(13)">14. Alert processing pipeline <span style="font-size:0.7rem; color:var(--text-muted);">Tiến</span></div>
         <div class="toc-link" onclick="jumpTo(14)">15. Slack Notification integration <span style="font-size:0.7rem; color:var(--text-muted);">Hoàng</span></div>
         <div class="toc-link" onclick="jumpTo(15)">16. Jira Integration & Assignment <span style="font-size:0.7rem; color:var(--text-muted);">Phong</span></div>
-        <div class="toc-link" onclick="jumpTo(16)">17. E2E Scenarios & RCAEval Benchmarks <span style="font-size:0.7rem; color:var(--text-muted);">Khang</span></div>
-        <div class="toc-link" onclick="jumpTo(17)">18. Hỏi đáp Q&A <span style="font-size:0.7rem; color:var(--text-muted);">Team TF1</span></div>
+        <div class="toc-link" onclick="jumpTo(16)">17. E2E Scenarios &amp; RCAEval Benchmarks <span style="font-size:0.7rem; color:var(--text-muted);">Khang</span></div>
+        <div class="toc-link" onclick="jumpTo(17)">18. Tổng kết &amp; Thông điệp chốt <span style="font-size:0.7rem; color:var(--text-muted);">Team TF1</span></div>
+        <div class="toc-link" onclick="jumpTo(18)">19. Hỏi đáp Q&amp;A <span style="font-size:0.7rem; color:var(--text-muted);">Team TF1</span></div>
       </div>
     </div>
   </div>
