@@ -1255,111 +1255,23 @@
       <div class="slide" data-section="Sơ đồ Kiến trúc Vận hành" data-presenter="Thi">
         <div class="slide-title-area">
           <h2 class="slide-title">Sơ Đồ Vận Hành &amp; Định Tuyến AI Engine</h2>
-          <p class="slide-subtitle">Tổng quan kiến trúc triển khai, định tuyến telemetry evidence và cơ chế tự động hóa.</p>
+          <p class="slide-subtitle">Chi tiết sơ đồ kiến trúc triển khai và giải thích luồng xử lý tự động hóa của AI Engine.</p>
         </div>
-        <div class="slide-body flex-col justify-center">
-          <div class="flex-center" style="margin-top: 5px;">
-            <svg class="arch-svg" width="100%" height="320" viewBox="0 0 620 320" fill="none" xmlns="http://www.w3.org/2000/svg" style="background: rgba(255,255,255,0.01); border-radius: 8px; border: 1px solid var(--border);">
-              <defs>
-                <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-                  <path d="M 0 1.5 L 6 5 L 0 8.5 z" fill="var(--text-muted)"/>
-                </marker>
-                <marker id="arrow-orange" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-                  <path d="M 0 1.5 L 6 5 L 0 8.5 z" fill="var(--primary)"/>
-                </marker>
-                <marker id="arrow-blue" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-                  <path d="M 0 1.5 L 6 5 L 0 8.5 z" fill="var(--accent-blue)"/>
-                </marker>
-                <marker id="arrow-green" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-                  <path d="M 0 1.5 L 6 5 L 0 8.5 z" fill="var(--accent-green)"/>
-                </marker>
-              </defs>
-
-              <!-- EKS Cluster Boundary -->
-              <rect x="120" y="15" width="350" height="290" rx="8" stroke="var(--primary)" stroke-dasharray="4,4" stroke-width="1.2"/>
-              <text x="130" y="28" font-size="8" fill="var(--primary)" font-weight="700">AWS EKS Cluster</text>
-
-              <!-- CI/CD & Image flow -->
-              <path d="M 95,50 L 135,50" stroke="var(--border)" stroke-width="1.2" marker-end="url(#arrow)"/>
-              <text x="115" y="44" font-size="6" fill="var(--text-muted)" text-anchor="middle">Verify Sig</text>
-
-              <!-- Admission to Rollout -->
-              <path d="M 180,75 L 180,95 A 10,10 0 0 0 190,105 L 230,105" stroke="var(--accent-blue)" stroke-width="1.2" marker-end="url(#arrow-blue)"/>
-
-              <!-- Argo Rollout to External Prom (AnalysisRun query) -->
-              <path d="M 335,45 L 475,45" stroke="var(--accent-orange)" stroke-width="1.2" stroke-dasharray="3,3" marker-end="url(#arrow-orange)"/>
-              <text x="405" y="38" font-size="6" fill="var(--primary)" text-anchor="middle">AnalysisRun (Latency &amp; Errors)</text>
-
-              <!-- Prom response to Rollout Rollback -->
-              <path d="M 475,55 L 335,55" stroke="var(--accent-red)" stroke-width="1.2" stroke-dasharray="3,3" marker-end="url(#arrow)"/>
-
-              <!-- SQS to KEDA and Worker -->
-              <path d="M 180,175 L 180,210 L 230,210" stroke="var(--border)" stroke-width="1.2" marker-end="url(#arrow)"/>
-              <path d="M 280,210 L 280,145" stroke="var(--accent-green)" stroke-width="1.2" marker-end="url(#arrow-green)"/>
-              <text x="290" y="180" font-size="6" fill="var(--accent-green)" font-weight="700">KEDA Auto-scale</text>
-
-              <!-- API to Headless to External Prom -->
-              <path d="M 335,115 L 360,115" stroke="var(--border)" stroke-width="1.2" marker-end="url(#arrow)"/>
-              <path d="M 440,115 L 485,115" stroke="var(--border)" stroke-width="1.2" marker-end="url(#arrow)"/>
-              <text x="460" y="109" font-size="6" fill="var(--text-muted)" text-anchor="middle">DNS Direct IP</text>
-
-              <!-- API to DynamoDB -->
-              <path d="M 335,135 L 360,135 L 360,245 L 485,245" stroke="var(--accent-blue)" stroke-width="1.2" marker-end="url(#arrow-blue)"/>
-              <text x="410" y="239" font-size="6" fill="var(--accent-blue)" text-anchor="middle">Audit Logs (Tenant PK)</text>
-
-              <!-- CI/CD Nodes (Left) -->
-              <rect x="15" y="30" width="80" height="40" rx="4" fill="var(--card-bg)" stroke="var(--card-border)"/>
-              <text x="55" y="47" font-size="8" font-weight="700" text-anchor="middle">ECR / Cosign</text>
-              <text x="55" y="58" font-size="6" fill="var(--text-muted)" text-anchor="middle">Signed Image</text>
-
-              <!-- Admission Sigstore (EKS Left) -->
-              <rect x="135" y="35" width="90" height="40" rx="4" fill="var(--card-bg)" stroke="var(--accent-blue)"/>
-              <text x="180" y="52" font-size="7" fill="var(--accent-blue)" font-weight="700" text-anchor="middle">Sigstore Admission</text>
-              <text x="180" y="63" font-size="6" fill="var(--text-muted)" text-anchor="middle">Policy Controller</text>
-
-              <!-- Argo Rollouts (EKS Center Top) -->
-              <rect x="230" y="35" width="105" height="110" rx="4" fill="rgba(255,255,255,0.02)" stroke="var(--border)"/>
-              <text x="282" y="47" font-size="7" font-weight="700" text-anchor="middle">Argo Rollouts (API)</text>
-              
-              <rect x="238" y="57" width="90" height="22" rx="2" fill="var(--card-bg)" stroke="var(--accent-green)"/>
-              <text x="283" y="70" font-size="7" fill="var(--accent-green)" font-weight="700" text-anchor="middle">Stable Pods (90%)</text>
-              
-              <rect x="238" y="85" width="90" height="22" rx="2" fill="var(--card-bg)" stroke="var(--accent-orange)"/>
-              <text x="283" y="98" font-size="7" fill="var(--accent-orange)" font-weight="700" text-anchor="middle">Canary Pods (10%)</text>
-
-              <rect x="238" y="113" width="90" height="22" rx="2" fill="var(--card-bg)" stroke="var(--card-border)"/>
-              <text x="283" y="126" font-size="7" font-weight="700" text-anchor="middle">FastAPI tf1-api</text>
-
-              <!-- SQS & KEDA (EKS Center Bottom) -->
-              <rect x="135" y="130" width="90" height="45" rx="4" fill="var(--card-bg)" stroke="var(--card-border)"/>
-              <text x="180" y="147" font-size="7" font-weight="700" text-anchor="middle">SQS Queue</text>
-              <text x="180" y="158" font-size="6" fill="var(--text-muted)" text-anchor="middle">Alert Backlog</text>
-
-              <rect x="135" y="210" width="90" height="45" rx="4" fill="var(--card-bg)" stroke="var(--accent-green)"/>
-              <text x="180" y="227" font-size="7" fill="var(--accent-green)" font-weight="700" text-anchor="middle">KEDA Scaler</text>
-              <text x="180" y="238" font-size="6" fill="var(--text-muted)" text-anchor="middle">SQS Queue Depth</text>
-
-              <rect x="230" y="210" width="105" height="45" rx="4" fill="var(--card-bg)" stroke="var(--card-border)"/>
-              <text x="282" y="227" font-size="7" font-weight="700" text-anchor="middle">tf1-worker Pods</text>
-              <text x="282" y="238" font-size="6" fill="var(--text-muted)" text-anchor="middle">Scale 1-10 replicas</text>
-
-              <!-- Headless Service (EKS Right) -->
-              <rect x="360" y="98" width="80" height="35" rx="4" fill="var(--card-bg)" stroke="var(--border)"/>
-              <text x="400" y="115" font-size="7" font-weight="700" text-anchor="middle">Headless Service</text>
-              <text x="400" y="126" font-size="6" fill="var(--text-muted)" text-anchor="middle">Bypass proxy</text>
-
-              <!-- External Prom (Right Top) -->
-              <rect x="485" y="35" width="115" height="50" rx="4" fill="rgba(255,255,255,0.02)" stroke="var(--accent-orange)"/>
-              <text x="542" y="52" font-size="8" fill="var(--accent-orange)" font-weight="700" text-anchor="middle">Prometheus (EC2)</text>
-              <text x="542" y="65" font-size="6" fill="var(--text-muted)" text-anchor="middle">External Evidence Source</text>
-              <text x="542" y="75" font-size="6" fill="var(--accent-green)" text-anchor="middle">Resolved IP routing</text>
-
-              <!-- External DynamoDB (Right Bottom) -->
-              <rect x="485" y="210" width="115" height="50" rx="4" fill="var(--card-bg)" stroke="var(--accent-blue)"/>
-              <text x="542" y="227" font-size="8" fill="var(--accent-blue)" font-weight="700" text-anchor="middle">DynamoDB (AWS)</text>
-              <text x="542" y="240" font-size="6" fill="var(--text-muted)" text-anchor="middle">Single Table Design</text>
-              <text x="542" y="250" font-size="6" fill="var(--text-muted)" text-anchor="middle">Tenant Partition Key</text>
-            </svg>
+        <div class="slide-body grid-2">
+          <!-- Left: Image -->
+          <div class="flex-center" style="padding: 10px;">
+            <img src="assets/AI_Engine_image.png" alt="Sơ đồ hoạt động AI Engine" style="max-width: 100%; max-height: 290px; border-radius: 8px; border: 1px solid var(--border); box-shadow: var(--shadow); object-fit: contain;" />
+          </div>
+          <!-- Right: Explanation -->
+          <div class="flex-col justify-center" style="padding-left: 10px;">
+            <h3 style="color:var(--primary); margin-bottom:8px; font-size:0.95rem;">Giải Thích Luồng Hoạt Động (Workflow)</h3>
+            <ol style="font-size:0.75rem; line-height:1.5; margin-left:15px; color:var(--text-muted);">
+              <li style="margin-bottom:6px;"><strong>Ingestion (Sự kiện đầu vào):</strong> Prometheus Alertmanager gửi cảnh báo sự cố đến AWS SQS. Hàng đợi này giúp đệm tải khi xảy ra bão cảnh báo (Alert Storm).</li>
+              <li style="margin-bottom:6px;"><strong>Context Enrichment (Làm giàu ngữ cảnh):</strong> API thu thập dữ liệu logs thời gian thực từ Elasticsearch và các metrics liên quan từ Prometheus để làm bằng chứng (Evidence).</li>
+              <li style="margin-bottom:6px;"><strong>Idempotency Check (Kiểm tra trùng lặp):</strong> DynamoDB kiểm tra xem cảnh báo đã từng được xử lý chưa. Nếu có (Cache Hit), trả kết quả ngay (Fast Path); nếu chưa (Cache Miss), đi tiếp luồng AI.</li>
+              <li style="margin-bottom:6px;"><strong>AI Inference (Suy luận Bedrock):</strong> Prompt Engine kết hợp dữ liệu ngữ cảnh với System Prompt, gửi qua VPC PrivateLink lên AWS Bedrock (Claude 3.5 Sonnet) để phân tích nguyên nhân gốc (RCA).</li>
+              <li style="margin-bottom:6px;"><strong>Dispatch &amp; Assign (Phân phối kết quả):</strong> Lưu vết audit vào DynamoDB, gán tự động người chịu trách nhiệm (SME) và xuất kết quả ra Slack Block Kit &amp; tạo Jira ticket.</li>
+            </ol>
           </div>
         </div>
       </div>
