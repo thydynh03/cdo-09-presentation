@@ -1218,43 +1218,44 @@
         </div>
       </div>
 
-      <!-- SLIDE 11: AI ENGINE ARCHITECTURE & LOGIC -->
-      <div class="slide" data-section="Kiến trúc AI Engine" data-presenter="Thi">
+      <!-- SLIDE 11: AI ENGINE ARCHITECTURE & OPERATION -->
+      <div class="slide" data-section="Kiến trúc &amp; Vận hành" data-presenter="Thi">
         <div class="slide-title-area">
-          <h2 class="slide-title">Thiết Kế & Giải Pháp AI Engine</h2>
-          <p class="slide-subtitle">Chi tiết về kiến trúc chẩn đoán kết hợp (Hybrid), tối ưu hóa token và thiết kế container an toàn.</p>
+          <h2 class="slide-title">Kiến Trúc Vận Hành &amp; An Ninh AI Engine</h2>
+          <p class="slide-subtitle">Bảo mật chuỗi cung ứng hình ảnh, tự động hóa Canary Rollouts và cơ chế Autoscaling đa lớp.</p>
         </div>
         <div class="slide-body grid-2">
           <div class="flex-col">
-            <h3 style="color:var(--primary); margin-bottom:10px;">Cơ Chế Chẩn Đoán & Tối Ưu Hóa</h3>
-            <ul style="font-size:0.8rem; line-height:1.6; margin-left:15px; color:var(--text-muted); margin-bottom:12px;">
-              <li><strong>Mô hình chẩn đoán kết hợp (Hybrid):</strong> Tách biệt luồng xử lý: **Fast Path** (Deterministic RCA toán học dựa trên Z-Score) chạy tức thời, và **Deep Path** (Bedrock LLM Claude 3.5 Sonnet) giải quyết sự cố phức tạp.</li>
-              <li><strong>Enrichment ngữ cảnh:</strong> Tự động gom logs từ Elasticsearch, metrics từ Prometheus và metadata của tenant để LLM có đầy đủ dữ liệu thực tế tại thời điểm nổ cảnh báo.</li>
-              <li><strong>Bảo vệ tính Idempotency:</strong> Dùng DynamoDB cache lại kết quả chẩn đoán dựa trên signature của alert. Nếu SQS gửi lại request trùng, hệ thống trả ngay kết quả cũ mà không gọi LLM, tiết kiệm 100% token.</li>
+            <h3 style="color:var(--primary); margin-bottom:10px;">Quy trình Triển khai &amp; An ninh</h3>
+            <ul style="font-size:0.78rem; line-height:1.6; margin-left:15px; color:var(--text-muted); margin-bottom:12px;">
+              <li><strong>Bảo mật chuỗi cung ứng (Sigstore):</strong> Đóng gói Dockerfile Multi-stage non-root. Trivy quét chặn cứng lỗi HIGH/CRITICAL. Ký Cosign keyless. EKS Admission Controller (Sigstore policy) chặn đứng việc chạy pod nếu image chưa được ký hợp lệ.</li>
+              <li><strong>Canary Rollouts tự động (Argo Rollouts):</strong> Đóng gói qua ArgoCD GitOps. Dịch vụ <code>tf1-api</code> được deploy Canary (10% &rarr; 50% &rarr; 100%). Quy trình <code>AnalysisRun</code> giám sát liên tục p99 latency (&lt;800ms) và error-rate 5xx (&lt;1%) qua Prometheus để tự động Rollback nếu xảy ra sự cố.</li>
+              <li><strong>Bảo mật Tầng Admission:</strong> Ép buộc 7 chính sách Gatekeeper siết security context, cấm hostNetwork/hostPID, yêu cầu khai báo đầy đủ resource requests/limits và bắt buộc cấu hình NetworkPolicy trên namespace mới.</li>
             </ul>
           </div>
 
           <div class="flex-col">
-            <h3 style="color:var(--primary); margin-bottom:10px;">Container hóa & Tài nguyên Pod</h3>
-            <ul style="font-size:0.8rem; line-height:1.6; margin-left:15px; color:var(--text-muted); margin-bottom:12px;">
-              <li><strong>Dockerfile Multi-stage & Non-root:</strong> Tách biệt môi trường build và runtime, loại bỏ compiler giúp giảm dung lượng image từ 850MB xuống còn <strong>180MB</strong>. Thực thi dưới user non-root <code>1000</code>.</li>
-              <li><strong>Read-only File System:</strong> Hệ thống file của container được thiết lập Read-only hoàn toàn để chống inject mã độc. Chỉ thư mục <code>/tmp</code> được phép ghi để xuất báo cáo.</li>
-              <li><strong>Resource Limits & Probes:</strong>
+            <h3 style="color:var(--primary); margin-bottom:10px;">Mở rộng Hạ tầng &amp; Dữ liệu</h3>
+            <ul style="font-size:0.78rem; line-height:1.6; margin-left:15px; color:var(--text-muted); margin-bottom:12px;">
+              <li><strong>Autoscaling 3 lớp độc lập:</strong>
                 <ul style="margin-left:15px; list-style-type:circle;">
-                  <li>CPU: Request 256m, Limit 512m. RAM: Request 512Mi, Limit 1Gi.</li>
-                  <li>Liveness Probe (GET `/healthz` delay 10s), Readiness Probe (GET `/readyz` delay 5s).</li>
+                  <li><code>tf1-api</code>: Scale theo CPU (70% HPA) và custom metric số lượng request/pod từ 2 đến 10 pods.</li>
+                  <li><code>tf1-worker</code>: Scale bằng KEDA dựa trên độ sâu hàng đợi SQS (backlog depth: 5 messages/pod), vượt qua giới hạn của HPA thông thường khi có bão alert.</li>
+                  <li>Node EC2: Cluster Autoscaler tự thêm node khi pod rơi vào trạng thái Pending.</li>
                 </ul>
               </li>
+              <li><strong>Evidence Routing qua Headless Service:</strong> Khắc phục lỗi timeout ngẫu nhiên do kube-proxy stale IP khi `tf1-api` truy vấn Prometheus ngoài (chạy trên EC2 riêng) bằng cách sử dụng Headless Service để DNS phân giải trực tiếp IP thật.</li>
+              <li><strong>Cô lập dữ liệu tenant:</strong> DynamoDB single-table lưu audit, state và cache phân công SME. Cách ly tenant triệt để bằng cách nhúng <code>tenant_id</code> ngay trong Partition Key.</li>
             </ul>
           </div>
         </div>
       </div>
 
       <!-- SLIDE 12: AI ENGINE WORKFLOW DIAGRAM -->
-      <div class="slide" data-section="Luồng xử lý AI Engine" data-presenter="Thi">
+      <div class="slide" data-section="Sơ đồ Kiến trúc Vận hành" data-presenter="Thi">
         <div class="slide-title-area">
-          <h2 class="slide-title">Sơ Đồ Hoạt Động Của AI Engine</h2>
-          <p class="slide-subtitle">Luồng di chuyển dữ liệu từ sự kiện cảnh báo đầu vào cho đến chẩn đoán cuối cùng.</p>
+          <h2 class="slide-title">Sơ Đồ Vận Hành &amp; Định Tuyến AI Engine</h2>
+          <p class="slide-subtitle">Tổng quan kiến trúc triển khai, định tuyến telemetry evidence và cơ chế tự động hóa.</p>
         </div>
         <div class="slide-body flex-col justify-center">
           <div class="flex-center" style="margin-top: 5px;">
@@ -1263,59 +1264,101 @@
                 <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
                   <path d="M 0 1.5 L 6 5 L 0 8.5 z" fill="var(--text-muted)"/>
                 </marker>
+                <marker id="arrow-orange" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                  <path d="M 0 1.5 L 6 5 L 0 8.5 z" fill="var(--primary)"/>
+                </marker>
                 <marker id="arrow-blue" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
                   <path d="M 0 1.5 L 6 5 L 0 8.5 z" fill="var(--accent-blue)"/>
                 </marker>
                 <marker id="arrow-green" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
                   <path d="M 0 1.5 L 6 5 L 0 8.5 z" fill="var(--accent-green)"/>
                 </marker>
-                <marker id="arrow-orange" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-                  <path d="M 0 1.5 L 6 5 L 0 8.5 z" fill="var(--primary)"/>
-                </marker>
               </defs>
 
-              <!-- Flow Lines -->
-              <path d="M 120,165 L 140,165 L 140,85 L 170,85" stroke="var(--border)" stroke-width="1.5" marker-end="url(#arrow)"/>
-              <path d="M 120,165 L 140,165 L 140,245 L 170,245" stroke="var(--border)" stroke-width="1.5" marker-end="url(#arrow)"/>
-              <path d="M 280,85 L 305,85 L 305,150 L 320,150" stroke="var(--border)" stroke-width="1.5" marker-end="url(#arrow)"/>
-              <path d="M 280,245 L 305,245 L 305,180 L 320,180" stroke="var(--accent-blue)" stroke-width="1.5" stroke-dasharray="3,3" marker-end="url(#arrow-blue)"/>
-              <text x="312" y="215" font-size="7" fill="var(--accent-blue)" text-anchor="middle">Cache Miss</text>
+              <!-- EKS Cluster Boundary -->
+              <rect x="120" y="15" width="350" height="290" rx="8" stroke="var(--primary)" stroke-dasharray="4,4" stroke-width="1.2"/>
+              <text x="130" y="28" font-size="8" fill="var(--primary)" font-weight="700">AWS EKS Cluster</text>
 
-              <path d="M 225,270 L 225,305 L 515,305 L 515,260" stroke="var(--accent-green)" stroke-width="1.5" marker-end="url(#arrow-green)"/>
-              <text x="370" y="298" font-size="8" fill="var(--accent-green)" font-weight="700" text-anchor="middle">⚡ Fast Path: Cache Hit (Bypass Bedrock LLM)</text>
+              <!-- CI/CD & Image flow -->
+              <path d="M 95,50 L 135,50" stroke="var(--border)" stroke-width="1.2" marker-end="url(#arrow)"/>
+              <text x="115" y="44" font-size="6" fill="var(--text-muted)" text-anchor="middle">Verify Sig</text>
 
-              <path d="M 420,165 L 440,165 L 440,85 L 460,85" stroke="var(--primary)" stroke-width="1.5" marker-end="url(#arrow-orange)"/>
-              <path d="M 515,110 L 515,210" stroke="var(--border)" stroke-width="1.5" marker-end="url(#arrow)"/>
+              <!-- Admission to Rollout -->
+              <path d="M 180,75 L 180,95 A 10,10 0 0 0 190,105 L 230,105" stroke="var(--accent-blue)" stroke-width="1.2" marker-end="url(#arrow-blue)"/>
 
-              <!-- Node 1: SQS Ingest -->
-              <rect x="20" y="140" width="100" height="50" rx="6" fill="var(--card-bg)" stroke="var(--card-border)" stroke-width="1.5"/>
-              <text x="70" y="160" font-size="8" fill="var(--text)" font-weight="700" text-anchor="middle">Incident Ingest</text>
-              <text x="70" y="172" font-size="7" fill="var(--text-muted)" text-anchor="middle">AWS SQS Event</text>
+              <!-- Argo Rollout to External Prom (AnalysisRun query) -->
+              <path d="M 335,45 L 475,45" stroke="var(--accent-orange)" stroke-width="1.2" stroke-dasharray="3,3" marker-end="url(#arrow-orange)"/>
+              <text x="405" y="38" font-size="6" fill="var(--primary)" text-anchor="middle">AnalysisRun (Latency &amp; Errors)</text>
 
-              <!-- Node 2: Context Enricher -->
-              <rect x="170" y="60" width="110" height="50" rx="6" fill="var(--card-bg)" stroke="var(--card-border)" stroke-width="1.5"/>
-              <text x="225" y="80" font-size="8" fill="var(--text)" font-weight="700" text-anchor="middle">Context Enricher</text>
-              <text x="225" y="92" font-size="7" fill="var(--text-muted)" text-anchor="middle">Elastic Logs & Prom Metrics</text>
+              <!-- Prom response to Rollout Rollback -->
+              <path d="M 475,55 L 335,55" stroke="var(--accent-red)" stroke-width="1.2" stroke-dasharray="3,3" marker-end="url(#arrow)"/>
 
-              <!-- Node 3: Idempotency (DynamoDB) -->
-              <rect x="170" y="220" width="110" height="50" rx="6" fill="var(--card-bg)" stroke="var(--accent-blue)" stroke-width="1.5"/>
-              <text x="225" y="240" font-size="8" fill="var(--accent-blue)" font-weight="700" text-anchor="middle">Idempotency Check</text>
-              <text x="225" y="252" font-size="7" fill="var(--text-muted)" text-anchor="middle">DynamoDB Caching</text>
+              <!-- SQS to KEDA and Worker -->
+              <path d="M 180,175 L 180,210 L 230,210" stroke="var(--border)" stroke-width="1.2" marker-end="url(#arrow)"/>
+              <path d="M 280,210 L 280,145" stroke="var(--accent-green)" stroke-width="1.2" marker-end="url(#arrow-green)"/>
+              <text x="290" y="180" font-size="6" fill="var(--accent-green)" font-weight="700">KEDA Auto-scale</text>
 
-              <!-- Node 4: Prompt Engine -->
-              <rect x="320" y="140" width="100" height="50" rx="6" fill="var(--card-bg)" stroke="var(--card-border)" stroke-width="1.5"/>
-              <text x="370" y="160" font-size="8" fill="var(--text)" font-weight="700" text-anchor="middle">Prompt Engine</text>
-              <text x="370" y="172" font-size="7" fill="var(--text-muted)" text-anchor="middle">System Rules + Data</text>
+              <!-- API to Headless to External Prom -->
+              <path d="M 335,115 L 360,115" stroke="var(--border)" stroke-width="1.2" marker-end="url(#arrow)"/>
+              <path d="M 440,115 L 485,115" stroke="var(--border)" stroke-width="1.2" marker-end="url(#arrow)"/>
+              <text x="460" y="109" font-size="6" fill="var(--text-muted)" text-anchor="middle">DNS Direct IP</text>
 
-              <!-- Node 5: Bedrock Claude -->
-              <rect x="460" y="60" width="110" height="50" rx="6" fill="rgba(243, 111, 33, 0.05)" stroke="var(--primary)" stroke-width="1.5"/>
-              <text x="515" y="80" font-size="8" fill="var(--primary)" font-weight="700" text-anchor="middle">AWS Bedrock</text>
-              <text x="515" y="92" font-size="7" fill="var(--text-muted)" text-anchor="middle">Claude 3.5 Sonnet</text>
+              <!-- API to DynamoDB -->
+              <path d="M 335,135 L 360,135 L 360,245 L 485,245" stroke="var(--accent-blue)" stroke-width="1.2" marker-end="url(#arrow-blue)"/>
+              <text x="410" y="239" font-size="6" fill="var(--accent-blue)" text-anchor="middle">Audit Logs (Tenant PK)</text>
 
-              <!-- Node 6: Dispatcher SQS -->
-              <rect x="460" y="210" width="110" height="50" rx="6" fill="var(--card-bg)" stroke="var(--accent-green)" stroke-width="1.5"/>
-              <text x="515" y="230" font-size="8" fill="var(--accent-green)" font-weight="700" text-anchor="middle">RCA Dispatcher</text>
-              <text x="515" y="242" font-size="7" fill="var(--text-muted)" text-anchor="middle">SQS to Slack & Jira</text>
+              <!-- CI/CD Nodes (Left) -->
+              <rect x="15" y="30" width="80" height="40" rx="4" fill="var(--card-bg)" stroke="var(--card-border)"/>
+              <text x="55" y="47" font-size="8" font-weight="700" text-anchor="middle">ECR / Cosign</text>
+              <text x="55" y="58" font-size="6" fill="var(--text-muted)" text-anchor="middle">Signed Image</text>
+
+              <!-- Admission Sigstore (EKS Left) -->
+              <rect x="135" y="35" width="90" height="40" rx="4" fill="var(--card-bg)" stroke="var(--accent-blue)"/>
+              <text x="180" y="52" font-size="7" fill="var(--accent-blue)" font-weight="700" text-anchor="middle">Sigstore Admission</text>
+              <text x="180" y="63" font-size="6" fill="var(--text-muted)" text-anchor="middle">Policy Controller</text>
+
+              <!-- Argo Rollouts (EKS Center Top) -->
+              <rect x="230" y="35" width="105" height="110" rx="4" fill="rgba(255,255,255,0.02)" stroke="var(--border)"/>
+              <text x="282" y="47" font-size="7" font-weight="700" text-anchor="middle">Argo Rollouts (API)</text>
+              
+              <rect x="238" y="57" width="90" height="22" rx="2" fill="var(--card-bg)" stroke="var(--accent-green)"/>
+              <text x="283" y="70" font-size="7" fill="var(--accent-green)" font-weight="700" text-anchor="middle">Stable Pods (90%)</text>
+              
+              <rect x="238" y="85" width="90" height="22" rx="2" fill="var(--card-bg)" stroke="var(--accent-orange)"/>
+              <text x="283" y="98" font-size="7" fill="var(--accent-orange)" font-weight="700" text-anchor="middle">Canary Pods (10%)</text>
+
+              <rect x="238" y="113" width="90" height="22" rx="2" fill="var(--card-bg)" stroke="var(--card-border)"/>
+              <text x="283" y="126" font-size="7" font-weight="700" text-anchor="middle">FastAPI tf1-api</text>
+
+              <!-- SQS & KEDA (EKS Center Bottom) -->
+              <rect x="135" y="130" width="90" height="45" rx="4" fill="var(--card-bg)" stroke="var(--card-border)"/>
+              <text x="180" y="147" font-size="7" font-weight="700" text-anchor="middle">SQS Queue</text>
+              <text x="180" y="158" font-size="6" fill="var(--text-muted)" text-anchor="middle">Alert Backlog</text>
+
+              <rect x="135" y="210" width="90" height="45" rx="4" fill="var(--card-bg)" stroke="var(--accent-green)"/>
+              <text x="180" y="227" font-size="7" fill="var(--accent-green)" font-weight="700" text-anchor="middle">KEDA Scaler</text>
+              <text x="180" y="238" font-size="6" fill="var(--text-muted)" text-anchor="middle">SQS Queue Depth</text>
+
+              <rect x="230" y="210" width="105" height="45" rx="4" fill="var(--card-bg)" stroke="var(--card-border)"/>
+              <text x="282" y="227" font-size="7" font-weight="700" text-anchor="middle">tf1-worker Pods</text>
+              <text x="282" y="238" font-size="6" fill="var(--text-muted)" text-anchor="middle">Scale 1-10 replicas</text>
+
+              <!-- Headless Service (EKS Right) -->
+              <rect x="360" y="98" width="80" height="35" rx="4" fill="var(--card-bg)" stroke="var(--border)"/>
+              <text x="400" y="115" font-size="7" font-weight="700" text-anchor="middle">Headless Service</text>
+              <text x="400" y="126" font-size="6" fill="var(--text-muted)" text-anchor="middle">Bypass proxy</text>
+
+              <!-- External Prom (Right Top) -->
+              <rect x="485" y="35" width="115" height="50" rx="4" fill="rgba(255,255,255,0.02)" stroke="var(--accent-orange)"/>
+              <text x="542" y="52" font-size="8" fill="var(--accent-orange)" font-weight="700" text-anchor="middle">Prometheus (EC2)</text>
+              <text x="542" y="65" font-size="6" fill="var(--text-muted)" text-anchor="middle">External Evidence Source</text>
+              <text x="542" y="75" font-size="6" fill="var(--accent-green)" text-anchor="middle">Resolved IP routing</text>
+
+              <!-- External DynamoDB (Right Bottom) -->
+              <rect x="485" y="210" width="115" height="50" rx="4" fill="var(--card-bg)" stroke="var(--accent-blue)"/>
+              <text x="542" y="227" font-size="8" fill="var(--accent-blue)" font-weight="700" text-anchor="middle">DynamoDB (AWS)</text>
+              <text x="542" y="240" font-size="6" fill="var(--text-muted)" text-anchor="middle">Single Table Design</text>
+              <text x="542" y="250" font-size="6" fill="var(--text-muted)" text-anchor="middle">Tenant Partition Key</text>
             </svg>
           </div>
         </div>
