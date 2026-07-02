@@ -1113,76 +1113,71 @@
             </div>
             <div class="agenda-card" onclick="jumpTo(4)">
               <div class="agenda-num">03</div>
-              <div class="agenda-text">Kiến trúc tổng quan (Availability)</div>
-              <div class="agenda-presenter">Tiến</div>
-            </div>
-            <div class="agenda-card" onclick="jumpTo(5)">
-              <div class="agenda-num">04</div>
-              <div class="agenda-text">Hạ tầng mở rộng (Scalability)</div>
-              <div class="agenda-presenter">Tiến</div>
-            </div>
-            <div class="agenda-card" onclick="jumpTo(6)">
-              <div class="agenda-num">05</div>
-              <div class="agenda-text">Kiến trúc bảo mật an ninh</div>
-              <div class="agenda-presenter">Huy</div>
-            </div>
-            <div class="agenda-card" onclick="jumpTo(7)">
-              <div class="agenda-num">06</div>
               <div class="agenda-text">Khả năng quan sát (Observability)</div>
               <div class="agenda-presenter">Nhật</div>
             </div>
-            <div class="agenda-card" onclick="jumpTo(8)">
-              <div class="agenda-num">07</div>
+            <div class="agenda-card" onclick="jumpTo(5)">
+              <div class="agenda-num">04</div>
               <div class="agenda-text">Dự toán chi phí vận hành</div>
               <div class="agenda-presenter">Nhật</div>
             </div>
-            <div class="agenda-card" onclick="jumpTo(9)">
-              <div class="agenda-num">08</div>
+            <div class="agenda-card" onclick="jumpTo(6)">
+              <div class="agenda-num">05</div>
               <div class="agenda-text">Khả năng đáp ứng yêu cầu</div>
               <div class="agenda-presenter">Nhật</div>
             </div>
-            <div class="agenda-card" onclick="jumpTo(10)">
-              <div class="agenda-num">09</div>
+            <div class="agenda-card" onclick="jumpTo(7)">
+              <div class="agenda-num">06</div>
               <div class="agenda-text">Thiết kế & Giải pháp AI Engine</div>
               <div class="agenda-presenter">Thi</div>
             </div>
-            <div class="agenda-card" onclick="jumpTo(11)">
-              <div class="agenda-num">10</div>
+            <div class="agenda-card" onclick="jumpTo(8)">
+              <div class="agenda-num">07</div>
               <div class="agenda-text">Sơ đồ hoạt động AI Engine</div>
               <div class="agenda-presenter">Thi</div>
             </div>
-            <div class="agenda-card" onclick="jumpTo(12)">
-              <div class="agenda-num">11</div>
+            <div class="agenda-card" onclick="jumpTo(9)">
+              <div class="agenda-num">08</div>
               <div class="agenda-text">CI/CD & DevSecOps Guardrails</div>
               <div class="agenda-presenter">Kiên</div>
             </div>
-            <div class="agenda-card" onclick="jumpTo(14)">
-              <div class="agenda-num">12</div>
+            <div class="agenda-card" onclick="jumpTo(10)">
+              <div class="agenda-num">09</div>
+              <div class="agenda-text">CI/CD Pipeline Evidence</div>
+              <div class="agenda-presenter">Kiên</div>
+            </div>
+            <div class="agenda-card" onclick="jumpTo(11)">
+              <div class="agenda-num">10</div>
               <div class="agenda-text">Alert processing pipeline</div>
               <div class="agenda-presenter">Tiến</div>
             </div>
-            <div class="agenda-card" onclick="jumpTo(15)">
+            <div class="agenda-card" onclick="jumpTo(12)">
+              <div class="agenda-num">11</div>
+              <div class="agenda-text">Kiến trúc tích hợp Jira & Slack</div>
+              <div class="agenda-presenter">Hoàng</div>
+            </div>
+            <div class="agenda-card" onclick="jumpTo(13)">
+              <div class="agenda-num">12</div>
+              <div class="agenda-text">Slack Interactivity: Serverless</div>
+              <div class="agenda-presenter">Hoàng</div>
+            </div>
+            <div class="agenda-card" onclick="jumpTo(14)">
               <div class="agenda-num">13</div>
-              <div class="agenda-text">Architecture Diagram (Jira & Slack)</div>
-              <div class="agenda-presenter">Hoàng</div>
-            </div>
-            <div class="agenda-card" onclick="jumpTo(16)">
-              <div class="agenda-num">14</div>
-              <div class="agenda-text">Slack Interactivity & Business Value</div>
-              <div class="agenda-presenter">Hoàng</div>
-            </div>
-            <div class="agenda-card" onclick="jumpTo(17)">
-              <div class="agenda-num">15</div>
               <div class="agenda-text">Slack Under the Hood (Serverless)</div>
               <div class="agenda-presenter">Hoàng</div>
             </div>
-            <div class="agenda-card" onclick="jumpTo(18)">
-              <div class="agenda-num">16</div>
+            <div class="agenda-card" onclick="jumpTo(15)">
+              <div class="agenda-num">14</div>
               <div class="agenda-text">Jira Integration & Assignment</div>
               <div class="agenda-presenter">Phong</div>
             </div>
-            <div class="agenda-card" onclick="jumpTo(20)">
-              <div class="agenda-num">17</div>
+            <div class="agenda-card" onclick="jumpTo(16)">
+              <div class="agenda-num">15</div>
+              <div class="agenda-text">Idempotent Ticket Creation</div>
+              <div class="agenda-presenter">Phong</div>
+            </div>
+            <div class="agenda-card" onclick="jumpTo(17)">
+              <div class="agenda-num">16</div>
               <div class="agenda-text">E2E Scenarios & RCAEval Benchmarks</div>
               <div class="agenda-presenter">Khang</div>
             </div>
@@ -1258,220 +1253,47 @@
           <h2 class="slide-title">Tại Sao Hạ Tầng Này Phù Hợp Để Triển Khai AI?</h2>
           <p class="slide-subtitle">Các yếu tố quyết định để chạy một AIOps Engine bền bỉ và bảo mật trên EKS.</p>
         </div>
-        <div class="slide-body grid-2">
-          <div class="flex-col">
-            <h3 style="color:var(--primary); margin-bottom:12px;">Đặc trưng tải xử lý của AI Engine</h3>
-            <p style="font-size:0.88rem; line-height:1.6; color:var(--text-muted); margin-bottom:15px;">
-              AIOps Engine không phải là dịch vụ chạy LLM liên tục (high-throughput), mà hoạt động theo dạng **sự kiện
-              đột xuất** (event-driven). Khi sự cố (Alert) xảy ra, hệ thống cần tài nguyên tức thời để:
-            </p>
-            <ul style="font-size:0.85rem; line-height:1.7; margin-left:20px; color:var(--text-muted);">
-              <li>Truy vấn hàng ngàn dòng logs/metrics nội bộ (Compute-intensive).</li>
-              <li>Gọi Bedrock API phân tích suy luận (I/O-intensive).</li>
-              <li>Đòi hỏi bảo mật tuyệt đối, ngăn rò rỉ dữ liệu log khách hàng ra internet.</li>
-            </ul>
+        <div class="slide-body flex-col" style="gap: 15px; justify-content: flex-start;">
+          <!-- Top: Diagram -->
+          <div class="flex-center" style="flex-direction: column; width: 100%;">
+            <img src="assets/architectureDesign.png" alt="Kiến trúc thiết kế hạ tầng AI" onclick="openLightbox(this.src)"
+              style="cursor: zoom-in; max-width: 100%; max-height: 800px; border-radius: 8px; border: 1.5px solid var(--border); box-shadow: var(--shadow); object-fit: contain; transition: transform 0.2s, border-color 0.2s;"
+              onmouseover="this.style.transform='scale(1.02)'; this.style.borderColor='var(--primary)'"
+              onmouseout="this.style.transform='scale(1)'; this.style.borderColor='var(--border)'" />
+            <span style="font-size: 0.7rem; color: var(--text-muted); margin-top: 5px; display: flex; align-items: center; gap: 5px;">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+              Click vào ảnh để xem kiến trúc kết nối chi tiết
+            </span>
           </div>
 
-          <div class="flex-col justify-around">
-            <div class="card card-accent-blue animate-appear">
-              <div class="card-title">Kết nối riêng tư (VPC Private Link)</div>
-              <div class="card-desc">Gọi Bedrock API không qua internet bằng SigV4 VPC Interface Endpoints. Đảm bảo dữ
-                liệu nhạy cảm không rời mạng nội bộ.</div>
-            </div>
-            <div class="card card-accent-orange animate-appear delay-1">
-              <div class="card-title">Định tuyến Hybrid Mode thông minh</div>
-              <div class="card-desc">Tự động chuyển đổi giữa chẩn đoán toán học cục bộ (Deterministic RCA) và AI Agent
-                dựa trên độ phức tạp, giúp tối ưu hóa chi phí token và thời gian phản hồi.</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- SLIDE 5: OVERALL ARCHITECTURE - AVAILABILITY -->
-      <div class="slide" data-section="Kiến trúc tổng quan" data-presenter="Tiến">
-        <div class="slide-title-area">
-          <h2 class="slide-title">Kiến Trúc Hạ Tầng - Khả Năng Đáp Ứng</h2>
-          <p class="slide-subtitle">Bảo đảm độ sẵn sàng (Availability) và khả năng sống sót cao của dịch vụ trong vùng
-            mạng riêng tư.</p>
-        </div>
-        <div class="slide-body grid-2">
-          <!-- Interactive System Architecture SVG -->
-          <div class="flex-center">
-            <svg class="arch-svg" width="100%" height="320" viewBox="0 0 450 320" fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              style="background: rgba(255,255,255,0.01); border-radius: 8px; border: 1px solid var(--border);">
-              <!-- VPC -->
-              <rect x="10" y="10" width="430" height="300" rx="8" stroke="var(--border)" stroke-dasharray="4,4"
-                stroke-width="1.5" />
-              <text x="20" y="24" font-size="9" fill="var(--text-muted)">VPC (us-east-1)</text>
-
-              <!-- Private Subnets -->
-              <rect x="25" y="40" width="400" height="255" rx="6" stroke="var(--accent-blue)" stroke-width="1.5"
-                fill="rgba(59, 130, 246, 0.02)" />
-              <text x="35" y="54" font-size="8" fill="var(--accent-blue)" font-weight="700">Subnet riêng tư (Không có
-                Internet Ingress/Egress)</text>
-
-              <!-- AWS Endpoints -->
-              <rect x="280" y="70" width="135" height="210" rx="6" fill="rgba(255,255,255,0.02)"
-                stroke="var(--border)" />
-              <text x="347" y="83" text-anchor="middle" font-size="8" font-weight="700">AWS PrivateLink</text>
-              <rect x="288" y="95" width="118" height="20" rx="3" fill="var(--card-bg)" stroke="var(--card-border)" />
-              <text x="347" y="108" text-anchor="middle" font-size="7">DynamoDB VPCE</text>
-              <rect x="288" y="125" width="118" height="20" rx="3" fill="var(--card-bg)" stroke="var(--card-border)" />
-              <text x="347" y="138" text-anchor="middle" font-size="7">S3 VPCE</text>
-              <rect x="288" y="155" width="118" height="20" rx="3" fill="var(--card-bg)" stroke="var(--card-border)" />
-              <text x="347" y="168" text-anchor="middle" font-size="7">Bedrock VPCE (SigV4)</text>
-              <rect x="288" y="185" width="118" height="20" rx="3" fill="var(--card-bg)" stroke="var(--card-border)" />
-              <text x="347" y="198" text-anchor="middle" font-size="7">ECR VPCE (DKR/API)</text>
-              <rect x="288" y="215" width="118" height="20" rx="3" fill="var(--card-bg)" stroke="var(--card-border)" />
-              <text x="347" y="228" text-anchor="middle" font-size="7">Secrets Manager VPCE</text>
-
-              <!-- EKS -->
-              <rect x="40" y="70" width="220" height="210" rx="6" fill="rgba(243, 111, 33, 0.02)"
-                stroke="var(--primary)" />
-              <text x="150" y="83" text-anchor="middle" font-size="8" fill="var(--primary)" font-weight="700">EKS
-                Cluster (Nodes t3.small)</text>
-
-              <!-- tf1-api Pods -->
-              <rect x="50" y="105" width="95" height="35" rx="4" fill="var(--card-bg)" stroke="var(--card-border)" />
-              <text x="97" y="120" text-anchor="middle" font-size="7" font-weight="700">tf1-api pod-1</text>
-              <text x="97" y="132" text-anchor="middle" font-size="6" fill="var(--accent-green)">Healthy</text>
-
-              <rect x="155" y="105" width="95" height="35" rx="4" fill="var(--card-bg)" stroke="var(--card-border)" />
-              <text x="202" y="120" text-anchor="middle" font-size="7" font-weight="700">tf1-api pod-2</text>
-              <text x="202" y="132" text-anchor="middle" font-size="6" fill="var(--accent-green)">Healthy</text>
-
-              <!-- worker pod -->
-              <rect x="50" y="160" width="200" height="35" rx="4" fill="var(--card-bg)" stroke="var(--card-border)" />
-              <text x="150" y="176" text-anchor="middle" font-size="7" font-weight="700">tf1-worker pod (Poller)</text>
-              <text x="150" y="187" text-anchor="middle" font-size="6" fill="var(--text-muted)">Chạy polling loop liên
-                tục</text>
-
-              <!-- internal alb -->
-              <rect x="50" y="215" width="200" height="40" rx="4" fill="var(--card-bg)" stroke="var(--accent-blue)"
-                stroke-width="1.5" />
-              <text x="150" y="232" text-anchor="middle" font-size="8" font-weight="700"
-                fill="var(--accent-blue)">Internal ALB (Port 8080)</text>
-              <text x="150" y="244" text-anchor="middle" font-size="6" fill="var(--text-muted)">Chỉ tiếp nhận kết nối
-                trong VPC / Target Group health check</text>
-
-              <!-- Connect pod to VPCE -->
-              <path d="M 250,122 L 280,122" stroke="var(--primary)" stroke-width="1" stroke-dasharray="2,2" />
-            </svg>
-          </div>
-
-          <div class="flex-col justify-center">
-            <h3 style="color:var(--primary); margin-bottom:12px;">Đặc Tính Đáp Ứng Dịch Vụ (Availability)</h3>
-            <ul
-              style="font-size:0.85rem; line-height:1.7; margin-left:20px; color:var(--text-muted); margin-bottom:15px;">
-              <li><strong>Thiết kế dự phòng 2 Replicas:</strong> Deploy tối thiểu 2 pods cho <code>tf1-api</code> phân
-                tán trên các Node khác nhau.</li>
-              <li><strong>Pod Disruption Budget (PDB):</strong> Enforce cấu hình <code>minAvailable: 1</code> để
-                Kubernetes luôn giữ ít nhất 1 Pod API hoạt động trong quá trình nâng cấp cluster hoặc bảo trì node.</li>
-              <li><strong>DynamoDB Session Caching:</strong> Lưu vết trạng thái chẩn đoán sự cố, giúp khôi phục tức thời
-                trạng thái xử lý nếu pod bị sập giữa chừng (Stateless API design).</li>
-              <li><strong>Internal Load Balancer:</strong> Nhận request cục bộ qua Internal ALB, cấu hình health check
-                chặt chẽ cổng 8080.</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <!-- SLIDE 6: OVERALL ARCHITECTURE - SCALABILITY -->
-      <div class="slide" data-section="Kiến trúc tổng quan" data-presenter="Tiến">
-        <div class="slide-title-area">
-          <h2 class="slide-title">Kiến Trúc Hạ Tầng - Khả Năng Mở Rộng</h2>
-          <p class="slide-subtitle">Cơ chế scale-out hạ tầng tự động để đối phó với cơn bão alert (Alert Storm).</p>
-        </div>
-        <div class="slide-body grid-2">
-          <div class="flex-col justify-center">
-            <h3 style="color:var(--primary); margin-bottom:12px;">Cơ Chế Scale Đa Lớp (Multi-tier Autoscaling)</h3>
-
-            <div style="margin-bottom:15px;">
-              <span class="badge badge-blue">1. HPA (Horizontal Pod Autoscaler)</span>
-              <p style="font-size:0.82rem; color:var(--text-muted); margin-top:4px;">
-                Tự động nhân bản Pod <code>tf1-api</code> từ 2 lên tối đa 10 Pod dựa trên tải CPU sử dụng (Ngưỡng kích
-                hoạt: <strong>70% CPU</strong>).
+          <!-- Bottom: Grid-2 Content -->
+          <div class="grid-2" style="gap: 20px; align-items: stretch; margin-top: auto;">
+            <div class="flex-col" style="justify-content: flex-start; gap: 6px;">
+              <h3 style="color:var(--primary); font-size:1.15rem; font-weight:700;">Kiến trúc chịu tải & Mạng cô lập</h3>
+              <p style="font-size:0.82rem; line-height:1.45; color:var(--text-muted);">
+                Hạ tầng thiết kế đặc thù cho việc vận hành AIOps Engine bền bỉ, an toàn trên AWS:
               </p>
+              <ul style="font-size:0.8rem; line-height:1.45; margin-left:18px; color:var(--text-muted); margin-top:4px;">
+                <li style="margin-bottom: 2px;"><strong>Decoupled:</strong> Buffer qua SQS FIFO chống nghẽn bão alert.</li>
+                <li><strong>Private EKS:</strong> Chạy trong subnets riêng tư, cô lập internet.</li>
+              </ul>
             </div>
 
-            <div style="margin-bottom:15px;">
-              <span class="badge badge-orange">2. SQS Queue-depth Scaling</span>
-              <p style="font-size:0.82rem; color:var(--text-muted); margin-top:4px;">
-                Pod <code>tf1-worker</code> (SQS consumer) tự động scale số lượng bản sao dựa trên độ dài hàng đợi tin
-                nhắn của AWS SQS, giải phóng nhanh nghẽn cảnh báo khi có biến cố lớn.
-              </p>
-            </div>
-
-            <div>
-              <span class="badge badge-green">3. Kubernetes Cluster Autoscaler</span>
-              <p style="font-size:0.82rem; color:var(--text-muted); margin-top:4px;">
-                Khi pods rơi vào trạng thái <code>Pending</code> do thiếu hụt tài nguyên CPU/Mem của máy chủ, Cluster
-                Autoscaler tự động scale số lượng EC2 Node (Min: 2, Max: 10).
-              </p>
-            </div>
-          </div>
-
-          <div class="flex-col justify-center">
-            <div class="card card-accent-green" style="padding: 20px;">
-              <div class="card-title">Cấu hình HPA thực tế (Sandbox vs Prod Overlay)</div>
-              <p style="font-size:0.8rem; color:var(--text-muted); line-height:1.5; margin-bottom:12px;">
-                Sử dụng Kustomize Overlays để phân tách cấu hình Autoscaling theo môi trường nhằm kiểm soát ngân sách
-                AWS:
-              </p>
-              <div class="code-block" style="font-size:0.75rem;">
-                <span class="code-comment"># patches/hpa-patch.yaml</span>
-                <span class="code-keyword">spec</span>:
-                <span class="code-keyword">minReplicas</span>: <span class="code-number">2</span>
-                <span class="code-keyword">maxReplicas</span>: <span class="code-number">5</span> <span
-                  class="code-comment"># Sandbox (Prod: 10)</span>
-                <span class="code-keyword">metrics</span>:
-                - <span class="code-keyword">type</span>: Resource
-                <span class="code-keyword">resource</span>:
-                <span class="code-keyword">name</span>: cpu
-                <span class="code-keyword">target</span>:
-                <span class="code-keyword">type</span>: Utilization
-                <span class="code-keyword">averageUtilization</span>: <span class="code-number">70</span>
+            <div class="card card-accent-blue" style="padding:12px; display: flex; flex-direction: column; justify-content: space-between;">
+              <div>
+                <div class="card-title" style="font-size:0.95rem; margin-bottom: 5px;">Kết nối nội bộ (Private Link)</div>
+                <p class="card-desc" style="font-size:0.8rem; line-height:1.45;">
+                  Giao tiếp Bedrock, SQS, DynamoDB, ECR qua <strong>VPC Interface Endpoints</strong>. Không có Internet Ingress/Egress, triệt tiêu rò rỉ log nhạy cảm.
+                </p>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- SLIDE 7: SECURITY ARCHITECTURE -->
-      <div class="slide" data-section="An ninh hệ thống" data-presenter="Huy">
-        <div class="slide-title-area">
-          <h2 class="slide-title">Kiến Trúc An Ninh & Bảo Mật Chuỗi Cung Ứng</h2>
-          <p class="slide-subtitle">Các lớp phòng thủ từ CI/CD cho tới thời điểm runtime trong Cluster.</p>
-        </div>
-        <div class="slide-body grid-3">
-          <div class="card card-accent-blue">
-            <div class="card-title">1. Bảo mật mạng (Network Isolation)</div>
-            <div class="card-desc" style="font-size:0.78rem; line-height:1.5;">
-              EKS Nodes chạy trong Private Subnets, hoàn toàn không gán IP Public. Bật các Interface VPC Endpoints cho
-              S3, DynamoDB, Bedrock, Secrets Manager để các pod kết nối nội bộ thông qua AWS PrivateLink bảo mật.
-            </div>
-          </div>
-
-          <div class="card card-accent-orange">
-            <div class="card-title">2. Xác thực định danh (Auth & IAM)</div>
-            <div class="card-desc" style="font-size:0.78rem; line-height:1.5;">
-              Áp dụng phân quyền nguyên tắc đặc quyền tối thiểu (Least Privilege) bằng EKS IRSA (IAM Roles for Service
-              Accounts). Toàn bộ API calls sang Bedrock được ký mã hóa SigV4. API endpoint xác thực qua
-              <code>SERVICE_AUTH_TOKEN</code> (Bearer token).
-            </div>
-          </div>
-
-          <div class="card card-accent-green">
-            <div class="card-title">3. Tính toàn vẹn (Integrity)</div>
-            <div class="card-desc" style="font-size:0.78rem; line-height:1.5;">
-              Sử dụng <strong>Cosign</strong> ký số keyless cho container image qua GitHub OIDC. Enforce chính sách
-              <strong>Sigstore Policy Controller</strong> trong cluster và <strong>OPA Gatekeeper</strong> cấm quyền
-              root của Pod (PSS Restricted).
-            </div>
-          </div>
-        </div>
-      </div>
 
       <!-- SLIDE 8: OBSERVABILITY -->
       <div class="slide" data-section="Khả năng quan sát" data-presenter="Nhật">
@@ -2422,7 +2244,15 @@
           </svg>
         </button>
 
-        <div id="slideCounter" class="slide-counter">1 / 22</div>
+        <button class="floating-control" onclick="toggleFullscreen()" title="Bật/Tắt Toàn màn hình (F)">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3">
+            </path>
+          </svg>
+        </button>
+
+        <div id="slideCounter" class="slide-counter">1 / 19</div>
       </div>
     </footer>
 
@@ -2441,24 +2271,21 @@
         <div class="toc-link" onclick="jumpTo(1)">02. Mục lục chương trình <span style="font-size:0.7rem; color:var(--text-muted);">Team TF1</span></div>
         <div class="toc-link" onclick="jumpTo(2)">03. Quản lý dự án qua Jira & Github <span style="font-size:0.7rem; color:var(--text-muted);">Team TF1</span></div>
         <div class="toc-link" onclick="jumpTo(3)">04. Sự phù hợp hạ tầng cho AI <span style="font-size:0.7rem; color:var(--text-muted);">Tiến</span></div>
-        <div class="toc-link" onclick="jumpTo(4)">05. Kiến trúc tổng quan (Availability) <span style="font-size:0.7rem; color:var(--text-muted);">Tiến</span></div>
-        <div class="toc-link" onclick="jumpTo(5)">06. Hạ tầng mở rộng (Scalability) <span style="font-size:0.7rem; color:var(--text-muted);">Tiến</span></div>
-        <div class="toc-link" onclick="jumpTo(6)">07. Kiến trúc bảo mật an ninh <span style="font-size:0.7rem; color:var(--text-muted);">Huy</span></div>
-        <div class="toc-link" onclick="jumpTo(7)">08. Khả năng quan sát (Observability) <span style="font-size:0.7rem; color:var(--text-muted);">Nhật</span></div>
-        <div class="toc-link" onclick="jumpTo(8)">09. Dự toán chi phí vận hành <span style="font-size:0.7rem; color:var(--text-muted);">Nhật</span></div>
-        <div class="toc-link" onclick="jumpTo(9)">10. Khả năng đáp ứng yêu cầu <span style="font-size:0.7rem; color:var(--text-muted);">Nhật</span></div>
-        <div class="toc-link" onclick="jumpTo(10)">11. AI Engine Hosting & Pod config <span style="font-size:0.7rem; color:var(--text-muted);">Thi</span></div>
-        <div class="toc-link" onclick="jumpTo(11)">12. Sơ đồ hoạt động AI Engine <span style="font-size:0.7rem; color:var(--text-muted);">Thi</span></div>
-        <div class="toc-link" onclick="jumpTo(12)">13. CI/CD & DevSecOps Guardrails <span style="font-size:0.7rem; color:var(--text-muted);">Kiên</span></div>
-        <div class="toc-link" onclick="jumpTo(13)">14. CI/CD Pipeline Evidence <span style="font-size:0.7rem; color:var(--text-muted);">Kiên</span></div>
-        <div class="toc-link" onclick="jumpTo(14)">15. Alert processing pipeline <span style="font-size:0.7rem; color:var(--text-muted);">Tiến</span></div>
-        <div class="toc-link" onclick="jumpTo(15)">16. Architecture Diagram (Jira & Slack) <span style="font-size:0.7rem; color:var(--text-muted);">Hoàng</span></div>
-        <div class="toc-link" onclick="jumpTo(16)">17. Slack Interactivity & Business Value <span style="font-size:0.7rem; color:var(--text-muted);">Hoàng</span></div>
-        <div class="toc-link" onclick="jumpTo(17)">18. Slack Under the Hood (Serverless) <span style="font-size:0.7rem; color:var(--text-muted);">Hoàng</span></div>
-        <div class="toc-link" onclick="jumpTo(18)">19. Jira Integration & Assignment <span style="font-size:0.7rem; color:var(--text-muted);">Phong</span></div>
-        <div class="toc-link" onclick="jumpTo(19)">20. Idempotent Ticket Creation <span style="font-size:0.7rem; color:var(--text-muted);">Phong</span></div>
-        <div class="toc-link" onclick="jumpTo(20)">21. E2E Scenarios & RCAEval Benchmarks <span style="font-size:0.7rem; color:var(--text-muted);">Khang</span></div>
-        <div class="toc-link" onclick="jumpTo(21)">22. Hỏi đáp Q&A <span style="font-size:0.7rem; color:var(--text-muted);">Team TF1</span></div>
+        <div class="toc-link" onclick="jumpTo(4)">05. Khả năng quan sát (Observability) <span style="font-size:0.7rem; color:var(--text-muted);">Nhật</span></div>
+        <div class="toc-link" onclick="jumpTo(5)">06. Dự toán chi phí vận hành <span style="font-size:0.7rem; color:var(--text-muted);">Nhật</span></div>
+        <div class="toc-link" onclick="jumpTo(6)">07. Khả năng đáp ứng yêu cầu <span style="font-size:0.7rem; color:var(--text-muted);">Nhật</span></div>
+        <div class="toc-link" onclick="jumpTo(7)">08. Thiết kế & Giải pháp AI Engine <span style="font-size:0.7rem; color:var(--text-muted);">Thi</span></div>
+        <div class="toc-link" onclick="jumpTo(8)">09. Sơ đồ hoạt động AI Engine <span style="font-size:0.7rem; color:var(--text-muted);">Thi</span></div>
+        <div class="toc-link" onclick="jumpTo(9)">10. CI/CD & DevSecOps Guardrails <span style="font-size:0.7rem; color:var(--text-muted);">Kiên</span></div>
+        <div class="toc-link" onclick="jumpTo(10)">11. CI/CD Pipeline Evidence <span style="font-size:0.7rem; color:var(--text-muted);">Kiên</span></div>
+        <div class="toc-link" onclick="jumpTo(11)">12. Alert processing pipeline <span style="font-size:0.7rem; color:var(--text-muted);">Tiến</span></div>
+        <div class="toc-link" onclick="jumpTo(12)">13. Kiến trúc tích hợp Jira & Slack <span style="font-size:0.7rem; color:var(--text-muted);">Hoàng</span></div>
+        <div class="toc-link" onclick="jumpTo(13)">14. Slack Interactivity & Business Value <span style="font-size:0.7rem; color:var(--text-muted);">Hoàng</span></div>
+        <div class="toc-link" onclick="jumpTo(14)">15. Slack Under the Hood (Serverless) <span style="font-size:0.7rem; color:var(--text-muted);">Hoàng</span></div>
+        <div class="toc-link" onclick="jumpTo(15)">16. Jira Integration & Assignment <span style="font-size:0.7rem; color:var(--text-muted);">Phong</span></div>
+        <div class="toc-link" onclick="jumpTo(16)">17. Idempotent Ticket Creation <span style="font-size:0.7rem; color:var(--text-muted);">Phong</span></div>
+        <div class="toc-link" onclick="jumpTo(17)">18. E2E Scenarios &amp; RCAEval Benchmarks <span style="font-size:0.7rem; color:var(--text-muted);">Khang</span></div>
+        <div class="toc-link" onclick="jumpTo(18)">19. Hỏi đáp Q&amp;A <span style="font-size:0.7rem; color:var(--text-muted);">Team TF1</span></div>
       </div>
     </div>
   </div>
