@@ -441,6 +441,41 @@
       line-height: 1.5;
     }
 
+    /* PROBLEM / SOLUTION PATTERN — replaces boxed side-stripe callouts inside cards */
+    .ps-block { padding: 8px 0; }
+    .ps-block + .ps-block {
+      border-top: 1px solid var(--card-border);
+      margin-top: 2px;
+      padding-top: 10px;
+    }
+    .ps-label {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 5px;
+    }
+    .ps-label::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: currentColor;
+      flex-shrink: 0;
+    }
+    .ps-label.ps-problem { color: var(--accent-red); }
+    .ps-label.ps-solution { color: var(--accent-green); }
+    .ps-label.ps-note { color: var(--accent-blue); }
+    .ps-text {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+      margin: 0;
+    }
+
     /* BADGES & CHIPS */
     .badge {
       display: inline-flex;
@@ -1123,21 +1158,26 @@
             </div>
             <div class="agenda-card" onclick="jumpTo(13)">
               <div class="agenda-num">12</div>
-              <div class="agenda-text">Alert processing pipeline</div>
-              <div class="agenda-presenter">Tiến</div>
+              <div class="agenda-text">Architecture Diagram (Jira & Slack)</div>
+              <div class="agenda-presenter">Hoàng</div>
             </div>
             <div class="agenda-card" onclick="jumpTo(14)">
               <div class="agenda-num">13</div>
-              <div class="agenda-text">Slack Dispatcher integration</div>
+              <div class="agenda-text">Slack Interactivity & Business Value</div>
               <div class="agenda-presenter">Hoàng</div>
             </div>
             <div class="agenda-card" onclick="jumpTo(15)">
               <div class="agenda-num">14</div>
-              <div class="agenda-text">Jira Integration & Assignment</div>
-              <div class="agenda-presenter">Phong</div>
+              <div class="agenda-text">Slack Under the Hood (Serverless)</div>
+              <div class="agenda-presenter">Hoàng</div>
             </div>
             <div class="agenda-card" onclick="jumpTo(16)">
               <div class="agenda-num">15</div>
+              <div class="agenda-text">Jira Integration & Assignment</div>
+              <div class="agenda-presenter">Phong</div>
+            </div>
+            <div class="agenda-card" onclick="jumpTo(17)">
+              <div class="agenda-num">16</div>
               <div class="agenda-text">E2E Scenarios & RCAEval Benchmarks</div>
               <div class="agenda-presenter">Khang</div>
             </div>
@@ -1893,28 +1933,67 @@
         </div>
       </div>
 
-      <!-- SLIDE 14: SLACK INTEGRATION -->
-      <div class="slide" data-section="Slack integration" data-presenter="Hoàng">
+      <!-- SLIDE 14: ARCHITECTURE DIAGRAM -->
+      <div class="slide" data-section="Architecture Diagram" data-presenter="Hoàng">
         <div class="slide-title-area">
-          <h2 class="slide-title">Tích Hợp Slack & Thông Báo Tương Tác</h2>
-          <p class="slide-subtitle">Cách thức hiển thị thông tin cảnh báo trực quan cho kỹ sư trực vận hành.</p>
+          <h2 class="slide-title">Kiến Trúc Tích Hợp Jira & Slack</h2>
+          <p class="slide-subtitle">Luồng dữ liệu end-to-end từ Alert → AI Engine → Slack → Jira.</p>
+        </div>
+        <div class="slide-body flex-col justify-center" style="align-items: center;">
+          <img src="assets/jira-slack-diagram.drawio.png" alt="Jira-Slack Architecture Diagram" style="max-width: 90%; max-height: 75vh; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.4);">
+        </div>
+      </div>
+
+      <!-- SLIDE 15: SLACK BUSINESS VALUE + MOCKUP -->
+      <div class="slide" data-section="Slack Interactivity" data-presenter="Hoàng">
+        <div class="slide-title-area">
+          <h2 class="slide-title">Slack Interactivity: Biến Cảnh Báo Thành Hành Động Bằng Hệ Sinh Thái Serverless</h2>
+          <p class="slide-subtitle">Đưa AI insight đến tay kỹ sư vận hành ngay lập tức, khép kín vòng lặp phản hồi.</p>
         </div>
         <div class="slide-body grid-2">
-          <div class="flex-col">
-            <h3 style="color:var(--primary); margin-bottom:12px;">Thiết Kế Slack Block Kit</h3>
-            <p style="font-size:0.85rem; color:var(--text-muted); line-height:1.5; margin-bottom:12px;">
-              AI Engine đóng gói cấu trúc thông tin sạch và chuyển cho CDO Slack Dispatcher dựng giao diện Block
-              Kit
-              tương tác.
-            </p>
-            <div class="callout-box" style="margin-top:10px;">
-              <div class="callout-title">Nút bấm tương tác 1-Click Acknowledge</div>
-              <div class="callout-text" style="font-size:0.8rem;">
-                Kỹ sư trực chỉ cần nhấn trực tiếp nút <strong>"Acknowledge"</strong> ngay trên tin nhắn Slack để
-                nhận sự
-                cố. Nút bấm kích hoạt API call cập nhật trạng thái assignee trên Jira tự động, loại bỏ quy trình
-                thủ
-                công.
+          <div class="flex-col" style="gap: 14px;">
+            <div class="card card-accent-green" style="padding: 18px;">
+              <div class="card-title" style="font-size:1.1rem; margin-bottom: 12px;">🚀 Real-time Action</div>
+              <div style="display: flex; gap: 8px; margin-bottom: 12px;">
+                <div style="flex: 1; background: rgba(16, 185, 129, 0.06); border-radius: 8px; padding: 8px 6px; text-align: center;">
+                  <div style="font-size:0.9rem; font-weight:700; color:var(--accent-green);">✓</div>
+                  <div style="font-size:0.65rem; color:var(--text-muted); margin-top:2px;">Confirm AI</div>
+                </div>
+                <div style="flex: 1; background: rgba(59, 130, 246, 0.06); border-radius: 8px; padding: 8px 6px; text-align: center;">
+                  <div style="font-size:0.9rem; font-weight:700; color:var(--accent-blue);">🙋</div>
+                  <div style="font-size:0.65rem; color:var(--text-muted); margin-top:2px;">Assign to Me</div>
+                </div>
+                <div style="flex: 1; background: rgba(245, 158, 11, 0.06); border-radius: 8px; padding: 8px 6px; text-align: center;">
+                  <div style="font-size:0.9rem; font-weight:700; color:var(--accent-yellow);">👥</div>
+                  <div style="font-size:0.65rem; color:var(--text-muted); margin-top:2px;">Manual Pick</div>
+                </div>
+              </div>
+              <p style="font-size:0.82rem; color:var(--text-muted); line-height:1.55; margin:0;">
+                Root Cause, Confidence Score, Suggested Assignee đẩy trực tiếp vào Slack <code>#oncall-&lt;service&gt;</code>. Kỹ sư xử lý 1 click — không mở Jira, không tra log.
+              </p>
+              <div style="display: flex; align-items: center; gap: 6px; padding-top: 10px; margin-top: 10px; border-top: 1px solid var(--card-border);">
+                <span style="font-size:0.9rem;">⚡</span>
+                <span style="font-size:0.75rem; color:var(--accent-green); font-weight:600;">Triệt tiêu Context Switching</span>
+              </div>
+            </div>
+
+            <div class="card card-accent-blue" style="padding: 18px;">
+              <div class="card-title" style="font-size:1.1rem; margin-bottom: 12px;">🧠 AI Feedback Loop</div>
+              <div style="display: flex; align-items: center; gap: 4px; margin-bottom: 10px; background: rgba(59, 130, 246, 0.05); border-radius: 8px; padding: 10px 8px;">
+                <div style="flex:1; text-align:center;"><div style="font-size:0.6rem;color:var(--text-muted);">Kỹ sư</div><div style="font-size:1rem;">👤</div></div>
+                <span style="color:var(--text-muted);">→</span>
+                <div style="flex:1; text-align:center;"><div style="font-size:0.6rem;color:var(--text-muted);">Lambda</div><div style="font-size:1rem;">📥</div></div>
+                <span style="color:var(--text-muted);">→</span>
+                <div style="flex:1; text-align:center;"><div style="font-size:0.6rem;color:var(--text-muted);">DynamoDB</div><div style="font-size:1rem;">💾</div></div>
+                <span style="color:var(--text-muted);">→</span>
+                <div style="flex:1; text-align:center;"><div style="font-size:0.6rem;color:var(--text-muted);">AI Engine</div><div style="font-size:1rem;">🧠</div></div>
+              </div>
+              <p style="font-size:0.82rem; color:var(--text-muted); line-height:1.55; margin:0;">
+                Mọi thao tác gán người là <strong>Ground-truth</strong> — AI học từ team, gợi ý chính xác hơn qua mỗi sự cố.
+              </p>
+              <div style="display: flex; align-items: center; gap: 6px; padding-top: 10px; margin-top: 10px; border-top: 1px solid var(--card-border);">
+                <span style="font-size:0.9rem;">📝</span>
+                <span style="font-size:0.75rem; color:var(--accent-blue); font-weight:600;">Audit Trail: lưu vết tự động trên Jira &amp; Database</span>
               </div>
             </div>
           </div>
@@ -1934,79 +2013,233 @@
                 <div style="margin-left:auto; font-size:9px; color:#868688;">10:14 PM</div>
               </div>
               <div style="border-left: 4px solid var(--accent-red); padding-left: 10px; margin-bottom: 10px;">
-                <div style="font-weight: 700; color: white;">🚨 [LATENCY_DEGRADATION] - checkout-api latency spike
-                </div>
-                <div style="margin-top:4px;"><strong>Tenant:</strong> tenant-a | <strong>Confidence:</strong> 82%
-                </div>
-                <div style="margin-top:2px;"><strong>Root cause:</strong> Database connection pool saturation.
-                  Timeout
-                  logs observed.</div>
+                <div style="font-weight: 700; color: white;">🚨 [LATENCY_DEGRADATION] - checkout-api latency spike</div>
+                <div style="margin-top:4px;"><strong>Tenant:</strong> tenant-a | <strong>Confidence:</strong> 82%</div>
+                <div style="margin-top:2px;"><strong>Root cause:</strong> Database connection pool saturation. Timeout logs observed.</div>
+                <div style="margin-top:2px;"><strong>Suggested Assignee:</strong> @minh.tran (SME checkout-api)</div>
               </div>
-              <div style="display:flex; gap:8px; margin-top:10px;">
-                <button
-                  style="background: #222529; border:1px solid #56585B; color:white; padding:4px 10px; border-radius:4px; font-size:8px; font-weight:700; cursor:pointer;">&check;
-                  Acknowledge</button>
-                <button
-                  style="background: #1264A3; border:1px solid #1264A3; color:white; padding:4px 10px; border-radius:4px; font-size:8px; font-weight:700; cursor:pointer;">View
-                  Jira Ticket</button>
+              <div style="display:flex; gap:6px; margin-top:10px; flex-wrap: wrap;">
+                <button style="background: #2EB67D; border:1px solid #2EB67D; color:white; padding:4px 10px; border-radius:4px; font-size:8px; font-weight:700; cursor:pointer;">👤 Confirm &amp; Assign</button>
+                <button style="background: #222529; border:1px solid #56585B; color:white; padding:4px 10px; border-radius:4px; font-size:8px; font-weight:700; cursor:pointer;">🎫 View Jira Ticket</button>
+                <div style="background: #222529; border:1px solid #56585B; color:#D1D2D3; padding:4px 10px; border-radius:4px; font-size:8px; font-weight:700; display:flex; align-items:center; gap:4px;">Or assign someone else... <span style="font-size:7px;">▾</span></div>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- SLIDE 15: JIRA INTEGRATION & ASSIGNMENT -->
+      <!-- SLIDE 16: SLACK UNDER THE HOOD -->
+      <div class="slide" data-section="Slack Kỹ thuật" data-presenter="Hoàng">
+        <div class="slide-title-area">
+          <h2 class="slide-title">Kỹ Thuật Serverless: Vượt Rào Cản Slack</h2>
+          <p class="slide-subtitle">Ba bài toán kỹ thuật đặc thù khi tích hợp Slack &amp; giải pháp serverless tương ứng.</p>
+        </div>
+        <div class="slide-body" style="gap: 14px; display: flex; flex-direction: column; justify-content: space-between;">
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px;">
+            <div class="card card-accent-orange" style="padding: 18px; display: flex; flex-direction: column; justify-content: space-between;">
+              <div>
+                <div class="card-title" style="font-size:1.05rem; margin-bottom: 12px;">🛠️ Stateless Context Passing</div>
+                <div class="ps-block">
+                  <div class="ps-label ps-problem">Vấn đề</div>
+                  <p class="ps-text">Slack Block Kit payload bị giới hạn độ dài — không thể nhúng toàn bộ context vào button value.</p>
+                </div>
+                <div class="ps-block">
+                  <div class="ps-label ps-solution">Giải pháp</div>
+                  <p class="ps-text">Minify State (Tenant, Env, Service, Incident ID) vào <code>block_id</code> Slack Block Kit. Lambda <strong>stateless</strong> — scale ngàn request, zero Redis/DB.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="card" style="padding: 18px; border-color: var(--accent-red); display: flex; flex-direction: column; justify-content: space-between;">
+              <div>
+                <div class="card-title" style="font-size:1.05rem; color: var(--accent-red); margin-bottom: 12px;">⚡ Asynchronous Invocation</div>
+                <div class="ps-block">
+                  <div class="ps-label ps-problem">Vấn đề</div>
+                  <p class="ps-text">Slack yêu cầu HTTP 200 trong <strong>3 giây</strong>. Jira API assign ticket mất 4-5s — timeout chắc chắn.</p>
+                </div>
+                <div class="ps-block">
+                  <div class="ps-label ps-solution">Giải pháp</div>
+                  <p class="ps-text">Lambda <code>jira-dispatcher</code> dùng <strong>Self-Async Invocation</strong>: fork chính nó (<code>InvocationType: 'Event'</code>), trả <code>200 OK</code> ngay. Background xử lý, update Slack qua <code>response_url</code>.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="card card-accent-blue" style="padding: 18px; display: flex; flex-direction: column; justify-content: space-between;">
+              <div>
+                <div class="card-title" style="font-size:1.05rem; margin-bottom: 12px;">💾 Event-Driven &amp; DynamoDB</div>
+                <div class="ps-block">
+                  <div class="ps-label ps-solution">Decoupling</div>
+                  <p class="ps-text"><strong>Amazon SQS</strong> (Buffer + DLQ) tách rời AI Engine khỏi notification. Không mất tin khi Alert Storm.</p>
+                </div>
+                <div class="ps-block">
+                  <div class="ps-label ps-note">Single-Table Design</div>
+                  <p class="ps-text">DynamoDB PK <code>JIRA_HISTORY#&lt;tenant&gt;#&lt;env&gt;#&lt;service&gt;</code> — AI truy vấn SME gợi ý trong ~5ms (O(1)).</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Architecture flow -->
+          <div style="background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 8px; padding: 14px 20px;">
+            <div style="display: flex; align-items: center; justify-content: space-between; font-size: 0.8rem; color: var(--text-muted); gap: 4px;">
+              <div style="display: flex; flex-direction: column; align-items: center; gap: 4px; flex: 1;">
+                <span class="badge badge-green" style="font-size: 0.7rem; padding: 2px 8px;">Slack Button Click</span>
+                <span style="font-size: 0.7rem; color: var(--text-muted);">Payload trong block_id</span>
+              </div>
+              <span style="color: var(--primary); font-size: 1.2rem;">→</span>
+              <div style="display: flex; flex-direction: column; align-items: center; gap: 4px; flex: 1;">
+                <span class="badge badge-orange" style="font-size: 0.7rem; padding: 2px 8px;">API Gateway + Lambda</span>
+                <span style="font-size: 0.7rem; color: var(--text-muted);">Parse + trả 200 ngay</span>
+              </div>
+              <span style="color: var(--primary); font-size: 1.2rem;">→</span>
+              <div style="display: flex; flex-direction: column; align-items: center; gap: 4px; flex: 1;">
+                <span class="badge badge-red" style="font-size: 0.7rem; padding: 2px 8px;">Self-Async Fork</span>
+                <span style="font-size: 0.7rem; color: var(--text-muted);">Xử lý Jira background</span>
+              </div>
+              <span style="color: var(--primary); font-size: 1.2rem;">→</span>
+              <div style="display: flex; flex-direction: column; align-items: center; gap: 4px; flex: 1;">
+                <span class="badge badge-blue" style="font-size: 0.7rem; padding: 2px 8px;">Slack response_url</span>
+                <span style="font-size: 0.7rem; color: var(--text-muted);">Update UI + DynamoDB</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- SLIDE 17: JIRA INTEGRATION - BUSINESS VALUE + MOCKUP -->
       <div class="slide" data-section="Jira Integration" data-presenter="Phong">
         <div class="slide-title-area">
-          <h2 class="slide-title">Jira Integration & Định Tuyến Phân Công</h2>
-          <p class="slide-subtitle">Cơ chế tự động tạo Ticket chứa dữ liệu phân tích lỗi sâu và gán đúng owner.
-          </p>
+          <h2 class="slide-title">Smart Jira Integration: AI-Driven Assignee & Multi-Tenant Routing</h2>
+          <p class="slide-subtitle">Ticket không chỉ được tạo — nó tự tìm đúng chuyên gia và đúng Project Board ngay từ giây đầu tiên.</p>
         </div>
         <div class="slide-body grid-2">
-          <div class="flex-col">
-            <h3 style="color:var(--primary); margin-bottom:12px;">Cơ chế Mapping Assignee thông minh</h3>
-            <p style="font-size:0.82rem; color:var(--text-muted); line-height:1.5; margin-bottom:12px;">
-              Để tránh việc gán bừa ticket gây trễ nải xử lý, AI Engine triển khai thuật toán gán người chịu trách
-              nhiệm
-              (SME) động:
-            </p>
-            <ul
-              style="font-size:0.8rem; line-height:1.6; margin-left:20px; color:var(--text-muted); margin-bottom:12px;">
-              <li><strong>DynamoDB Lookup First:</strong> Tìm kiếm trong bảng DynamoDB các bản ghi
-                <code>JIRA_HISTORY#{tenant_id}#{environment}#{service}</code> xem kỹ sư nào đã từng giải quyết sự
-                cố
-                tương tự thành công trước đó.
-              </li>
-              <li><strong>JSON Config Fallback:</strong> Nếu DynamoDB chưa có dữ liệu (sự cố mới tinh), hệ thống
-                đọc
-                file catalog cấu hình phân quyền của service để gán cho Lead SRE tương ứng.</li>
-            </ul>
+          <div class="flex-col" style="gap: 14px;">
+            <div class="card card-accent-green" style="padding: 18px;">
+              <div class="card-title" style="font-size:1.1rem; margin-bottom: 12px;">🤖 Giao Việc Bằng Trí Tuệ Nhân Tạo</div>
+              <p style="font-size:0.82rem; color:var(--text-muted); line-height:1.55; margin:0;">
+                Quét dữ liệu lịch sử (<code>JIRA_HISTORY#&lt;tenant&gt;#&lt;env&gt;#&lt;service&gt;</code>) để tự động tìm ra <strong>SME</strong> thay vì tạo ticket rồi để trống chờ người nhận. Phân công đúng chuyên gia ngay ở giây đầu tiên.
+              </p>
+              <div style="display: flex; align-items: center; gap: 6px; padding-top: 10px; margin-top: 10px; border-top: 1px solid var(--card-border);">
+                <span style="font-size:0.9rem;">⚡</span>
+                <span style="font-size:0.75rem; color:var(--accent-green); font-weight:600;">Không còn ticket "mồ côi" chờ người nhận</span>
+              </div>
+            </div>
+
+            <div class="card card-accent-blue" style="padding: 18px;">
+              <div class="card-title" style="font-size:1.1rem; margin-bottom: 12px;">🔀 Định Tuyến Đa Luồng (Multi-Tenant Routing)</div>
+              <p style="font-size:0.82rem; color:var(--text-muted); line-height:1.55; margin:0;">
+                Ticket tự động "bẻ lái" về đúng Project Board của từng nhóm (vd: <code>PAY</code>, <code>TRIAGE</code>) dựa trên ownership config <code>jira_project</code> gắn theo service — không sợ lọt dữ liệu chéo giữa các tenant.
+              </p>
+            </div>
           </div>
 
-          <div class="flex-col">
-            <h3 style="color:var(--primary); margin-bottom:12px;">Cấu trúc payload của Jira Ticket</h3>
-            <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:8px;">Hợp đồng gửi cho CDO
-              Dispatcher tạo
-              Jira Ticket chứa đầy đủ cấu trúc markdown:</p>
-            <div class="code-block" style="font-size:0.75rem;">
-              {
-              <span class="code-keyword">"jira_project"</span>: <span class="code-string">"TRIAGE"</span>,
-              <span class="code-keyword">"summary"</span>: <span class="code-string">"[AIOps] checkout-api latency
-                is
-                critical"</span>,
-              <span class="code-keyword">"description"</span>: <span class="code-string">"Root Cause: connection
-                pool
-                exhaustion...\nEvidence: metrics p95 950ms"</span>,
-              <span class="code-keyword">"suggested_assignee_account_id"</span>: <span
-                class="code-string">"712020:abc123"</span>,
-              <span class="code-keyword">"audit_id"</span>: <span class="code-string">"audit-edd3e5c02569"</span>
-              }
+          <div class="flex-col justify-center">
+            <!-- Simulated Jira Ticket Mockup -->
+            <div class="card" style="background: #fff; border-color: #DFE1E6; padding: 18px; font-size:0.8rem; color:#172B4D; box-shadow: 0 4px 10px rgba(0,0,0,0.2);">
+              <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:10px;">
+                <div style="display:flex; align-items:center; gap:6px;">
+                  <div style="width:18px; height:18px; background:#0052CC; border-radius:4px; display:flex; align-items:center; justify-content:center; color:white; font-size:9px; font-weight:800;">J</div>
+                  <span style="font-weight:700; color:#0052CC; font-size:0.85rem;">PAY-482</span>
+                </div>
+                <span style="font-size:9px; background:#E3FCEF; color:#006644; padding:2px 8px; border-radius:10px; font-weight:700;">AUTO-ROUTED</span>
+              </div>
+              <div style="font-weight:700; color:#172B4D; margin-bottom:8px;">[AIOps] payment-api latency critical — connection pool exhaustion</div>
+              <div style="display:flex; gap:16px; font-size:0.7rem; color:#6B778C; margin-bottom:10px;">
+                <div><strong>Tenant:</strong> tenant-abc-prod</div>
+                <div><strong>Project:</strong> PAY</div>
+              </div>
+              <div style="display:flex; align-items:center; gap:8px; padding-top:10px; border-top:1px solid #DFE1E6;">
+                <div style="width:22px; height:22px; border-radius:50%; background:#6554C0; color:white; display:flex; align-items:center; justify-content:center; font-size:9px; font-weight:700;">MT</div>
+                <div style="font-size:0.75rem;"><strong>Minh Trần</strong> · SME payment-api <span style="color:#00875A;">● matched qua JIRA_HISTORY</span></div>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- SLIDE 16: E2E & RCAEVAL BENCHMARKS -->
+      <!-- SLIDE 18: JIRA INTEGRATION - CONCURRENCY & DEDUPLICATION -->
+      <div class="slide" data-section="Jira Kỹ thuật" data-presenter="Phong">
+        <div class="slide-title-area">
+          <h2 class="slide-title">Concurrency & Deduplication: Idempotent Ticket Creation Dưới Tải Cao</h2>
+          <p class="slide-subtitle">Ba lớp phòng thủ chống trùng lặp khi Alert Storm và race condition xảy ra đồng thời.</p>
+        </div>
+        <div class="slide-body" style="gap: 14px; display: flex; flex-direction: column; justify-content: space-between;">
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px;">
+            <div class="card card-accent-orange" style="padding: 18px; display: flex; flex-direction: column; justify-content: space-between;">
+              <div>
+                <div class="card-title" style="font-size:1.05rem; margin-bottom: 12px;">🛡️ Idempotent Deduplication</div>
+                <div class="ps-block">
+                  <div class="ps-label ps-problem">Vấn đề</div>
+                  <p class="ps-text">Alert Storm bắn hàng trăm alert giống hệt nhau → nguy cơ tạo hàng loạt ticket rác, tê liệt team vận hành.</p>
+                </div>
+                <div class="ps-block">
+                  <div class="ps-label ps-solution">Giải pháp</div>
+                  <p class="ps-text">DynamoDB State Table lookup <code>PK: TENANT#&lt;tenant_id&gt; / SK: INCIDENT#&lt;incident_id&gt;</code> trước khi tạo. Ticket đã tồn tại → <strong>Skip Creation</strong> ngay lập tức.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="card" style="padding: 18px; border-color: var(--accent-red); display: flex; flex-direction: column; justify-content: space-between;">
+              <div>
+                <div class="card-title" style="font-size:1.05rem; color: var(--accent-red); margin-bottom: 12px;">⚡ Concurrency: Conditional Writes</div>
+                <div class="ps-block">
+                  <div class="ps-label ps-problem">Vấn đề</div>
+                  <p class="ps-text">2 Lambda cùng đọc DB tại một phần nghìn giây (Race Condition) → cả 2 đều thấy chưa có ticket và cùng gọi API tạo.</p>
+                </div>
+                <div class="ps-block">
+                  <div class="ps-label ps-solution">Giải pháp</div>
+                  <p class="ps-text"><code>ConditionExpression: attribute_not_exists(PK)</code> khi ghi mapping — transaction chỉ thành công nếu bản ghi chưa từng tồn tại, triệt tiêu hoàn toàn rủi ro Race Condition trong môi trường Serverless phân tán.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="card card-accent-blue" style="padding: 18px; display: flex; flex-direction: column; justify-content: space-between;">
+              <div>
+                <div class="card-title" style="font-size:1.05rem; margin-bottom: 12px;">🔒 Tenant Isolation & Secret Management</div>
+                <div class="ps-block">
+                  <div class="ps-label ps-note">Configuration-Driven Routing</div>
+                  <p class="ps-text">Request payload bắt buộc chứa <code>tenant_id</code> để map sang đúng <code>project_key</code> của Jira.</p>
+                </div>
+                <div class="ps-block">
+                  <div class="ps-label ps-solution">Zero-Trust Secrets</div>
+                  <p class="ps-text"><code>JIRA_API_TOKEN</code> không hard-code — kéo động từ <strong>AWS Secrets Manager</strong> (Lambda) hoặc <strong>External Secrets Operator</strong> (EKS).</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Flow: check -> create -> lock -> notify -->
+          <div style="background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 8px; padding: 14px 20px;">
+            <div style="display: flex; align-items: center; justify-content: space-between; font-size: 0.8rem; color: var(--text-muted); gap: 4px;">
+              <div style="display: flex; flex-direction: column; align-items: center; gap: 4px; flex: 1;">
+                <span class="badge badge-blue" style="font-size: 0.7rem; padding: 2px 8px;">Check Mapping</span>
+                <span style="font-size: 0.7rem; color: var(--text-muted);">GetItem theo TENANT#/INCIDENT#</span>
+              </div>
+              <span style="color: var(--primary); font-size: 1.2rem;">→</span>
+              <div style="display: flex; flex-direction: column; align-items: center; gap: 4px; flex: 1;">
+                <span class="badge badge-orange" style="font-size: 0.7rem; padding: 2px 8px;">Create if Missing</span>
+                <span style="font-size: 0.7rem; color: var(--text-muted);">Gọi Jira REST API tạo ticket</span>
+              </div>
+              <span style="color: var(--primary); font-size: 1.2rem;">→</span>
+              <div style="display: flex; flex-direction: column; align-items: center; gap: 4px; flex: 1;">
+                <span class="badge badge-red" style="font-size: 0.7rem; padding: 2px 8px;">Conditional Write Lock</span>
+                <span style="font-size: 0.7rem; color: var(--text-muted);">attribute_not_exists(PK)</span>
+              </div>
+              <span style="color: var(--primary); font-size: 1.2rem;">→</span>
+              <div style="display: flex; flex-direction: column; align-items: center; gap: 4px; flex: 1;">
+                <span class="badge badge-green" style="font-size: 0.7rem; padding: 2px 8px;">Notify Slack</span>
+                <span style="font-size: 0.7rem; color: var(--text-muted);">Đúng 1 ticket, đúng 1 thông báo</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- SLIDE 19: E2E & RCAEVAL BENCHMARKS -->
       <div class="slide" data-section="E2E & Benchmarks" data-presenter="Khang">
         <div class="slide-title-area">
           <h2 class="slide-title">E2E Validation & Báo Cáo Thử Nghiệm RCAEval</h2>
@@ -2088,63 +2321,7 @@
         </div>
       </div>
 
-      <!-- SLIDE 17: TỔNG KẾT & THÔNG ĐIỆP CHỐT -->
-      <div class="slide" data-section="Tổng kết" data-presenter="Team TF1">
-        <div class="slide-title-area">
-          <h2 class="slide-title">Tổng Kết &amp; Thông Điệp Chốt</h2>
-          <p class="slide-subtitle">Sự khác biệt cốt lõi giữa một dự án thử nghiệm (Demo) và một hệ thống vận hành
-            thực
-            tế (Production).</p>
-        </div>
-        <div class="slide-body flex-col justify-center">
-          <div class="card card-accent-orange"
-            style="padding: 24px; max-width: 800px; margin: 0 auto; border-radius: 12px; box-shadow: var(--shadow);">
-            <div class="card-title"
-              style="font-size: 1.4rem; font-weight: 800; color: var(--primary); margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                <polyline points="22 4 12 14.01 9 11.01"></polyline>
-              </svg>
-              Thiết Kế Cho Production Thực Sự
-            </div>
-            <p style="font-size: 1.05rem; line-height: 1.7; color: var(--text); font-weight: 500; margin-bottom: 20px;">
-              Hạ tầng AI Engine được xây dựng không chỉ để <strong>"chạy được"</strong>, mà hướng tới độ tin cậy
-              và tự
-              động hóa tuyệt đối:
-            </p>
-            <div class="grid-2" style="gap: 20px; text-align: left;">
-              <div
-                style="background: rgba(255,255,255,0.02); padding: 15px; border-radius: 8px; border: 1px solid var(--border);">
-                <h4 style="font-size: 0.95rem; font-weight: 700; color: var(--accent-blue); margin-bottom: 5px;">
-                  🔄 Tự
-                  Phục Hồi &amp; Tự Co Giãn</h4>
-                <p style="font-size: 0.8rem; color: var(--text-muted); line-height: 1.5;">Tự động cô lập lỗi, tự
-                  động co
-                  giãn 3 lớp (API, Worker, EC2) bám sát theo tải thực tế mà không cần thao tác thủ công.</p>
-              </div>
-              <div
-                style="background: rgba(255,255,255,0.02); padding: 15px; border-radius: 8px; border: 1px solid var(--border);">
-                <h4 style="font-size: 0.95rem; font-weight: 700; color: var(--accent-green); margin-bottom: 5px;">
-                  🛡️
-                  Chủ Động Phòng Ngừa &amp; Minh Bạch</h4>
-                <p style="font-size: 0.8rem; color: var(--text-muted); line-height: 1.5;">Tự chặn các mối nguy
-                  hiểm
-                  thông qua Gatekeeper và kiểm duyệt Sigstore trước khi khởi chạy, lưu audit trail rõ ràng cho mọi
-                  hoạt
-                  động.</p>
-              </div>
-            </div>
-            <div
-              style="margin-top: 25px; padding-top: 15px; border-top: 1px solid var(--border); text-align: center; font-size: 1.1rem; font-weight: 700; color: var(--text);">
-              🏆 <span style="color: var(--primary);">Khác biệt lớn nhất:</span> Từ một bản Demo kỹ thuật đến một
-              hệ
-              thống Production bền bỉ.
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- SLIDE 18: Q&A -->
+      <!-- SLIDE 20: Q&A -->
       <div class="slide slide-section-divider" data-section="Q&A" data-presenter="Team TF1">
         <div class="divider-number">HỎI & ĐÁP</div>
         <h1 class="divider-title" style="font-size:4rem;">Q & A</h1>
@@ -2190,14 +2367,6 @@
           </svg>
         </button>
 
-        <button class="floating-control" onclick="toggleFullscreen()" title="Bật/Tắt Toàn màn hình (F)">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round">
-            <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3">
-            </path>
-          </svg>
-        </button>
-
         <div id="slideCounter" class="slide-counter">1 / 20</div>
       </div>
     </footer>
@@ -2213,44 +2382,25 @@
         sách Slide thuyết trình</h2>
 
       <div class="toc-grid">
-        <div class="toc-link" onclick="jumpTo(0)">01. Cover Slide <span
-            style="font-size:0.7rem; color:var(--text-muted);">Team TF1</span></div>
-        <div class="toc-link" onclick="jumpTo(1)">02. Mục lục chương trình <span
-            style="font-size:0.7rem; color:var(--text-muted);">Team TF1</span></div>
-        <div class="toc-link" onclick="jumpTo(2)">03. Quản lý dự án qua Jira & Github <span
-            style="font-size:0.7rem; color:var(--text-muted);">Team TF1</span></div>
-        <div class="toc-link" onclick="jumpTo(3)">04. Sự phù hợp hạ tầng cho AI <span
-            style="font-size:0.7rem; color:var(--text-muted);">Tiến</span></div>
-        <div class="toc-link" onclick="jumpTo(4)">05. Kiến trúc tổng quan (Availability) <span
-            style="font-size:0.7rem; color:var(--text-muted);">Tiến</span></div>
-        <div class="toc-link" onclick="jumpTo(5)">06. Hạ tầng mở rộng (Scalability) <span
-            style="font-size:0.7rem; color:var(--text-muted);">Tiến</span></div>
-        <div class="toc-link" onclick="jumpTo(6)">07. Kiến trúc bảo mật an ninh <span
-            style="font-size:0.7rem; color:var(--text-muted);">Huy</span></div>
-        <div class="toc-link" onclick="jumpTo(7)">08. Khả năng quan sát (Observability) <span
-            style="font-size:0.7rem; color:var(--text-muted);">Nhật</span></div>
-        <div class="toc-link" onclick="jumpTo(8)">10. Dự toán chi phí vận hành <span
-            style="font-size:0.7rem; color:var(--text-muted);">Nhật</span></div>
-        <div class="toc-link" onclick="jumpTo(9)">11. Khả năng đáp ứng yêu cầu <span
-            style="font-size:0.7rem; color:var(--text-muted);">Nhật</span></div>
-        <div class="toc-link" onclick="jumpTo(10)">12. Thiết kế & Giải pháp AI Engine <span
-            style="font-size:0.7rem; color:var(--text-muted);">Thi</span></div>
-        <div class="toc-link" onclick="jumpTo(11)">13. Sơ đồ hoạt động AI Engine <span
-            style="font-size:0.7rem; color:var(--text-muted);">Thi</span></div>
-        <div class="toc-link" onclick="jumpTo(12)">14. CI/CD & GitOps ArgoCD <span
-            style="font-size:0.7rem; color:var(--text-muted);">Kiên</span></div>
-        <div class="toc-link" onclick="jumpTo(13)">15. Alert processing pipeline <span
-            style="font-size:0.7rem; color:var(--text-muted);">Tiến</span></div>
-        <div class="toc-link" onclick="jumpTo(14)">16. Slack Notification integration <span
-            style="font-size:0.7rem; color:var(--text-muted);">Hoàng</span></div>
-        <div class="toc-link" onclick="jumpTo(15)">17. Jira Integration & Assignment <span
-            style="font-size:0.7rem; color:var(--text-muted);">Phong</span></div>
-        <div class="toc-link" onclick="jumpTo(16)">18. E2E Scenarios &amp; RCAEval Benchmarks <span
-            style="font-size:0.7rem; color:var(--text-muted);">Khang</span></div>
-        <div class="toc-link" onclick="jumpTo(17)">19. Tổng kết &amp; Thông điệp chốt <span
-            style="font-size:0.7rem; color:var(--text-muted);">Team TF1</span></div>
-        <div class="toc-link" onclick="jumpTo(18)">20. Hỏi đáp Q&amp;A <span
-            style="font-size:0.7rem; color:var(--text-muted);">Team TF1</span></div>
+        <div class="toc-link" onclick="jumpTo(0)">01. Cover Slide <span style="font-size:0.7rem; color:var(--text-muted);">Team TF1</span></div>
+        <div class="toc-link" onclick="jumpTo(1)">02. Mục lục chương trình <span style="font-size:0.7rem; color:var(--text-muted);">Team TF1</span></div>
+        <div class="toc-link" onclick="jumpTo(2)">03. Quản lý dự án qua Jira & Github <span style="font-size:0.7rem; color:var(--text-muted);">Team TF1</span></div>
+        <div class="toc-link" onclick="jumpTo(3)">04. Sự phù hợp hạ tầng cho AI <span style="font-size:0.7rem; color:var(--text-muted);">Tiến</span></div>
+        <div class="toc-link" onclick="jumpTo(4)">05. Kiến trúc tổng quan (Availability) <span style="font-size:0.7rem; color:var(--text-muted);">Tiến</span></div>
+        <div class="toc-link" onclick="jumpTo(5)">06. Hạ tầng mở rộng (Scalability) <span style="font-size:0.7rem; color:var(--text-muted);">Tiến</span></div>
+        <div class="toc-link" onclick="jumpTo(6)">07. Kiến trúc bảo mật an ninh <span style="font-size:0.7rem; color:var(--text-muted);">Huy</span></div>
+        <div class="toc-link" onclick="jumpTo(7)">08. Khả năng quan sát (Observability) <span style="font-size:0.7rem; color:var(--text-muted);">Nhật</span></div>
+        <div class="toc-link" onclick="jumpTo(8)">09. Dự toán chi phí vận hành <span style="font-size:0.7rem; color:var(--text-muted);">Nhật</span></div>
+        <div class="toc-link" onclick="jumpTo(9)">10. Khả năng đáp ứng yêu cầu <span style="font-size:0.7rem; color:var(--text-muted);">Nhật</span></div>
+        <div class="toc-link" onclick="jumpTo(10)">11. AI Engine Hosting & Pod config <span style="font-size:0.7rem; color:var(--text-muted);">Thi</span></div>
+        <div class="toc-link" onclick="jumpTo(11)">12. CI/CD & GitOps ArgoCD <span style="font-size:0.7rem; color:var(--text-muted);">Kiên</span></div>
+        <div class="toc-link" onclick="jumpTo(12)">13. Alert processing pipeline <span style="font-size:0.7rem; color:var(--text-muted);">Tiến</span></div>
+        <div class="toc-link" onclick="jumpTo(13)">14. Architecture Diagram (Jira & Slack) <span style="font-size:0.7rem; color:var(--text-muted);">Hoàng</span></div>
+        <div class="toc-link" onclick="jumpTo(14)">15. Slack Interactivity & Business Value <span style="font-size:0.7rem; color:var(--text-muted);">Hoàng</span></div>
+        <div class="toc-link" onclick="jumpTo(15)">16. Slack Under the Hood (Serverless) <span style="font-size:0.7rem; color:var(--text-muted);">Hoàng</span></div>
+        <div class="toc-link" onclick="jumpTo(16)">17. Jira Integration & Assignment <span style="font-size:0.7rem; color:var(--text-muted);">Phong</span></div>
+        <div class="toc-link" onclick="jumpTo(17)">18. E2E Scenarios & RCAEval Benchmarks <span style="font-size:0.7rem; color:var(--text-muted);">Khang</span></div>
+        <div class="toc-link" onclick="jumpTo(18)">19. Hỏi đáp Q&A <span style="font-size:0.7rem; color:var(--text-muted);">Team TF1</span></div>
       </div>
     </div>
   </div>
