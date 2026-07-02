@@ -1153,31 +1153,36 @@
             </div>
             <div class="agenda-card" onclick="jumpTo(12)">
               <div class="agenda-num">11</div>
-              <div class="agenda-text">CI/CD & GitOps ArgoCD</div>
+              <div class="agenda-text">CI/CD & DevSecOps Guardrails</div>
               <div class="agenda-presenter">Kiên</div>
             </div>
-            <div class="agenda-card" onclick="jumpTo(13)">
+            <div class="agenda-card" onclick="jumpTo(14)">
               <div class="agenda-num">12</div>
+              <div class="agenda-text">Alert processing pipeline</div>
+              <div class="agenda-presenter">Tiến</div>
+            </div>
+            <div class="agenda-card" onclick="jumpTo(15)">
+              <div class="agenda-num">13</div>
               <div class="agenda-text">Architecture Diagram (Jira & Slack)</div>
               <div class="agenda-presenter">Hoàng</div>
             </div>
-            <div class="agenda-card" onclick="jumpTo(14)">
-              <div class="agenda-num">13</div>
+            <div class="agenda-card" onclick="jumpTo(16)">
+              <div class="agenda-num">14</div>
               <div class="agenda-text">Slack Interactivity & Business Value</div>
               <div class="agenda-presenter">Hoàng</div>
             </div>
-            <div class="agenda-card" onclick="jumpTo(15)">
-              <div class="agenda-num">14</div>
+            <div class="agenda-card" onclick="jumpTo(17)">
+              <div class="agenda-num">15</div>
               <div class="agenda-text">Slack Under the Hood (Serverless)</div>
               <div class="agenda-presenter">Hoàng</div>
             </div>
-            <div class="agenda-card" onclick="jumpTo(16)">
-              <div class="agenda-num">15</div>
+            <div class="agenda-card" onclick="jumpTo(18)">
+              <div class="agenda-num">16</div>
               <div class="agenda-text">Jira Integration & Assignment</div>
               <div class="agenda-presenter">Phong</div>
             </div>
-            <div class="agenda-card" onclick="jumpTo(17)">
-              <div class="agenda-num">16</div>
+            <div class="agenda-card" onclick="jumpTo(20)">
+              <div class="agenda-num">17</div>
               <div class="agenda-text">E2E Scenarios & RCAEval Benchmarks</div>
               <div class="agenda-presenter">Khang</div>
             </div>
@@ -1809,66 +1814,114 @@
         </div>
       </div>
 
-      <!-- SLIDE 12: CI/CD PIPELINE & ARGO CD -->
+      <!-- SLIDE 12: CI/CD PIPELINE & DEVSECOPS -->
       <div class="slide" data-section="CI/CD GitOps" data-presenter="Kiên">
         <div class="slide-title-area">
-          <h2 class="slide-title">CI/CD Pipeline & Quy Trình GitOps</h2>
-          <p class="slide-subtitle">Vận hành quy trình đóng gói, rà soát mã nguồn tự động và đồng bộ ArgoCD.</p>
+          <h2 class="slide-title">CI/CD Pipeline &amp; DevSecOps Guardrails</h2>
+          <p class="slide-subtitle">Tự động hóa kiểm soát chất lượng, bảo mật và triển khai từ Application đến
+            Infrastructure.</p>
         </div>
-        <div class="slide-body grid-2">
+        <div class="slide-body grid-2" style="align-items:center;">
           <div class="flex-col justify-center">
-            <h3 style="color:var(--primary); margin-bottom:12px;">Quy Trình Pipeline GitHub Actions</h3>
+            <h3 style="color:var(--primary); margin-bottom:12px;">Quy Trình CI/CD Tách Lớp</h3>
 
             <div style="margin-bottom:12px;">
-              <span class="badge badge-orange">1. Build & Scan</span>
-              <p style="font-size:0.78rem; color:var(--text-muted); margin-top:2px;">
-                Mỗi lượt push code lên Git, workflow tự động chạy test unit, build docker image và quét lỗ hổng
-                thư viện
-                bằng <strong>Trivy</strong>.
+              <span class="badge badge-blue">1. Separation of Concerns</span>
+              <p style="font-size:0.78rem; color:var(--text-muted); margin-top:4px; line-height:1.5;">
+                <code>ci-app</code> kiểm tra, đóng gói và deploy Lambda application code. <code>ci-infra</code> kiểm
+                tra, scan, plan và apply Terraform infrastructure.
               </p>
             </div>
 
             <div style="margin-bottom:12px;">
-              <span class="badge badge-blue">2. Ký Ảnh Đĩa Cosign</span>
-              <p style="font-size:0.78rem; color:var(--text-muted); margin-top:2px;">
-                Pipeline sử dụng OIDC token để xác thực với Cosign và ký số cho ảnh đĩa (ECR image) một cách an
-                toàn
-                không cần lưu giữ key.
+              <span class="badge badge-orange">2. Automated Quality Gate</span>
+              <p style="font-size:0.78rem; color:var(--text-muted); margin-top:4px; line-height:1.5;">
+                App code chạy <code>ruff</code>, <code>pytest</code>, <code>bandit</code>, <code>gitleaks</code>.
+                Infra code chạy <code>terraform fmt</code>, <code>validate</code>, <strong>Trivy</strong> và
+                <strong>Checkov</strong>.
+              </p>
+            </div>
+
+            <div style="margin-bottom:12px;">
+              <span class="badge badge-green">3. Shift-Left Security</span>
+              <p style="font-size:0.78rem; color:var(--text-muted); margin-top:4px; line-height:1.5;">
+                Secret leak, IAM quá rộng, security group mở sai hoặc image có lỗi nghiêm trọng sẽ bị chặn ngay tại CI
+                trước khi merge/deploy.
               </p>
             </div>
 
             <div>
-              <span class="badge badge-green">3. Đẩy Commit SHA Tag</span>
-              <p style="font-size:0.78rem; color:var(--text-muted); margin-top:2px;">
-                Sử dụng Git Commit SHA ngắn làm tag cho image (e.g. <code>:git-ac21f60</code>). Khắc phục triệt để
-                lỗi
-                ghi đè tag cũ do chính sách <strong>ECR Immutable Tags</strong>.
+              <span class="badge badge-blue">4. Immutable Image Signing</span>
+              <p style="font-size:0.78rem; color:var(--text-muted); margin-top:4px; line-height:1.5;">
+                AI Engine image được tag bằng Git Commit SHA, scan bằng Trivy, push lên ECR và ký Cosign/Sigstore qua
+                GitHub OIDC.
               </p>
             </div>
           </div>
 
           <div class="flex-col justify-center">
-            <div class="card card-accent-green" style="padding: 16px;">
-              <div class="card-title" style="font-size: 1rem;">ArgoCD GitOps Synchronizer</div>
+            <div class="card card-accent-green" style="padding: 16px; margin-bottom:14px;">
+              <div class="card-title" style="font-size: 1rem;">Terraform Plan Feedback Loop</div>
               <p style="font-size:0.78rem; color:var(--text-muted); line-height:1.5; margin-bottom:10px;">
-                ArgoCD liên tục theo dõi repository Git chứa các file manifest. Khi phát hiện tag image mới cập
-                nhật
-                trên Kustomization.yaml, ArgoCD tự động thực hiện deploy đồng bộ (Sync) kéo container image mới
-                nhất về
-                chạy trên cluster.
+                <code>ci-infra</code> tự động chạy <code>terraform plan</code>, capture output và comment trực tiếp vào
+                Pull Request. Reviewer thấy rõ tài nguyên nào được tạo, sửa hoặc xoá mà không cần pull code về máy.
               </p>
               <div
                 style="font-size:0.75rem; color:var(--accent-green); font-weight:700; display:flex; align-items:center; gap:5px;">
                 <span
                   style="width:8px; height:8px; background:var(--accent-green); border-radius:50%; display:inline-block;"></span>
-                Status: Synced & Healthy (10/10 Apps)
+                Security là điều kiện bắt buộc trước khi merge hoặc deploy
               </div>
+            </div>
+
+            <div class="card card-accent-orange" style="padding: 16px;">
+              <div class="card-title" style="font-size: 1rem;">Controlled Deployment</div>
+              <p style="font-size:0.78rem; color:var(--text-muted); line-height:1.5; margin-bottom:0;">
+                Terraform tạo nền hạ tầng như Lambda, IAM, SQS, API Gateway, EKS và ECR. App CI deploy Lambda code,
+                còn AI Engine đi qua GitOps/ArgoCD để đồng bộ manifest và rollout lên cluster.
+              </p>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- SLIDE 13: ALERT PROCESSING PIPELINE -->
+      <!-- SLIDE 13: CI/CD PIPELINE EVIDENCE -->
+      <div class="slide" data-section="CI/CD Evidence" data-presenter="Kiên">
+        <div class="slide-title-area">
+          <h2 class="slide-title">CI/CD Pipeline Evidence</h2>
+          <p class="slide-subtitle">Ảnh tổng quan pipeline được hiển thị đầy đủ ngay trên slide để reviewer nhìn thấy
+            toàn bộ luồng kiểm soát.</p>
+        </div>
+        <div class="slide-body flex-col" style="justify-content:center;">
+          <div style="width:100%; display:flex; justify-content:center; align-items:center; margin-bottom:12px;">
+            <img src="assets/cicd-devsecops-pipeline.jpg" alt="CI/CD Pipeline DevSecOps evidence"
+              onclick="openLightbox(this.src)"
+              style="cursor: zoom-in; width:100%; height:380px; object-fit:contain; border-radius:8px; border:1.5px solid var(--border); box-shadow:var(--shadow); background:rgba(255,255,255,0.02);" />
+          </div>
+          <div class="grid-3" style="gap:12px;">
+            <div class="card card-accent-blue" style="padding:12px;">
+              <div class="card-title" style="font-size:0.9rem;">Application Gate</div>
+              <p style="font-size:0.72rem; color:var(--text-muted); line-height:1.45; margin:0;">
+                Lint, test, secret scan, package Lambda và deploy code qua App CI.
+              </p>
+            </div>
+            <div class="card card-accent-orange" style="padding:12px;">
+              <div class="card-title" style="font-size:0.9rem;">Infrastructure Gate</div>
+              <p style="font-size:0.72rem; color:var(--text-muted); line-height:1.45; margin:0;">
+                Terraform fmt, validate, scan, plan comment và apply có lock timeout.
+              </p>
+            </div>
+            <div class="card card-accent-green" style="padding:12px;">
+              <div class="card-title" style="font-size:0.9rem;">Supply Chain Gate</div>
+              <p style="font-size:0.72rem; color:var(--text-muted); line-height:1.45; margin:0;">
+                AI Engine image được scan, push ECR bằng SHA tag và ký Cosign.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 14: ALERT PROCESSING PIPELINE -->
       <div class="slide" data-section="Alert pipeline" data-presenter="Tiến">
         <div class="slide-title-area">
           <h2 class="slide-title">Alert Processing Pipeline</h2>
@@ -2369,7 +2422,7 @@
           </svg>
         </button>
 
-        <div id="slideCounter" class="slide-counter">1 / 20</div>
+        <div id="slideCounter" class="slide-counter">1 / 22</div>
       </div>
     </footer>
 
@@ -2395,14 +2448,17 @@
         <div class="toc-link" onclick="jumpTo(8)">09. Dự toán chi phí vận hành <span style="font-size:0.7rem; color:var(--text-muted);">Nhật</span></div>
         <div class="toc-link" onclick="jumpTo(9)">10. Khả năng đáp ứng yêu cầu <span style="font-size:0.7rem; color:var(--text-muted);">Nhật</span></div>
         <div class="toc-link" onclick="jumpTo(10)">11. AI Engine Hosting & Pod config <span style="font-size:0.7rem; color:var(--text-muted);">Thi</span></div>
-        <div class="toc-link" onclick="jumpTo(11)">12. CI/CD & GitOps ArgoCD <span style="font-size:0.7rem; color:var(--text-muted);">Kiên</span></div>
-        <div class="toc-link" onclick="jumpTo(12)">13. Alert processing pipeline <span style="font-size:0.7rem; color:var(--text-muted);">Tiến</span></div>
-        <div class="toc-link" onclick="jumpTo(13)">14. Architecture Diagram (Jira & Slack) <span style="font-size:0.7rem; color:var(--text-muted);">Hoàng</span></div>
-        <div class="toc-link" onclick="jumpTo(14)">15. Slack Interactivity & Business Value <span style="font-size:0.7rem; color:var(--text-muted);">Hoàng</span></div>
-        <div class="toc-link" onclick="jumpTo(15)">16. Slack Under the Hood (Serverless) <span style="font-size:0.7rem; color:var(--text-muted);">Hoàng</span></div>
-        <div class="toc-link" onclick="jumpTo(16)">17. Jira Integration & Assignment <span style="font-size:0.7rem; color:var(--text-muted);">Phong</span></div>
-        <div class="toc-link" onclick="jumpTo(17)">18. E2E Scenarios & RCAEval Benchmarks <span style="font-size:0.7rem; color:var(--text-muted);">Khang</span></div>
-        <div class="toc-link" onclick="jumpTo(18)">19. Hỏi đáp Q&A <span style="font-size:0.7rem; color:var(--text-muted);">Team TF1</span></div>
+        <div class="toc-link" onclick="jumpTo(11)">12. Sơ đồ hoạt động AI Engine <span style="font-size:0.7rem; color:var(--text-muted);">Thi</span></div>
+        <div class="toc-link" onclick="jumpTo(12)">13. CI/CD & DevSecOps Guardrails <span style="font-size:0.7rem; color:var(--text-muted);">Kiên</span></div>
+        <div class="toc-link" onclick="jumpTo(13)">14. CI/CD Pipeline Evidence <span style="font-size:0.7rem; color:var(--text-muted);">Kiên</span></div>
+        <div class="toc-link" onclick="jumpTo(14)">15. Alert processing pipeline <span style="font-size:0.7rem; color:var(--text-muted);">Tiến</span></div>
+        <div class="toc-link" onclick="jumpTo(15)">16. Architecture Diagram (Jira & Slack) <span style="font-size:0.7rem; color:var(--text-muted);">Hoàng</span></div>
+        <div class="toc-link" onclick="jumpTo(16)">17. Slack Interactivity & Business Value <span style="font-size:0.7rem; color:var(--text-muted);">Hoàng</span></div>
+        <div class="toc-link" onclick="jumpTo(17)">18. Slack Under the Hood (Serverless) <span style="font-size:0.7rem; color:var(--text-muted);">Hoàng</span></div>
+        <div class="toc-link" onclick="jumpTo(18)">19. Jira Integration & Assignment <span style="font-size:0.7rem; color:var(--text-muted);">Phong</span></div>
+        <div class="toc-link" onclick="jumpTo(19)">20. Idempotent Ticket Creation <span style="font-size:0.7rem; color:var(--text-muted);">Phong</span></div>
+        <div class="toc-link" onclick="jumpTo(20)">21. E2E Scenarios & RCAEval Benchmarks <span style="font-size:0.7rem; color:var(--text-muted);">Khang</span></div>
+        <div class="toc-link" onclick="jumpTo(21)">22. Hỏi đáp Q&A <span style="font-size:0.7rem; color:var(--text-muted);">Team TF1</span></div>
       </div>
     </div>
   </div>
